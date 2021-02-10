@@ -1,5 +1,5 @@
 namespace :puma do
-  bundle_wrapper_path = "/home/deployer/.rvm/gems/ruby-2.7.2/wrappers/bundle"
+  bundle_wrapper_path = "/home/deployer/.rvm/gems/ruby-2.7.1/wrappers/bundle"
 
   desc "Start puma"
   task :start do
