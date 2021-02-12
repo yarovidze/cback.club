@@ -4,3 +4,41 @@
 h1, h2, h3, h4, h5 {
   font-family: 'Comfortaa', cursive;
 }
+body {
+  margin: 0 !important;
+}
+.header {
+  padding: 1.4vh 1vh;
+  z-index: 20;
+  position: fixed;
+  display: block;
+  background-color: #4499D1;
+  width: 100%;
+}
+.btn-group-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.main-section {
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+.home-section {
+  padding-top: 30px;
+  min-height: 100vh;
+  height: auto;
+  display: flex;
+  align-items: center;
+  background-color: #4499D1;
+  //background-image: url("../images/bgr1.svg");
+}
+.home-section img {
+  width: 100%;
+}
+.home-section h1 {
+  color: white;
+}

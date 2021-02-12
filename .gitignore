@@ -38,7 +38,3 @@ yarn-debug.log*
 /config/database.production.yml
 /config/secrets.yml
 /config/secrets.production.yml
-/config/database.yml
-/config/database.production.yml
-/config/secrets.yml
-/config/secrets.production.yml
