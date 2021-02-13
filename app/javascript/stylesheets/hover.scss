@@ -5,3 +5,7 @@ a:hover {
   text-decoration: none;
   color: black;
 }
+.btn-link a:hover {
+  background-color: transparent !important;
+  color: white !important;
+}
