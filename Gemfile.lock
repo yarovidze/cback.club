@@ -11,15 +11,6 @@ GIT
       warden (~> 1.2.3)
 
 GIT
-  remote: https://github.com/omniauth/omniauth-github.git
-  revision: 1f772263c6cc00e84dabbc02beb755ba4c95f7d1
-  branch: master
-  specs:
-    omniauth-github (2.0.0)
-      omniauth (~> 2.0)
-      omniauth-oauth2 (~> 1.7.1)
-
-GIT
   remote: https://github.com/seuros/capistrano-puma.git
   revision: d4ac7b9950ddc53835f661c7761ad3e904c48c65
   specs:
@@ -265,6 +256,13 @@ GEM
       hashie (>= 3.4.6)
       rack (>= 1.6.2, < 3)
       rack-protection
+    omniauth-facebook (8.0.0)
+      omniauth-oauth2 (~> 1.2)
+    omniauth-google-oauth2 (0.8.1)
+      jwt (>= 2.0)
+      oauth2 (~> 1.1)
+      omniauth (>= 1.1.1)
+      omniauth-oauth2 (>= 1.6)
     omniauth-oauth2 (1.7.1)
       oauth2 (~> 1.4)
       omniauth (>= 1.9, < 3)
@@ -438,7 +436,8 @@ DEPENDENCIES
   jquery-ui-rails
   listen (~> 3.3)
   omniauth
-  omniauth-github!
+  omniauth-facebook
+  omniauth-google-oauth2
   omniauth-rails_csrf_protection
   pg
   puma (~> 5.0)

@@ -62,6 +62,7 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'ancestry'
 gem 'bootstrap'
@@ -70,13 +71,17 @@ gem 'font-awesome-rails'
 gem 'jquery-ui-rails'
 gem 'slim-rails'
 gem 'trix'
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'will_paginate'
 gem 'seed_dump'
-gem 'activeadmin'
-gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
-gem "aws-sdk-s3", require: false
 gem 'dotenv-rails'
+# Media storage
+gem "aws-sdk-s3", require: false
+# Pagination
+gem 'will_paginate'
+# Admin&Authorise
+gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
+gem 'activeadmin'
+# OmniAuth
 gem 'omniauth'
-gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
