@@ -15,15 +15,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
   <meta name="verify-admitad" content="4669a05cac"/>
 </head>
+<body>
 <section class="main-section">
-  <body>
   <header class="header">
+    <div class="logo-header">
+      <a href="/"><%= image_pack_tag("media/images/logo_1.svg") %></a>
+    </div>
     <div class="btn-group-header">
       <%= link_to (fa_icon "user-o", text: "Вхід"), root_path, class: "btn-custom btn-transparent", method: :get %>
       <%= link_to (fa_icon "user-o", text: "Реєстрація"), root_path, class: "btn-custom btn-main-color", method: :get %>
     </div>
   </header>
   <%= yield %>
-  </body>
 </section>
+</body>
 </html>

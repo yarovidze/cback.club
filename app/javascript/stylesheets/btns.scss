@@ -21,7 +21,7 @@
 .btn-custom:hover {
   transition: .6s;
   box-shadow: 0 0 18px #f8ff13;
-  background-color: #f8ff13;
+  background-color: #f8ff13 !important;
 }
 .btn-custom a {
   color: black !important;
