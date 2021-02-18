@@ -24,6 +24,7 @@
     <div class="btn-group-header">
       <%= link_to (fa_icon "user-o", text: "Вхід"), root_path, class: "btn-custom btn-transparent", method: :get %>
       <%= link_to (fa_icon "user-o", text: "Реєстрація"), root_path, class: "btn-custom btn-main-color", method: :get %>
+      <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, method: :post %>
     </div>
   </header>
   <%= yield %>
