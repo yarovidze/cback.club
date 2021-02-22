@@ -14,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '891e7ba634ddb282af29b6b8edbebe1dba22a5951f3d5c9cd8dee4314ec033b26baccaeddf27bc3d643dff98759ab59f0497d1c9e0eff1a00c2d4267595f0f69'
+  # config.secret_key = '437162acd751722d7e2e616d4524f9a1c1a7e118ffbd4f516ddc5739067fd180d51066ae7a1b5a6a5dc0182aab892ceefbb8f09c9dc5348ffe6c8971be78eac2'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -126,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '001cc3ee5edfdf4e4c0342aaae40b5da882f17d4fd14a5dcc56838f0d0760d145580d0707ed25ea8d70bc14de32eea9cf3cf9b29d4c41bddba6c705f537bd294'
+  # config.pepper = '0c03d1f0ec50d227d38715cfcd018562abc55f740905bd9db4321bb46d8668762a7c8f0c3f610d7348b2494635de6fc2c44c48a9f3a3735722353a70fadbc324'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -272,8 +272,10 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :facebook, Rails.application.credentials.facebook[:APP_ID], Rails.application.credentials.facebook[:APP_SECRET], token_params: { parse: :json }
-
+  config.omniauth :google_oauth2, '827456057769-88bdi8js9gt0gq71j1t8rjvefjfm1n99.apps.googleusercontent.com',
+                  'p9RMPmbPh8rluZNXIXlPTnCt', scope: 'email,profile'
+  # config.omniauth :facebook, Rails.application.credentials.facebook[:APP_ID], Rails.application.credentials.facebook[:APP_SECRET], token_params: { parse: :json }
+  config.omniauth :facebook, '251262686649614', 'f4037138702589cfa0ac26f32bd501e9', token_params: { parse: :json }
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  ActiveAdmin::Devise.config
-  
+
+  get 'offers/index'
+  get 'offers/show'
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   ActiveAdmin.routes(self)
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  root "pages#index"
+  root "offers#index"
+  resources :offers do
+    get :search, on: :collection
+  end
 end
 

@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'activeadmin'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -84,4 +84,6 @@ gem 'activeadmin'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
+#gem 'google-api-ruby-client'
 gem 'omniauth-rails_csrf_protection'
+gem 'activeadmin_quill_editor'
