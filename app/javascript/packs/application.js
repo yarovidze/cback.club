@@ -12,6 +12,7 @@ import "bootstrap";
 import "jquery";
 import "@popperjs/core";
 import "../stylesheets/application.scss";
+import "activeadmin_quill_editor";
 
 
 Rails.start();

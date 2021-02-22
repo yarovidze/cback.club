@@ -1,0 +1,22 @@
+<section class="offers-wrap">
+  <div class="container">
+    <div class="row">
+      <% @offers.each do |offer| %>
+        <div class="col-sm-6 col-lg-3">
+          <div class="offer-list">
+            <div class="offer-img">
+              <%#= image_tag offer.image if offer.image.present? %>
+            </div>
+            <div class="offer-title">
+              <h3><%= link_to offer.name, offer %></h3>
+            </div>
+            <div class="offer-percent">
+              <div>кешбек: <strong><%= offer.cashback %></strong></div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <p id="notice"><%= notice %></p>
+  </div>
+</section>
