@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Cback.club</title>
+  <meta name="google-site-verification" content="xFrkSgVDT7tatblWCEmhanCmIGS4df4z6WJyRQbqvUA" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
@@ -22,8 +23,13 @@
       <a href="/"><%= image_pack_tag("media/images/logo_1.svg") %></a>
     </div>
     <div class="btn-group-header">
-      <%= link_to (fa_icon "user-o", text: "Вхід"), new_user_session_path, class: "btn-custom btn-transparent", method: :post %>
-      <%= link_to (fa_icon "user-o", text: "Реєстрація"), new_user_session_path, class: "btn-custom btn-main-color", method: :get %>
+      <% if current_user %>
+        <%= link_to (fa_icon "user-o", text: "Вихід"), destroy_user_session_path, class: "btn-custom btn-main-color", method: :delete %>
+      <% else %>
+        <%= link_to (fa_icon "user-o", text: "Вхід"), new_user_session_path, class: "btn-custom btn-transparent", method: :get %>
+        <%= link_to (fa_icon "user-o", text: "Реєстрація"), new_user_registration_path, class: "btn-custom btn-main-color", method: :get %>
+      <% end %>
+
     </div>
   </header>
   <%= yield %>

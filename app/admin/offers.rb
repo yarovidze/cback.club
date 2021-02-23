@@ -14,11 +14,22 @@ ActiveAdmin.register Offer do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+  index do
+    selectable_column
+    id_column
+    column :name
+    column :cashback
+    column :category
+    column :created_at
+    actions
+  end
+
   show do
     attributes_table do
       row :name
       row :cashback
       row :category
+      row :description
     end
   end
 
@@ -26,7 +37,7 @@ ActiveAdmin.register Offer do
     f.inputs do
       f.input :category
       f.input :name
-      f.input :description
+      f.input :description, as: :quill_editor
       f.input :image, as: :file
       f.input :link
       f.input :cashback
