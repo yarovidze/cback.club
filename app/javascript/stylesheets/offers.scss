@@ -23,6 +23,7 @@
 }
 .offer-title h3 a:hover {
   color: #000000 !important;
+  transition: .2s;
 }
 .offer-img {
   padding: 10px;
@@ -30,7 +31,7 @@
   border-bottom: 2px solid #efefef;
 }
 .offer-img img {
-  max-height: 40px;
+  max-height: 7vh;
 }
 .offer-percent {
   font-family: 'Comfortaa', cursive;
