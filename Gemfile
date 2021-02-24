@@ -51,6 +51,7 @@ group :development do
   gem "capistrano-nginx", "~> 1.0"
   gem "capistrano-upload-config"
   gem "sshkit-sudo"
+
 end
 
 group :test do
