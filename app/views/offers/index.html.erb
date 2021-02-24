@@ -2,9 +2,9 @@
   <section class="home-section-register">
       <%#= render 'categories/categories' %>
       <%= render 'offers/offers' %>
-      <!--    <div class="digg_pagination">-->
-      <%#= will_paginate @offers %>
-      <!--    </div>-->
+    <div class="digg_pagination">
+      <%= will_paginate @offers %>
+    </div>
   </section>
 <% else %>
   <section class="home-section">
