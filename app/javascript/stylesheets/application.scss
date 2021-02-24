@@ -13,9 +13,10 @@
  *= require_tree .
  *= require_self
  */
- @import "~bootstrap/scss/bootstrap.scss";
- @import "./scaffolds.scss";
- @import "./pages.scss";
- @import "./btns.scss";
+@import "~bootstrap/scss/bootstrap.scss";
+@import "./scaffolds.scss";
+@import "./pages.scss";
+@import "./btns.scss";
 @import "./hover.scss";
 @import "offers";
+@import "pagination";
