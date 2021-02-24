@@ -3,9 +3,35 @@
   background-color: white;
   border-radius: 5px;
   margin-bottom: 30px;
+  transform: scale(1.02);
+  box-shadow: 1px 4px 4px 1px #bdbdbd5e;
+}
+.offer-list:hover {
+  box-shadow: none;
+  transform: scale(1);
+  transition: .2s;
+  cursor: pointer;
+}
+.offer-title {
+  padding-top: 10px;
 }
 .offer-title h3 {
   font-size: 1.2rem;
+}
+.offer-title h3 a {
+  color: #4499d1 !important;
+}
+.offer-title h3 a:hover {
+  color: #000000 !important;
+  transition: .2s;
+}
+.offer-img {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 2px solid #efefef;
+}
+.offer-img img {
+  max-height: 40px;
 }
 .offer-percent {
   font-family: 'Comfortaa', cursive;
