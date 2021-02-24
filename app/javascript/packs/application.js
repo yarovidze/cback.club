@@ -13,6 +13,7 @@ import "jquery";
 import "@popperjs/core";
 import "../stylesheets/application.scss";
 import "activeadmin_quill_editor";
+import "@fortawesome/fontawesome-free/css/all"
 
 
 Rails.start();
