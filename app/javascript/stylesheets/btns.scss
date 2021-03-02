@@ -4,7 +4,7 @@
   line-height: 3vh;
   text-transform: uppercase;
   margin: 0 1vh 0 0;
-  border-radius: 5px;
+  border-radius: 5px !important;
   border: 2px solid #F8FF13;
   transform: skewX(-16deg);
   display: inline-block;
@@ -14,8 +14,8 @@
   font-style: italic;
 }
 .btn-custom-lg {
-  font-size: 3vh;
-  padding: 2vh;
+  font-size: 2vh;
+  padding: 1vh 1.4vh;
   font-weight: 800;
 }
 .btn-custom:hover {

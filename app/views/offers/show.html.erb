@@ -1,2 +1,19 @@
-h1 Offers#show
-p Find me in app/views/offers/show.html.slim
+<section class="offer-detail-wrap">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-lg-4">
+        <div class="offer-detail text-center">
+          <div class="offer-title-detail">
+            <h3><%= @offer.name %></h3>
+          </div>
+          <div class="offer-img-details">
+            <%= image_tag @offer.image if @offer.image.present? %>
+          </div>
+          <%= link_to (fa_icon "user-o", text: "В магазин"), root_path, class: "btn-custom btn-secondary-color btn-custom-lg mt-2 mb-2", method: :get %>
+        </div>
+      </div>
+      <div class="col-sm-12 col-lg-8">
+      </div>
+    </div>
+  </div>
+</section>

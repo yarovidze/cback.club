@@ -37,3 +37,26 @@
   font-family: 'Comfortaa', cursive;
   font-weight: 400;
 }
+.offer-detail-wrap {
+  padding-top: 100px;
+  height: 100vh;
+}
+.offer-detail {
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 1px 4px 4px 1px #bdbdbd5e;
+}
+.offer-img-details {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  border-bottom: 2px solid #efefef;
+}
+.offer-img-details img {
+  max-width: 150px;
+}
+.offer-title-detail h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
