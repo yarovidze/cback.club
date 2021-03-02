@@ -11,6 +11,9 @@
       </div>
       <div class="col-sm-12 col-lg-8">
         <div class="offer-detail pt-3 mb-4">
+          <div class="offer-label-percent text-right">
+            <p><i class="fab fa-gripfire"></i> кешбек: <strong> <%= @offer.cashback %></strong></p>
+          </div>
           <h3>Кешбек в магазині <strong><%= @offer.name %></strong></h3>
           <div>
             <%== @offer.description %>
