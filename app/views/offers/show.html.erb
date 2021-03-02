@@ -2,10 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12 col-lg-4">
-        <div class="offer-detail text-center">
-          <div class="offer-title-detail">
-            <h3><%= @offer.name %></h3>
-          </div>
+        <div class="offer-detail mb-4 text-center">
           <div class="offer-img-details">
             <%= image_tag @offer.image if @offer.image.present? %>
           </div>
@@ -13,6 +10,12 @@
         </div>
       </div>
       <div class="col-sm-12 col-lg-8">
+        <div class="offer-detail mb-4">
+          <h3>Кешбек в <strong><%= @offer.name %></strong></h3>
+          <div>
+            <%== @offer.description %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
