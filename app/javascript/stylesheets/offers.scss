@@ -12,6 +12,13 @@
   transform: scale(1);
   transition: .2s;
   cursor: pointer;
+  .offer-percent {
+    display: none;
+  }
+  .offer-link {
+    display: block;
+    transition: .5s;
+  }
 }
 
 .offer-title {
@@ -20,6 +27,7 @@
 
 .offer-title h3 {
   font-size: 1.2rem;
+  text-align: center;
 }
 
 .offer-title h3 a {
@@ -40,13 +48,25 @@
 .offer-img img {
   max-height: 40px;
 }
-
+.offer-descr-list {
+  position: relative;
+  padding: 15px 0;
+}
 .offer-percent {
   font-family: 'Comfortaa', cursive;
   font-weight: 400;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  bottom: 5px;
+}
+
+.offer-link {
+  display: none;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  bottom: 0;
 }
 
 .offer-detail-wrap {
@@ -80,7 +100,7 @@
 .offer-detail p {
   font-size: 0.9rem;
   line-height: 24px;
-  font-family: Comfortaa,cursive;
+  font-family: Comfortaa, cursive;
 }
 
 .offer-label-percent {
@@ -95,25 +115,26 @@
   border-radius: 20px;
   margin: 0;
   padding: 5px 10px;
-  font-family: Comfortaa,cursive;
+  font-family: Comfortaa, cursive;
   box-shadow: 1px 4px 4px 1px #bdbdbd5e;
 }
+
 .custom-title {
   color: #fe5000;
 }
+
 .offer-category-detail {
   text-align: right;
-  font-size: 10px;
+  font-size: 12px;
   margin: 5px 0;
-  color: #4499d1;
 }
+
 .offer-cashback-confirm {
-  border: 2px solid #efefef;
   padding: 5px;
-  color: #4499d1;
   border-radius: 5px;
   font-size: 12px;
 }
+
 .offer-cashback-confirm strong {
   font-weight: 800;
   color: #000000;
