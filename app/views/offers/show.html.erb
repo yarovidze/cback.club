@@ -24,6 +24,14 @@
           <div>
             <%== @offer.description %>
           </div>
+          <!-- breadcrumbs -->
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><%= link_to('Home', root_path) %></li>
+              <!--<li class="breadcrumb-item"><%#= link_to(@offer.category.name.capitalize, @offer.category ) %></li>-->
+              <li class="breadcrumb-item active" aria-current="page"><%= @offer.name.capitalize %></li>
+            </ol>
+          </nav>
         </div>
       </div>
     </div>
