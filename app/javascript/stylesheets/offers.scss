@@ -139,3 +139,8 @@
   font-weight: 800;
   color: #000000;
 }
+@media (max-width: 720px) {
+  .offer-title h3 {
+    font-size: 0.8rem;
+  }
+}
