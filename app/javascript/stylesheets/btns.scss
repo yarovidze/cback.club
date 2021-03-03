@@ -18,6 +18,13 @@
   padding: 1vh 1.4vh;
   font-weight: 800;
 }
+.btn-custom-sm {
+  font-size: 1.4vh;
+  padding: 0 .5vh;
+  font-weight: 800;
+  line-height: 3vh;
+  display: inline-flex;
+}
 .btn-custom:hover {
   transition: .6s;
   box-shadow: 0 0 18px #f8ff13;
