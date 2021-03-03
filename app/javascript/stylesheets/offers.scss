@@ -6,34 +6,115 @@
   transform: scale(1.02);
   box-shadow: 1px 4px 4px 1px #bdbdbd5e;
 }
+
 .offer-list:hover {
   box-shadow: none;
   transform: scale(1);
   transition: .2s;
   cursor: pointer;
 }
+
 .offer-title {
   padding-top: 10px;
 }
+
 .offer-title h3 {
   font-size: 1.2rem;
 }
+
 .offer-title h3 a {
   color: #4499d1 !important;
 }
+
 .offer-title h3 a:hover {
   color: #000000 !important;
   transition: .2s;
 }
+
 .offer-img {
   padding: 10px;
   text-align: center;
   border-bottom: 2px solid #efefef;
 }
+
 .offer-img img {
   max-height: 40px;
 }
+
 .offer-percent {
   font-family: 'Comfortaa', cursive;
   font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.offer-detail-wrap {
+  padding-top: 100px;
+  height: 100vh;
+}
+
+.offer-detail {
+  padding: 5px 15px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 1px 4px 4px 1px #bdbdbd5e;
+}
+
+.offer-img-details {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  border-bottom: 2px solid #efefef;
+}
+
+.offer-img-details img {
+  max-width: 100px;
+}
+
+.offer-title-detail h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.offer-detail p {
+  font-size: 0.9rem;
+  line-height: 24px;
+  font-family: Comfortaa,cursive;
+}
+
+.offer-label-percent {
+  padding: 3px 5px;
+}
+
+.offer-label-percent p {
+  line-height: 0;
+  display: inline-block;
+  color: #ffffff;
+  background-color: #fe5000;
+  border-radius: 20px;
+  margin: 0;
+  padding: 5px 10px;
+  font-family: Comfortaa,cursive;
+  box-shadow: 1px 4px 4px 1px #bdbdbd5e;
+}
+.custom-title {
+  color: #fe5000;
+}
+.offer-category-detail {
+  text-align: right;
+  font-size: 10px;
+  margin: 5px 0;
+  color: #4499d1;
+}
+.offer-cashback-confirm {
+  border: 2px solid #efefef;
+  padding: 5px;
+  color: #4499d1;
+  border-radius: 5px;
+  font-size: 12px;
+}
+.offer-cashback-confirm strong {
+  font-weight: 800;
+  color: #000000;
 }

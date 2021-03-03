@@ -6,7 +6,7 @@ h1, h2, h3, h4, h5 {
 }
 body {
   margin: 0 !important;
-  font-family: 'Montserrat', sans-serif;
+  font-family: Comfortaa,cursive;
 }
 .header {
   padding: 1.4vh 3vh;
@@ -78,8 +78,10 @@ body {
   border-radius: 0;
   border-bottom: 2px solid #4499D1;
 }
-.form-wrap input:focus {
-  outline: none;
+input:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 @media (max-width: 720px) {

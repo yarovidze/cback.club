@@ -1,2 +1,31 @@
-h1 Offers#show
-p Find me in app/views/offers/show.html.slim
+<section class="offer-detail-wrap">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-lg-4">
+        <div class="offer-detail mb-4 text-center">
+          <div class="offer-img-details">
+            <%= image_tag @offer.image if @offer.image.present? %>
+          </div>
+          <div class="offer-category-detail">
+            <%= @offer.category.name %>
+          </div>
+          <%= link_to (fa_icon "user-o", text: "В магазин"), root_path, class: "btn-custom btn-secondary-color mt-2 mb-2", method: :get %>
+          <div class="offer-cashback-confirm mb-3 mt-2">
+            <i class="far fa-clock"></i> Середній час очікування кешбеку: <strong><%= @offer.confirmation %> днів</strong>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-lg-8">
+        <div class="offer-detail pt-3 mb-4">
+          <div class="offer-label-percent text-right">
+            <p><i class="fab fa-gripfire"></i> кешбек: <strong> <%= @offer.cashback %></strong></p>
+          </div>
+          <h3>Кешбек на сайті <strong class="custom-title"><%= @offer.name %></strong></h3>
+          <div>
+            <%== @offer.description %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

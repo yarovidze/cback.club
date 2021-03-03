@@ -5,7 +5,7 @@ ActiveAdmin.register Offer do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name, :image, :link, :category_id, :description, :cashback
+  permit_params :name, :image, :link, :category_id, :description, :cashback, :confirmation
   #
   # or
   #
@@ -29,7 +29,7 @@ ActiveAdmin.register Offer do
       row :name
       row :cashback
       row :category
-      row :description
+      row :confirmation
     end
   end
 
@@ -41,6 +41,7 @@ ActiveAdmin.register Offer do
       f.input :image, as: :file
       f.input :link
       f.input :cashback
+      f.input :confirmation
     end
     f.actions
   end
