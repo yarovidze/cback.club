@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Cback.club</title>
-  <meta name="google-site-verification" content="xFrkSgVDT7tatblWCEmhanCmIGS4df4z6WJyRQbqvUA" />
+  <meta name="google-site-verification" content="xFrkSgVDT7tatblWCEmhanCmIGS4df4z6WJyRQbqvUA"/>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
@@ -22,6 +22,18 @@
     <div class="logo-header">
       <a href="/"><%= image_pack_tag("media/images/logo_1.svg") %></a>
     </div>
+    <% if current_user %>
+      <div class="search-desktop">
+        <form class="form-inline">
+          <%= form_with url: search_offers_path, method: :get, local: true do |form| %>
+            <%= form.text_field :query, class: "form-control" %>
+            <%= button_tag type: 'submit', class: "btn-custom btn-transparent" do %>
+              <i class="fas fa-search"></i>
+            <% end %>
+          <% end %>
+        </form>
+      </div>
+    <% end %>
     <div class="btn-group-header">
       <% if current_user %>
         <%= link_to (fa_icon "user-o", text: "Вихід"), destroy_user_session_path, class: "btn-custom btn-main-color", method: :delete %>
