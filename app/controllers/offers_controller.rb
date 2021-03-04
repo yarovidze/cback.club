@@ -1,6 +1,5 @@
 class OffersController < ApplicationController
-  extend FriendlyId
-  friendly_id :name, use: :slugged
+
 
   def index
     @offers = Offer.all
