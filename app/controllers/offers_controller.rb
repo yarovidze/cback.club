@@ -9,6 +9,7 @@ class OffersController < ApplicationController
     render :index
   end
 
+ 
   def show
     @offer = Offer.find(params[:id])
   end
