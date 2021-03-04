@@ -1,5 +1,5 @@
 .offer-list {
-  padding: 5px 10px;
+  padding: 10px;
   background-color: white;
   border-radius: 5px;
   margin-bottom: 30px;
@@ -50,15 +50,17 @@
 }
 .offer-descr-list {
   position: relative;
-  padding: 15px 0;
+  padding: 20px 0;
+  background-color: #f8ff14;
 }
 .offer-percent {
   font-family: 'Comfortaa', cursive;
-  font-weight: 400;
+  font-weight: 800;
   text-align: center;
   position: absolute;
   width: 100%;
-  bottom: 5px;
+  bottom: 8px;
+  font-size: 12px;
 }
 
 .offer-link {
@@ -66,7 +68,7 @@
   position: absolute;
   text-align: center;
   width: 100%;
-  bottom: 0;
+  bottom: 2px;
 }
 
 .offer-detail-wrap {
