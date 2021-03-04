@@ -22,7 +22,6 @@
       
       <div class="actions">
         <%= f.submit "Увійти", :class => "btn-custom btn-secondary-color w-100" %>
-        <%= link_to "Забули пароль?", new_user_password_path %>
       </div>
     <% end %>
     <div class="text-center">
@@ -34,6 +33,9 @@
       <%= link_to user_google_oauth2_omniauth_authorize_path, class: "btn-custom btn-secondary-color", method: :post do %>
         <i class="fab fa-google"></i>
       <% end %>
+    </div>
+    <div class="text-center mt-3">
+      <%= link_to "Забули пароль?", new_user_password_path %>
     </div>
   </div>
 </section>
