@@ -2,7 +2,7 @@
   <div class="container custom-container">
     <h2>Реєстрація</h2>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {id: 'invisible-recaptcha-form'}) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
       
       <div class="field">
@@ -28,9 +28,6 @@
 
       <div class="actions">
         <%= f.button "Зареєструватись", :id => "submit-btn", :class => "btn-custom btn-secondary-color w-100" %>
-<!--        <button type="button" id="submit-btn">-->
-<!--          Submit-->
-<!--        </button>-->
         <%= invisible_recaptcha_tags ui: :invisible, callback: 'submitInvisibleRecaptchaForm' %>
       </div>
     <% end %>
