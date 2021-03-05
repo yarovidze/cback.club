@@ -17,8 +17,8 @@ class OffersController < ApplicationController
     render json: Offer.all.map(&:name)
   end
 
-
   def show
-    @offer = Offer.find(params[:id])
+    @offer = Offer.friendly.find(params[:id])
   end
+
 end
