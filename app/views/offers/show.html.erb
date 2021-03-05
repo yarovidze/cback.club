@@ -1,4 +1,13 @@
 <section class="offer-detail-wrap">
+  <!-- breadcrumbs -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to('Головна', root_path) %></li>
+      <!--<li class="breadcrumb-item"><%#= link_to(@offer.category.name.capitalize, @offer.category ) %></li>-->
+      <li class="breadcrumb-item active" aria-current="page"><%= @offer.name.capitalize %></li>
+    </ol>
+  </nav>
+  <!-- breadcrumbs end -->
   <div class="container">
     <div class="row">
       <div class="col-sm-12 col-lg-4">
@@ -25,17 +34,7 @@
           <div>
             <%== @offer.description %>
           </div>
-
-          <!-- breadcrumbs -->
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><%= link_to('Головна', root_path) %></li>
-              <!--<li class="breadcrumb-item"><%#= link_to(@offer.category.name.capitalize, @offer.category ) %></li>-->
-              <li class="breadcrumb-item active" aria-current="page"><%= @offer.name.capitalize %></li>
-            </ol>
-          </nav>
         </div>
-        <!-- breadcrumbs end -->
       </div>
     </div>
   </div>
