@@ -90,3 +90,5 @@ gem 'omniauth-google-oauth2'
 #gem 'google-api-ruby-client'
 gem 'omniauth-rails_csrf_protection'
 gem 'activeadmin_quill_editor'
+#recaptcha
+gem "recaptcha"
