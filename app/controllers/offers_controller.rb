@@ -11,7 +11,7 @@ class OffersController < ApplicationController
   def autocomplete
     render json: Offer.all.map(&:name)
   end
-
+  
   def show
     @offer = Offer.friendly.find(params[:id])
   end
