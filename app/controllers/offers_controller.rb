@@ -8,10 +8,15 @@ class OffersController < ApplicationController
 
   end
 
-  def autocomplete
-    render json: Offer.all.map(&:name)
+  def search
+    @offers = Offer.where('name ILIKE ?', "%#{params[:query]}%").paginate(page: params[:page], per_page: 16)
+    render "offers/index"
   end
 
+  def autocomplete
+    render json: Offer.all.map(&:name)
+ end
+ 
   def show
     @offer = Offer.find(params[:id])
   end
@@ -19,6 +24,5 @@ class OffersController < ApplicationController
   def search
     render :index
   end
-
 
 end
