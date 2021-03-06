@@ -10,13 +10,14 @@ class OffersController < ApplicationController
 
   def autocomplete
     render json: Offer.all.map(&:name)
-  end
-  
+ end
+ 
   def show
-    @offer = Offer.friendly.find(params[:id])
+    @offer = Offer.find(params[:id])
   end
 
   def search
     render :index
   end
+
 end
