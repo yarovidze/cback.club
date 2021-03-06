@@ -15,9 +15,6 @@
                 <i class="fas fa-undo-alt"></i> кешбек: <strong><%= offer.cashback %></strong>
               </div>
               <div class="offer-link">
-
-                <%= link_to (fa_icon "user-o", text: "В магазин"), "http://#{offer.link_to_offer(offer.link, current_user.id)}",
-                            class: "btn-custom btn-secondary-color btn-custom-sm", method: :get %>
                 <%= link_to (fa_icon "user-o", text: "В магазин"), root_path, class: "btn-custom btn-main-color btn-custom-sm", method: :get %>
               </div>
             </div>

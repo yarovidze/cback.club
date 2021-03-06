@@ -4,7 +4,7 @@
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
-
+      
       <div class="field">
         <%= f.label :email %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -22,14 +22,14 @@
         <%= f.label :password_confirmation %>
         <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
       </div>
-
+      <%= flash[:recaptcha_error] %>
       <div class="actions">
-        <%= f.submit "Зареєструватись", :class => "btn-custom btn-secondary-color w-100" %>
+        <%#= f.submit "Зареєструватись", :class => "btn-custom btn-secondary-color w-100" %>
+        <%= invisible_recaptcha_tags text: 'Зареєструватись', :class => "btn-custom btn-secondary-color w-100" %>
       </div>
     <% end %>
     <div class="text-center">
       <p>або авторизуйтеся за допомогою:</p>
-<%#= render "devise/shared/links" %>
       <%= link_to user_facebook_omniauth_authorize_path, class: "btn-custom btn-secondary-color", method: :post do %>
         <i class="fab fa-facebook-f"></i>
       <% end %>
