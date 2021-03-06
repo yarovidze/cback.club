@@ -9,7 +9,8 @@
           <div class="offer-category-detail">
             <%= @offer.category.name %>
           </div>
-          <%= link_to (fa_icon "user-o", text: "В магазин"), root_path, class: "btn-custom btn-secondary-color mt-2 mb-2", method: :get %>
+          <%= link_to (fa_icon "user-o", text: "В магазин"), @offer.link_to_offer(@offer.link, current_user.id),
+                      class: "btn-custom btn-secondary-color mt-2 mb-2", method: :get %>
           <div class="offer-cashback-confirm mb-3 mt-2">
             <i class="far fa-clock"></i> Середній час очікування кешбеку: <strong><%= @offer.confirmation %> днів</strong>
           </div>
