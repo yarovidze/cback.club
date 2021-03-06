@@ -10,8 +10,8 @@ class OffersController < ApplicationController
 
   def autocomplete
     render json: Offer.all.map(&:name)
- end
- 
+  end
+
   def show
     @offer = Offer.find(params[:id])
   end
@@ -19,5 +19,6 @@ class OffersController < ApplicationController
   def search
     render :index
   end
+
 
 end
