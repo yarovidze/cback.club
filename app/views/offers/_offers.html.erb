@@ -16,7 +16,7 @@
               </div>
               <div class="offer-link">
                 <%= link_to (fa_icon "user-o", text: "В магазин"), offer.link_to_offer(offer.link, current_user.id),
-                            class: "btn-custom btn-main-color btn-custom-sm", method: :get %>
+                            class: "btn-custom btn-main-color btn-custom-sm", target: :_blank, method: :get %>
                 </div>
             </div>
           </div>
