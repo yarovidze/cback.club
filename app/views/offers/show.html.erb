@@ -3,6 +3,9 @@
     <div class="row">
       <div class="col-sm-12 col-lg-4">
         <div class="offer-detail mb-4 text-center">
+          <%= link_to favorites_path(user: current_user, offer_id: @offer), method: :post do %>
+            <i class="far fa-star"></i>
+          <% end %>
           <div class="offer-img-details">
             <%= image_tag @offer.image if @offer.image.present? %>
           </div>

@@ -1,0 +1,3 @@
+<% @favorite.each do |fav| %>
+  <%= link_to fav.offer.name, offer_path(fav.offer) %>
+<% end %>
