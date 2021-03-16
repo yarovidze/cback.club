@@ -13,11 +13,13 @@
   font-weight: 800;
   font-style: italic;
 }
+
 .btn-custom-lg {
   font-size: 2vh;
   padding: 1vh 1.4vh;
   font-weight: 800;
 }
+
 .btn-custom-sm {
   font-size: 1.4vh;
   padding: 0 .5vh;
@@ -25,37 +27,65 @@
   line-height: 3vh;
   display: inline-flex;
 }
+
 .btn-custom:hover {
   transition: .6s;
   box-shadow: 0 0 18px #f8ff13;
   background-color: #f8ff13 !important;
 }
+
 .btn-custom a {
   color: black !important;
 }
+
 .btn-custom a:hover {
   text-decoration: none !important;
 }
+
 .btn-main-color {
   color: #000000;
   background-color: #F8FF13;
 }
+
 .btn-secondary-color {
   background-color: transparent !important;
   color: #4499D1 !important;
   border: 2px solid #4499D1 !important;
 }
+
 .btn-secondary-color:hover {
   background-color: #4499D1 !important;
   color: #ffffff !important;
   border: 2px solid #4499D1 !important;
   box-shadow: none !important;
 }
+
 .btn-transparent {
   color: black !important;
   background-color: transparent;
 }
+
 .btn-link a:hover {
   background-color: transparent !important;
   color: white !important;
+}
+
+.fav-btn {
+  position: absolute;
+  left: 5px;
+  top: -14px;
+  padding: 2px;
+  line-height: 1.1;
+  border-radius: 30px;
+  background-color: #4499d1;
+  box-shadow: 1px 4px 4px 1px #bdbdbd5e;
+
+  :hover {
+    box-shadow: none;
+  }
+
+  a {
+    color: #f8ff13 !important;
+    font-size: 16px;
+  }
 }
