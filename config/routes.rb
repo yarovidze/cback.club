@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   end
   ActiveAdmin.routes(self)
   root "offers#index"
-  
+  resources :favorites
+
   resources :offers do
     get 'search', on: :collection
   end

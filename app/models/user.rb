@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[google_oauth2 facebook]
 
   has_many :cards
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
   has_many :transactions
 
 

@@ -1,6 +1,6 @@
 class Offer < ApplicationRecord
   has_many :transactions
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
   belongs_to :category
   has_one_attached :image
 

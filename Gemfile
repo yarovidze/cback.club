@@ -89,3 +89,5 @@ gem 'omniauth-rails_csrf_protection'
 gem 'activeadmin_quill_editor'
 #recaptcha
 gem "recaptcha"
+gem 'ed25519', '>= 1.2', '< 2.0'
+gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
