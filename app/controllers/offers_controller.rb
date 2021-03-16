@@ -1,6 +1,6 @@
 class OffersController < ApplicationController
   def index
-    @offers = Offer.where('name ILIKE ?  OR ua_name ILIKE ?', "%#{params[:query]}%","%#{params[:query]}%").paginate(page: params[:page], per_page: 16)
+    @offers = Offer.where('name ILIKE ?  OR alt_name ILIKE ?', "%#{params[:query]}%","%#{params[:query]}%").paginate(page: params[:page], per_page: 16)
     respond_to do |format|
       format.html
       format.json { render json: @offers.map(&:name) }
@@ -11,8 +11,7 @@ class OffersController < ApplicationController
  
 
   def autocomplete
-    
-    render json: Offer.all.map(&:name)
+    render json: Offer.all.map(&:alt_name)
   end
 
 
