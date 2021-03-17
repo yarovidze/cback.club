@@ -1,6 +1,7 @@
 .form-inline {
   position: relative;
   min-width: 300px;
+  border-bottom: 2px solid #ffffff;
 }
 .form-control {
   min-width: 300px;
@@ -8,11 +9,34 @@
   font-size: 1.866vh;
   line-height: 3vh;
   margin: 0 1vh 0 0;
-  border-radius: 5px!important;
-  border: 2px solid #ffffff;
-  transform: skewX(-16deg);
+  border-radius: 0 !important;
+  background-color: #4499d1;
+  color: white;
+  border: none;
+  border-bottom: 2px solid #ffffff;
   display: inline-block;
   position: relative;
+}
+.form-control::placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+.form-control:focus {
+  color: #ffffff;
+  background-color: #4499d1;
+  border-color: #4499d1;
+  outline: 0;
+  box-shadow: none !important;
+}
+.easy-autocomplete input {
+  border-color: #4499d1;
+  border-radius: 0 !important;
+  border-style: none !important;
+  border-width: 0;
+  box-shadow: none !important;
+  color: #f8ff14;
+  float: none;
+  padding: 6px 12px;
 }
 @media (max-width: 720px) {
   .search-desktop {
