@@ -36,6 +36,9 @@
     <% end %>
     <div class="btn-group-header">
       <% if current_user %>
+        <%= link_to favorites_path, class: "btn-custom btn-transparent", method: :get do %>
+          <i class="fas fa-star"></i>
+        <% end %>
         <%= link_to (fa_icon "user-o", text: "Вихід"), destroy_user_session_path, class: "btn-custom btn-main-color", method: :delete %>
       <% else %>
         <%= link_to (fa_icon "user-o", text: "Вхід"), new_user_session_path, class: "btn-custom btn-transparent", method: :get %>
@@ -44,6 +47,7 @@
     </div>
   </header>
   <%= yield %>
+  <p id="notice"><%= notice %></p>
 </section>
 </body>
 </html>
