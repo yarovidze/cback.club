@@ -39,9 +39,9 @@
   padding: 6px 12px;
 }
 .dropdown-menu {
-  top: 10px !important;
+  top: 16px !important;
   font-size: .8rem !important;
-  box-shadow: 1px 4px 4px 1px hsl(0deg 0% 74% / 37%);
+  box-shadow: 1px 4px 4px 1px #bdbdbd5e;
 }
 @media (max-width: 720px) {
   .search-desktop {
