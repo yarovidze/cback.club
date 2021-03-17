@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
   get 'offers/index'
   get 'offers/show'
   get 'autocomplete', to: 'offers#autocomplete', as: 'autocomplete'
