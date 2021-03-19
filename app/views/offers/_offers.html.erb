@@ -15,14 +15,20 @@
                 <i class="fas fa-undo-alt"></i> кешбек: <strong><%= offer.cashback %></strong>
               </div>
               <div class="offer-link">
-                <%= link_to (fa_icon "user-o", text: "В магазин"), offer.link_to_offer(offer.link, current_user.id),
+                <%#= link_to (fa_icon "user-o", text: "В магазин"), offers_redirect_path(offer.id),
                             class: "btn-custom btn-secondary-color btn-custom-sm", method: :get %>
                 </div>
+              <%= link_to 'GET CODE' ,
+                          "https://www.admitad.com/api/authorize/?scope=advcampaigns banners websites&state=7c232ff20e64432fbe071228c0779f&redirect_uri=https://cback.club/&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ",
+                          method: :get %>
             </div>
           </div>
         </div>
       <% end %>
     </div>
+
+    <%= link_to 'GET CODE', 'https://www.admitad.com/api/authorize/?scope=statistics advcampaigns banners websites&state=7c232ff20e64432fbe071228c0779f&redirect_uri=http://127.0.0.1:3000/&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ'%>
     <p id="notice"><%= notice %></p>
+
   </div>
 </section>
