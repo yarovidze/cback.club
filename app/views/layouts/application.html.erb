@@ -45,24 +45,14 @@
           </a>
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="#"><i class="far fa-user"></i> Мій кабінет</a>
+            <a class="dropdown-item" href="#"><i class="fab fa-cc-mastercard"></i> Вивести кошти</a>
+            <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Вихід</a>
           </div>
         </div>
         <%= link_to destroy_user_session_path, class: "btn-custom btn-main-color", method: :delete do %>
           <i class="fas fa-sign-out-alt"></i>
         <% end %>
-<!--        <div class="btn-group">-->
-<!--          <button type="button" class="btn-custom btn-main-color dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--            <i class="far fa-user"></i>-->
-<!--          </button>-->
-<!--          <ul class="dropdown-menu dropdown-menu-end">-->
-<!--            <li><button class="dropdown-item" type="button">Action</button></li>-->
-<!--            <li><button class="dropdown-item" type="button">Another action</button></li>-->
-<!--            <li><button class="dropdown-item" type="button">Something else here</button></li>-->
-<!--          </ul>-->
-<!--        </div>-->
       <% else %>
         <%= link_to (fa_icon "user-o", text: "Вхід"), new_user_session_path, class: "btn-custom btn-transparent", method: :get %>
         <%= link_to (fa_icon "user-o", text: "Реєстрація"), new_user_registration_path, class: "btn-custom btn-main-color", method: :get %>
