@@ -11,7 +11,8 @@
       </div>
 
       <div class="actions">
-        <%= f.submit "Відновити", :class => "btn-custom btn-secondary-color w-100" %>
+        <%#= f.submit "Відновити", :class => "btn-custom btn-secondary-color w-100" %>
+        <%= invisible_recaptcha_tags text: 'Відновити', :class => "btn-custom btn-secondary-color w-100" %>
       </div>
     <% end %>
 
