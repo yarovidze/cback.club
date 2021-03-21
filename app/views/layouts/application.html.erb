@@ -27,8 +27,8 @@
         <form class="form-inline">
           <%= form_with url: search_offers_path, method: :get, local: true do |form| %>
             <%=  form.text_field :query, id: :query, data: { behavior: "autocomplete" }, class: "form-control", placeholder: "Введіть назву магазину" %>
-            <%= button_tag type: 'submit', class: "btn-custom btn-transparent" do %>
-              <i class="fas fa-search"></i>
+            <%= button_tag type: 'submit', class: "btn-search" do %>
+              <i class="fab fa-sistrix"></i>
             <% end %>
           <% end %>
         </form>
@@ -39,7 +39,30 @@
         <%= link_to favorites_path, class: "btn-custom btn-transparent", method: :get do %>
           <i class="fas fa-star"></i>
         <% end %>
-        <%= link_to (fa_icon "user-o", text: "Вихід"), destroy_user_session_path, class: "btn-custom btn-main-color", method: :delete %>
+        <div class="dropdown btn-group">
+          <a class="btn-custom btn-main-color dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="far fa-user"></i>
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+        <%= link_to destroy_user_session_path, class: "btn-custom btn-main-color", method: :delete do %>
+          <i class="fas fa-sign-out-alt"></i>
+        <% end %>
+<!--        <div class="btn-group">-->
+<!--          <button type="button" class="btn-custom btn-main-color dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--            <i class="far fa-user"></i>-->
+<!--          </button>-->
+<!--          <ul class="dropdown-menu dropdown-menu-end">-->
+<!--            <li><button class="dropdown-item" type="button">Action</button></li>-->
+<!--            <li><button class="dropdown-item" type="button">Another action</button></li>-->
+<!--            <li><button class="dropdown-item" type="button">Something else here</button></li>-->
+<!--          </ul>-->
+<!--        </div>-->
       <% else %>
         <%= link_to (fa_icon "user-o", text: "Вхід"), new_user_session_path, class: "btn-custom btn-transparent", method: :get %>
         <%= link_to (fa_icon "user-o", text: "Реєстрація"), new_user_registration_path, class: "btn-custom btn-main-color", method: :get %>

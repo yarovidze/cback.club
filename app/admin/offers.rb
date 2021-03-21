@@ -5,12 +5,12 @@ ActiveAdmin.register Offer do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name, :image, :link, :category_id, :description, :cashback, :confirmation, :alt_name
+   permit_params :name, :image, :link, :category_id, :description, :cashback, :confirmation, :slug, :alt_name
   #
   # or
   #
   # permit_params do
-  #   permitted = [:name, :image, :link, :category_id, :description, :cashback]
+  #   permitted = [:name, :image, :link, :category_id, :description, :cashback, :confirmation, :slug, :alt_name]
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
@@ -47,3 +47,4 @@ ActiveAdmin.register Offer do
     f.actions
   end
 end
+

@@ -1,3 +1,6 @@
+.btn-group {
+  vertical-align: baseline !important;
+}
 .btn-custom {
   padding: .5vh 2vh;
   font-size: 1.866vh;
@@ -72,12 +75,12 @@
 
 .fav-btn {
   position: absolute;
-  left: 5px;
-  top: -14px;
+  left: 0;
+  top: 0;
   padding: 2px;
   line-height: 1.1;
   border-radius: 30px;
-  background-color: #4499d1;
+  background-color: #000000;
   box-shadow: 1px 4px 4px 1px #bdbdbd5e;
 
   :hover {
@@ -88,4 +91,13 @@
     color: #f8ff13 !important;
     font-size: 16px;
   }
+}
+.btn-search {
+  position: absolute;
+  right: 0;
+  color: white;
+  background-color: transparent;
+  border: none;
+  top: 10px;
+  font-size: 18px;
 }
