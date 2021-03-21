@@ -1,6 +1,7 @@
 .btn-group {
   vertical-align: baseline !important;
 }
+
 .btn-custom {
   padding: .5vh 2vh;
   font-size: 1.866vh;
@@ -92,6 +93,7 @@
     font-size: 16px;
   }
 }
+
 .btn-search {
   position: absolute;
   right: 0;
@@ -100,4 +102,17 @@
   border: none;
   top: 10px;
   font-size: 18px;
+}
+
+.btn-categories {
+  padding: 1vh 1.4vh;
+  border-radius: 25px;
+  border: 2px solid #4499D1;
+  display: inline-block;
+  margin: 2px 0;
+}
+
+.btn-categories:hover {
+  transition: .5s;
+  background-color: white !important;
 }

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'categories/show'
   devise_for :admin_users, ActiveAdmin::Devise.config
   get 'offers/index'
   get 'offers/show'
@@ -11,7 +12,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root "offers#index"
   resources :favorites
-
+  resources :categories
   resources :offers do
     get 'search', on: :collection
   end

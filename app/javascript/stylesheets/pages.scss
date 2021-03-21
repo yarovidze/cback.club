@@ -30,7 +30,7 @@ body {
   background-color: #f5f5f5;
 }
 .home-section-register {
-  padding-top: 120px;
+  padding-top: 95px;
 }
 .favorite-section {
   padding-top: 95px;
@@ -63,6 +63,14 @@ body {
   border: 2px solid transparent;
   border-radius: 5px;
   box-shadow: 1px 4px 4px 1px #bdbdbd5e;
+}
+
+.categories-wrap {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.categories-list {
+  display: inline-block;
 }
 
 .form-wrap {
