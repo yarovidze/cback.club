@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_16_163612) do
+ActiveRecord::Schema.define(version: 2021_03_21_203153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 2021_03_16_163612) do
     t.integer "confirmation"
     t.string "slug"
     t.string "alt_name"
+    t.float "cashback_percent", default: 0.5
     t.index ["category_id"], name: "index_offers_on_category_id"
     t.index ["slug"], name: "index_offers_on_slug", unique: true
   end
@@ -126,6 +127,8 @@ ActiveRecord::Schema.define(version: 2021_03_16_163612) do
     t.bigint "offer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "action_id"
+    t.float "cashback_sum"
     t.index ["offer_id"], name: "index_transactions_on_offer_id"
     t.index ["user_id"], name: "index_transactions_on_user_id"
   end
