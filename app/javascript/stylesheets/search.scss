@@ -43,6 +43,16 @@
   font-size: .8rem !important;
   box-shadow: 1px 4px 4px 1px #bdbdbd5e;
 }
+.easy-autocomplete-container {
+  left: 0;
+  position: absolute;
+  min-width: 350px;
+  z-index: 2;
+}
+.easy-autocomplete-container ul {
+  box-shadow: 1px 4px 4px 1px #bdbdbd5e;
+  transition: .5s;
+}
 @media (max-width: 720px) {
   .search-desktop {
     display: none;

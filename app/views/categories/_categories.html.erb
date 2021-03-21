@@ -1,0 +1,7 @@
+<section class="categories-wrap">
+    <% Category.all.each do |category| %>
+      <div class="categories-list">
+        <%= link_to  category.name, category_path(category), class: "btn-categories" %>
+      </div>
+    <% end %>
+</section>

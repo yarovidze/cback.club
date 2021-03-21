@@ -30,7 +30,7 @@ body {
   background-color: #f5f5f5;
 }
 .home-section-register {
-  padding-top: 120px;
+  padding-top: 95px;
 }
 .favorite-section {
   padding-top: 95px;
@@ -65,6 +65,14 @@ body {
   box-shadow: 1px 4px 4px 1px #bdbdbd5e;
 }
 
+.categories-wrap {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.categories-list {
+  display: inline-block;
+}
+
 .form-wrap {
   padding-top: 30px;
   min-height: 100vh;
@@ -89,6 +97,10 @@ body {
 input:focus {
   outline: none !important;
   box-shadow: none !important;
+}
+
+.dropdown-item:hover {
+    background-color: #e9ecef !important;
 }
 
 @media (max-width: 720px) {

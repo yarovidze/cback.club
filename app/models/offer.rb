@@ -8,6 +8,6 @@ class Offer < ApplicationRecord
   #friendly_id :name, use: :slugged
 
   def link_to_offer(link, user_id)
-    return "#{link + '/?subid=' + user_id.to_s}"
+    "#{link + user_id.to_s}"
   end
 end
