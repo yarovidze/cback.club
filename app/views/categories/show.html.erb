@@ -1,2 +1,37 @@
-h1 Categories#show
-p Find me in app/views/categories/show.html.slim
+<section class="container categories-wrap home-section-register">
+<h4><%= @category.name %></h4>
+  <div class="row">
+    <% @offers.each do |offer| %>
+      <div class=" col-6 col-sm-6 col-lg-3">
+        <div class="offer-list">
+          <div class="offer-img">
+            <div class="fav-btn">
+              <% if current_user.favorites.exists?(offer_id: offer) %>
+                <%= link_to favorite_path(id: offer.id), title: "Видалити з обраного", method: :delete do %>
+                  <i class="fas fa-star"></i>
+                <% end %>
+              <% else %>
+                <%= link_to favorites_path(user: current_user, offer_id: offer.id), title: "Додати в обране", method: :post do %>
+                  <i class="far fa-star"></i>
+                <% end %>
+              <% end %>
+            </div>
+            <%= link_to image_tag(offer.image), offer_path(offer) if offer.image.present? %>
+          </div>
+          <div class="offer-title">
+            <h3><%= link_to offer.name, offer %></h3>
+          </div>
+          <div class="offer-descr-list">
+            <div class="offer-percent">
+              <i class="fas fa-undo-alt"></i> кешбек: <strong><%= offer.cashback %></strong>
+            </div>
+            <div class="offer-link">
+              <%= link_to (fa_icon "user-o", text: "В магазин"), offer.link_to_offer(offer.link, current_user.id),
+                          class: "btn-custom btn-main-color btn-custom-sm", target: :_blank, method: :get %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>
