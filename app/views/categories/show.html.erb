@@ -11,7 +11,7 @@
                   <i class="fas fa-star"></i>
                 <% end %>
               <% else %>
-                <%= link_to favorites_path(user: current_user, offer_id: offer.id), title: "Додати в обране", method: :post do %>
+                <%= link_to favorites_path(user: current_user, offer_id: offer.id), :title => "Видалити з обраного", method: :post do %>
                   <i class="far fa-star"></i>
                 <% end %>
               <% end %>
