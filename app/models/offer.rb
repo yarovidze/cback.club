@@ -6,6 +6,9 @@ class Offer < ApplicationRecord
 
   #extend FriendlyId
   #friendly_id :name, use: :slugged
+  def to_param
+    [id, name.parameterize].join("-")
+  end
 
   def link_to_offer(link, user_id)
     "#{link + user_id.to_s}"

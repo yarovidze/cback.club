@@ -398,6 +398,9 @@ GEM
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2021.1)
       tzinfo (>= 1.0.0)
+    valid_email2 (3.6.0)
+      activemodel (>= 3.2)
+      mail (~> 2.5)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.1.0)
@@ -474,6 +477,7 @@ DEPENDENCIES
   trix
   turbolinks (~> 5)
   tzinfo-data
+  valid_email2
   web-console (>= 4.1.0)
   webdrivers
   webpacker (~> 5.0)
