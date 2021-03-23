@@ -3,7 +3,7 @@
   border-radius: 25px;
   margin-bottom: 30px;
   transform: scale(1.02);
-  box-shadow: 1px 4px 4px 1px #bdbdbd5e;
+  box-shadow: 0 6px 16px #00000012;
 }
 
 .offer-list:hover {
@@ -54,6 +54,7 @@
   background-color: #4499d1;
   border-bottom-right-radius: 25px;
   border-bottom-left-radius: 25px;
+  box-shadow: 0 6px 16px #00000012;
 }
 .offer-percent {
   font-family: 'Comfortaa', cursive;
@@ -82,8 +83,14 @@
 .offer-detail {
   padding: 5px 15px;
   background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 1px 4px 4px 1px #bdbdbd5e;
+  border-radius: 25px;
+  position: relative;
+  box-shadow: 0 6px 16px #00000012;
+}
+
+.offer-detail h3 {
+  font-size: 1.5rem;
+  line-height: 1.5;
 }
 
 .offer-img-details {
@@ -95,7 +102,7 @@
 }
 
 .offer-img-details img {
-  max-width: 100px;
+  max-width: 170px;
 }
 
 .offer-title-detail h3 {
@@ -111,13 +118,16 @@
 
 .offer-label-percent {
   padding: 3px 5px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 
 .offer-label-percent p {
   line-height: 0;
   display: inline-block;
-  color: #ffffff;
-  background-color: #fe5000;
+  color: black;
+  background-color: #f8ff14;
   border-radius: 20px;
   margin: 0;
   padding: 5px 10px;
@@ -126,7 +136,11 @@
 }
 
 .custom-title {
-  color: #fe5000;
+  padding: 5px 15px;
+  background-color: #f8ff14;
+  color: black;
+  border-radius: 5px;
+  font-size: 1.5rem;
 }
 
 .offer-category-detail {

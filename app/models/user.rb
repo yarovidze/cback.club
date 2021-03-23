@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  validates :email, 'valid_email_2/email': { strict_mx: true }
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,

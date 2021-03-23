@@ -107,12 +107,16 @@
 .btn-categories {
   padding: 1vh 1.4vh;
   border-radius: 25px;
-  border: 2px solid #4499D1;
+  border: 2px solid #ffffff;
+  background-color: white;
   display: inline-block;
   margin: 2px 0;
+  font-weight: bolder;
+  box-shadow: 1px 4px 4px 1px #bdbdbd5e;
 }
 
 .btn-categories:hover {
   transition: .5s;
   background-color: white !important;
+  box-shadow: none;
 }

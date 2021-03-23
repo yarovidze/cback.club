@@ -27,6 +27,10 @@ require.context("../images", true);
 window.jQuery = $;
 window.$ = $;
 
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+
 
 
 
