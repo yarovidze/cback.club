@@ -1,0 +1,13 @@
+console.log("click");
+console.log("<%= params[:offer_id] %>");
+<% if params[:from_favorites_list] %>
+  $('#fav-box-<%= params[:id] %>').remove();
+<% else %>
+  <% if params[:action] == 'create' %>
+      $('#fa-frame-<%= params[:offer_id] %>').replaceWith('<%= escape_javascript(render('offers/offer',
+       offer: Offer.find(params[:offer_id]))).html_safe %>');
+  <% elsif params[:action] == 'destroy' %>
+      $('#fa-frame-<%= params[:id] %>').replaceWith('<%= escape_javascript(render('offers/offer',
+       offer: Offer.find(params[:id]))).html_safe %>');
+  <% end %>
+<% end %>

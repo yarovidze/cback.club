@@ -1,0 +1,88 @@
+# frozen_string_literal: true
+# Rails cache
+# Singeltone
+require 'http'
+require 'uri'
+require 'net/http'
+require 'json'
+
+Admitad.config do |c|
+  c.client_id     = '9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ'
+  c.client_secret = '0cD5yQEVDAA8hK4NSqDVJF7VUHHU5A'
+  c.scope         = ''
+end
+
+def autorisation_admitad
+  cookies[:code] = params[:code] unless params[:code].nil?
+  url = URI("https://api.admitad.com/token/?state=7c232ff20e64432fbe071228c0779f&redirect_uri=http%3A%2F%2F127.0.0.1:3000%2F&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ&client_secret=0cD5yQEVDAA8hK4NSqDVJF7VUHHU5A&code=#{cookies[:code]}&grant_type=authorization_code")
+
+  https = Net::HTTP.new(url.host, url.port)
+  https.use_ssl = true
+
+  request = Net::HTTP::Post.new(url)
+  request['Authorization'] =
+    'Basic OU9vOUxzRElhUWhxQ1V0VmtiU0ZJUGZTbVhRN21ROjBjRDV5UUVWREFBOGhLNE5TcURWSkY3VlVISFU1QQ=='
+  request['Cookie'] = 'gdpr_country=0'
+
+  request = create_json(https.request(request).read_body)
+  @response = request
+  cookies[:refresh_token] = request['refresh_token'] unless request['refresh_token'].nil?
+  cookies[:access_token] = request['access_token'] unless request['refresh_token'].nil?
+end
+
+def get_subid_data
+  url = URI('https://api.admitad.com/statistics/sub_ids/?date_start=01.01.2021&order_by=sub_id')
+
+  https = Net::HTTP.new(url.host, url.port)
+  https.use_ssl = true
+
+  request = Net::HTTP::Get.new(url)
+  request['Authorization'] = "Bearer #{cookies[:access_token]}"
+  request['Cookie'] = 'gdpr_country=0; user_default_language=en'
+
+  request = create_json(https.request(request).read_body)
+  @subid_data = request
+  cookies[:subid_data] = request['results'] unless request['status_code'] == 401
+end
+
+def get_action_data
+  url = URI('https://api.admitad.com/statistics/actions/?date_start=01.01.2011&order_by=date&offset=1&action_id=12&total=0')
+
+  https = Net::HTTP.new(url.host, url.port)
+  https.use_ssl = true
+
+  request = Net::HTTP::Get.new(url)
+  request['Authorization'] = "Bearer #{cookies[:access_token]}"
+  request['Cookie'] = 'gdpr_country=0; user_default_language=en'
+
+  p https.request(request).read_body
+  request = create_json(https.request(request).read_body)
+  @action_data = request
+end
+
+def rec_user_data
+  sub_id = cookies[:subid_data]
+  sub_id.each do |client|
+    next if client['subid'] == ''
+    begin
+      @client = User.find(client['subid']) if User.find(client['subid']).present?
+      transaction_params = params.permit(:total).merge(user_id: client['subid'], offer_id: 1, status: 0)
+      @transaction = Transaction.find_by(transaction_params.except(:status, :total))
+      if @transaction.present?
+        @transaction.total = client['payment_sum_open']
+        @transaction.status = 0
+        @transaction.save
+      else
+        Transaction.create(transaction_params.merge(total: client['payment_sum_open']))
+      end
+    rescue ActiveRecord::RecordNotFound
+      next
+    end
+  end
+end
+
+def create_json(request)
+  raw_json = JSON.generate(request)
+  raw_json = JSON.parse raw_json.gsub('=>', ':')
+  JSON(raw_json)
+end
