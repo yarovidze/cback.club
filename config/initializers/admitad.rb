@@ -12,6 +12,12 @@ Admitad.config do |c|
   c.scope         = ''
 end
 
+def create_json(request)
+  raw_json = JSON.generate(request)
+  raw_json = JSON.parse raw_json.gsub('=>', ':')
+  JSON(raw_json)
+end
+
 def autorisation_admitad
   cookies[:code] = params[:code] unless params[:code].nil?
   url = URI("https://api.admitad.com/token/?state=7c232ff20e64432fbe071228c0779f&redirect_uri=http%3A%2F%2F127.0.0.1:3000%2F&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ&client_secret=0cD5yQEVDAA8hK4NSqDVJF7VUHHU5A&code=#{cookies[:code]}&grant_type=authorization_code")
@@ -39,14 +45,14 @@ def get_subid_data
   request = Net::HTTP::Get.new(url)
   request['Authorization'] = "Bearer #{cookies[:access_token]}"
   request['Cookie'] = 'gdpr_country=0; user_default_language=en'
-
   request = create_json(https.request(request).read_body)
+  puts "11111111111111111111111111111111111"
   @subid_data = request
   cookies[:subid_data] = request['results'] unless request['status_code'] == 401
 end
 
 def get_action_data
-  url = URI('https://api.admitad.com/statistics/actions/?date_start=01.01.2011&order_by=date&offset=1&action_id=12&total=0')
+  url = URI('https://api.admitad.com/statistics/actions/?date_start=14.03.2021&limit=222&order_by=date&action_type=1')
 
   https = Net::HTTP.new(url.host, url.port)
   https.use_ssl = true
@@ -54,15 +60,42 @@ def get_action_data
   request = Net::HTTP::Get.new(url)
   request['Authorization'] = "Bearer #{cookies[:access_token]}"
   request['Cookie'] = 'gdpr_country=0; user_default_language=en'
-
-  p https.request(request).read_body
-  request = create_json(https.request(request).read_body)
-  @action_data = request
+  puts "-------------------------------"
+  puts https.request(request).read_body
+  request = create_json(https.request(request).read_body.force_encoding('utf-8'))
+  @action_data = request['results']
+  cookies[:action_data] = request['results'] unless request['status_code'] == 401
+end
+def rec_user_actions
+  action = cookies[:action_data]
+  action.each do |client|
+    next if client['subid'] == ''
+    begin
+      @client = User.find(client['subid']) if User.find(client['subid']).present?
+      transaction_params = params.permit(:total).merge(user_id: client['subid'], status: 0)
+      @transaction = Transaction.find_by(transaction_params.except(:status, :total))
+      @offer = Offer.find_by(name: client['advcampaign_name'])
+      if @transaction.present?
+        puts '================================'
+        puts client['advcampaign_name']
+        @transaction.total = client['cart']
+        @transaction.status = 0
+        @transaction.offer_id = @offer.id
+        @transaction.cashback_sum = client['payment']
+        @transaction.action_id = client['id']
+        @transaction.save
+      else
+        Transaction.create(transaction_params.merge(total: client['payment_sum_open']))
+      end
+    rescue ActiveRecord::RecordNotFound
+      next
+    end
+  end
 end
 
 def rec_user_data
-  sub_id = cookies[:subid_data]
-  sub_id.each do |client|
+  action = cookies[:subid_data]
+  action.each do |client|
     next if client['subid'] == ''
     begin
       @client = User.find(client['subid']) if User.find(client['subid']).present?
@@ -81,8 +114,4 @@ def rec_user_data
   end
 end
 
-def create_json(request)
-  raw_json = JSON.generate(request)
-  raw_json = JSON.parse raw_json.gsub('=>', ':')
-  JSON(raw_json)
-end
+

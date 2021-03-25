@@ -21,6 +21,7 @@ gem 'jbuilder', '~> 2.7'
 # Admidat api
 
 gem 'admitad'
+#gem 'admitad_query'
 gem "http"
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'

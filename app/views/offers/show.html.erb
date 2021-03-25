@@ -5,17 +5,7 @@
         <div class="offer-detail mb-4 text-center">
           <div class="offer-img-details">
             <div class="fav-btn">
-              <% if current_user.favorites.exists?(offer_id: @offer) %>
-                <%= link_to favorite_path(id: @offer), id: "fa-frame-#{@offer.id}", title: "Видалити з обраного",
-                            method: :delete, remote: true do %>
-                  <i class="fas fa-star" id="fa-button-<%= @offer.id %>"></i>
-                <% end %>
-              <% else %>
-                <%= link_to favorites_path(user_id: current_user, offer_id: @offer), id: "fa-frame-#{@offer.id}", title: "Додати в обране",
-                            method: :post, remote: true, data: { :foo => 'bar', :bam => 'baz' } do %>
-                  <i class="far fa-star" id="fa-button-<%= @offer.id %>"></i>
-                <% end %>
-              <% end %>
+              <%= render 'offers/fa_star', offer: @offer%>
             </div>
             <%= image_tag @offer.image if @offer.image.present? %>
           </div>

@@ -10,6 +10,8 @@ ActiveAdmin.register Transaction do
       f.input :offer
       f.input :status
       f.input :total
+      f.input :cashback_sum
+      f.input :action_id
     end
     f.actions
   end

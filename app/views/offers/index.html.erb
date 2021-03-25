@@ -1,7 +1,7 @@
 <% if current_user %>
   <section class="home-section-register">
-      <%= render 'categories/categories' %>
-      <%= render 'offers/offers' %>
+      <%= render 'categories/categories' , cached: true%>
+      <%= render 'offers/offers' , cached: true%>
     <div class="digg_pagination">
       <%= will_paginate @offers %>
     </div>
@@ -25,8 +25,8 @@
 <h1>DEBUG</h1>
 <div>
 <%= @action_data %>
-  ________
+  <h1>________</h1>
   <%=  @subid_data %>
-  ___________
-  <%= @response %>
+  <h1>________</h1>
+  <%= @action_data %>
 </div>

@@ -6,7 +6,7 @@
           <div class="offer-list">
             <div class="offer-img">
               <div class="fav-btn">
-                <%= render 'offers/offer', offer: offer%>
+                <%= render 'offers/fa_star', offer: offer%>
               </div>
               <%= link_to image_tag(offer.image), offer_path(offer) if offer.image.present? %>
             </div>
