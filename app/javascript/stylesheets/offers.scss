@@ -3,7 +3,7 @@
   border-radius: 25px;
   margin-bottom: 30px;
   transform: scale(1.02);
-  box-shadow: 1px 4px 4px 1px #bdbdbd5e;
+  box-shadow: 0 6px 16px #00000012;
 }
 
 .offer-list:hover {
@@ -54,6 +54,7 @@
   background-color: #4499d1;
   border-bottom-right-radius: 25px;
   border-bottom-left-radius: 25px;
+  box-shadow: 0 6px 16px #00000012;
 }
 .offer-percent {
   font-family: 'Comfortaa', cursive;
@@ -82,9 +83,9 @@
 .offer-detail {
   padding: 5px 15px;
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 25px;
   position: relative;
-  box-shadow: 1px 4px 4px 1px #bdbdbd5e;
+  box-shadow: 0 6px 16px #00000012;
 }
 
 .offer-detail h3 {
@@ -101,7 +102,7 @@
 }
 
 .offer-img-details img {
-  max-width: 100px;
+  max-height: 70px;
 }
 
 .offer-title-detail h3 {

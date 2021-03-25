@@ -6,9 +6,17 @@ ActiveAdmin.register User do
     id_column
     column :email
     column :current_sign_in_at
-    column :sign_in_count
+    column :provider
     column :created_at
     actions
+  end
+
+  show do
+    attributes_table do
+      row :email
+      row :provider
+      row :created_at
+    end
   end
 
   filter :email
