@@ -84,8 +84,10 @@
   background-color: #000000;
   box-shadow: 1px 4px 4px 1px #bdbdbd5e;
 
-  :hover {
+  &:hover {
     box-shadow: none;
+    transform: scale(1.07);
+    transition: .3s;
   }
 
   a {
