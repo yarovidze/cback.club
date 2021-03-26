@@ -81,7 +81,7 @@
 }
 
 .offer-detail {
-  padding: 5px 15px;
+  padding: 10px 15px;
   background-color: #fff;
   border-radius: 25px;
   position: relative;
@@ -102,7 +102,7 @@
 }
 
 .offer-img-details img {
-  max-height: 70px;
+  max-height: 50px;
 }
 
 .offer-title-detail h3 {
@@ -114,6 +114,11 @@
   font-size: 0.9rem;
   line-height: 24px;
   font-family: Comfortaa, cursive;
+}
+
+.cback-text {
+  font-size: 22px;
+  font-weight: bolder;
 }
 
 .offer-label-percent {

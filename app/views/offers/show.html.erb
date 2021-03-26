@@ -1,7 +1,7 @@
 <section class="offer-detail-wrap">
   <div class="container">
     <div class="row">
-      <div class="col-sm-12 col-lg-4">
+      <div class="col-sm-12 col-lg-3">
         <div class="offer-detail mb-4 text-center">
           <div class="offer-img-details">
             <div class="fav-btn">
@@ -18,8 +18,12 @@
             <i class="far fa-clock"></i> Середній час очікування кешбеку: <strong><%= @offer.confirmation %> днів</strong>
           </div>
         </div>
+        <div class="mb-3 text-center">
+          <p>Повертаємо від покупок:</p>
+          <strong class="cback-text"><%= @offer.cashback %></strong></p>
+        </div>
       </div>
-      <div class="col-sm-12 col-lg-8">
+      <div class="col-sm-12 col-lg-9">
         <div class="offer-detail pt-3 mb-4">
           <div class="offer-label-percent text-right">
             <p><i class="fab fa-gripfire"></i> <strong> <%= @offer.cashback %></strong></p>
