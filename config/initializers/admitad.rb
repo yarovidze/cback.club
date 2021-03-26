@@ -20,8 +20,8 @@ end
 
 def autorisation_admitad
   cookies[:code] = params[:code] unless params[:code].nil?
-  url = URI("https://api.admitad.com/token/?state=7c232ff20e64432fbe071228c0779f&redirect_uri=https%3A%2F%2Fcback.club%2F&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ&client_secret=0cD5yQEVDAA8hK4NSqDVJF7VUHHU5A&code=#{cookies[:code]}&grant_type=authorization_code")
-  #url = URI("https://api.admitad.com/token/?state=7c232ff20e64432fbe071228c0779f&redirect_uri=http%3A%2F%2F127.0.0.1:3000%2F&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ&client_secret=0cD5yQEVDAA8hK4NSqDVJF7VUHHU5A&code=#{cookies[:code]}&grant_type=authorization_code")
+  #url = URI("https://api.admitad.com/token/?state=7c232ff20e64432fbe071228c0779f&redirect_uri=https%3A%2F%2Fcback.club%2F&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ&client_secret=0cD5yQEVDAA8hK4NSqDVJF7VUHHU5A&code=#{cookies[:code]}&grant_type=authorization_code")
+  url = URI("https://api.admitad.com/token/?state=7c232ff20e64432fbe071228c0779f&redirect_uri=http%3A%2F%2F127.0.0.1:3000%2F&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ&client_secret=0cD5yQEVDAA8hK4NSqDVJF7VUHHU5A&code=#{cookies[:code]}&grant_type=authorization_code")
 
   https = Net::HTTP.new(url.host, url.port)
   https.use_ssl = true
@@ -71,22 +71,20 @@ def rec_user_actions
   action.each do |client|
     next if client['subid'] == ''
     begin
+      client['subid'] = 1 if client['subid'] == "4"
+      puts client['subid']
       @client = User.find(client['subid']) if User.find(client['subid']).present?
       transaction_params = params.permit(:total).merge(user_id: client['subid'], status: 0)
       @transaction = Transaction.find_by(transaction_params.except(:status, :total))
       @offer = Offer.find_by(name: client['advcampaign_name'])
-      if @transaction.present?
-
-        puts client['advcampaign_name']
-        @transaction.total = client['cart']
-        @transaction.status = 0
-        @transaction.offer_id = @offer.id
-        @transaction.cashback_sum = client['payment']
-        @transaction.action_id = client['id']
-        @transaction.save
-      else
-        Transaction.create(transaction_params.merge(total: client['payment_sum_open']))
-      end
+      puts @offer.id
+      @transaction = Transaction.create(transaction_params.merge(total: client['cart']))  unless @transaction.present?
+      @transaction.total = client['cart']
+      @transaction.status = 0
+      @transaction.offer_id = @offer.id
+      @transaction.cashback_sum = client['payment']
+      @transaction.action_id = client['id']
+      @transaction.save
     rescue ActiveRecord::RecordNotFound
       next
     end
