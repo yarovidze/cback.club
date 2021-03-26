@@ -78,7 +78,7 @@ def rec_user_actions
       @transaction = Transaction.find_by(transaction_params.except(:status, :total))
       @offer = Offer.find_by(name: client['advcampaign_name'])
       puts @offer.id
-      @transaction = Transaction.create(transaction_params.merge(total: client['cart']))  unless @transaction.present?
+      @transaction = Transaction.create(transaction_params.merge(total: client['cart'])) unless @transaction.present?
       @transaction.total = client['cart']
       @transaction.status = 0
       @transaction.offer_id = @offer.id
