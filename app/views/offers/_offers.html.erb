@@ -6,15 +6,7 @@
           <div class="offer-list">
             <div class="offer-img">
               <div class="fav-btn">
-                <% if current_user.favorites.exists?(offer_id: offer) %>
-                  <%= link_to favorite_path(id: offer.id), title: "Видалити з обраного", method: :delete do %>
-                    <i class="fas fa-star"></i>
-                  <% end %>
-                <% else %>
-                  <%= link_to favorites_path(user: current_user, offer_id: offer.id), title: "Додати в обране", method: :post do %>
-                    <i class="far fa-star"></i>
-                  <% end %>
-                <% end %>
+                <%= render 'offers/fa_star', offer: offer%>
               </div>
               <%= link_to image_tag(offer.image), offer_path(offer) if offer.image.present? %>
             </div>
@@ -26,7 +18,7 @@
                 <i class="fas fa-undo-alt"></i> кешбек: <strong><%= offer.cashback %></strong>
               </div>
               <div class="offer-link">
-                <%= link_to (fa_icon "user-o", text: "В магазин"), offer.link_to_offer(offer.link, current_user.id),
+                <%= link_to (fa_icon "user-o", text: "В магазин"), redirect_path(id: offer.id),
                             class: "btn-custom btn-main-color btn-custom-sm", target: :_blank, method: :get %>
               </div>
             </div>

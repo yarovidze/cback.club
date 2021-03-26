@@ -38,3 +38,5 @@ yarn-debug.log*
 /config/database.production.yml
 /config/secrets.yml
 /config/secrets.production.yml
+/admitad/
+/lib/admitad/
