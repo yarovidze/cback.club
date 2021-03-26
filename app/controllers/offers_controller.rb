@@ -12,7 +12,6 @@ class OffersController < ApplicationController
     autorisation_admitad
     get_action_data
     get_subid_data
-    rec_user_data if cookies[:subid_data].present?
     rec_user_actions if cookies[:action_data].present?
   end
 

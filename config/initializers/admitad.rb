@@ -20,7 +20,7 @@ end
 
 def autorisation_admitad
   cookies[:code] = params[:code] unless params[:code].nil?
-  url = URI("https://api.admitad.com/token/?state=7c232ff20e64432fbe071228c0779f&redirect_uri=http%3A%2F%2F127.0.0.1:3000%2F&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ&client_secret=0cD5yQEVDAA8hK4NSqDVJF7VUHHU5A&code=#{cookies[:code]}&grant_type=authorization_code")
+  url = URI("https://api.admitad.com/token/?state=7c232ff20e64432fbe071228c0779f&redirect_uri=http%3A%2F%2Fcback.club%2F&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ&client_secret=0cD5yQEVDAA8hK4NSqDVJF7VUHHU5A&code=#{cookies[:code]}&grant_type=authorization_code")
 
   https = Net::HTTP.new(url.host, url.port)
   https.use_ssl = true
@@ -46,7 +46,7 @@ def get_subid_data
   request['Authorization'] = "Bearer #{cookies[:access_token]}"
   request['Cookie'] = 'gdpr_country=0; user_default_language=en'
   request = create_json(https.request(request).read_body)
-  puts "11111111111111111111111111111111111"
+
   @subid_data = request
   cookies[:subid_data] = request['results'] unless request['status_code'] == 401
 end
@@ -60,8 +60,7 @@ def get_action_data
   request = Net::HTTP::Get.new(url)
   request['Authorization'] = "Bearer #{cookies[:access_token]}"
   request['Cookie'] = 'gdpr_country=0; user_default_language=en'
-  puts "-------------------------------"
-  puts https.request(request).read_body
+
   request = create_json(https.request(request).read_body.force_encoding('utf-8'))
   @action_data = request['results']
   cookies[:action_data] = request['results'] unless request['status_code'] == 401
@@ -76,7 +75,7 @@ def rec_user_actions
       @transaction = Transaction.find_by(transaction_params.except(:status, :total))
       @offer = Offer.find_by(name: client['advcampaign_name'])
       if @transaction.present?
-        puts '================================'
+
         puts client['advcampaign_name']
         @transaction.total = client['cart']
         @transaction.status = 0
