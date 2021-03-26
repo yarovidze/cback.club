@@ -21,13 +21,12 @@
       <%# end %>
       
       <div class="actions">
-        <%#= f.submit "Увійти", :class => "btn-custom btn-secondary-color w-100" %>
-        <%= invisible_recaptcha_tags text: 'Увійти', :class => "btn-custom btn-secondary-color w-100" %>
+        <%= f.submit "Увійти", :class => "btn-custom btn-secondary-color w-100" %>
+        <%#= invisible_recaptcha_tags text: 'Увійти', :class => "btn-custom btn-secondary-color w-100" %>
       </div>
     <% end %>
     <div class="text-center">
       <p>або авторизуйтеся за допомогою:</p>
-<%#= render "devise/shared/links" %>
       <%= link_to user_facebook_omniauth_authorize_path, class: "btn-custom btn-secondary-color", method: :post do %>
         <i class="fab fa-facebook-f"></i>
       <% end %>
@@ -38,7 +37,5 @@
     <div class="text-center mt-3">
       <%= link_to "Забули пароль?", new_user_password_path %>
     </div>
-    <p id="notice"><%= notice %></p>
-    <p id="alert"><%= alert%></p>
   </div>
 </section>

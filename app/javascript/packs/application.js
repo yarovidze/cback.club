@@ -32,6 +32,15 @@ $(function () {
 })
 
 
+$(document).ready(function () {
+    setTimeout(function () {
+        $('#notice-wraper').fadeOut("slow", function () {
+            $(this).remove();
+        })
+    }, 4500);
+});
+
+
 
 
 

@@ -1,7 +1,8 @@
 .form-inline {
   position: relative;
   min-width: 350px;
-  border-bottom: 2px solid #ffffff;
+  border-radius: 25px;
+  border: 2px solid #f8ff14;
 }
 .form-control {
   min-width: 300px;
@@ -9,11 +10,9 @@
   font-size: 1.866vh;
   line-height: 3vh;
   margin: 0 1vh 0 0;
-  border-radius: 0 !important;
+  border-radius: 20px;
   background-color: #4499d1;
   color: white;
-  border: none;
-  border-bottom: 2px solid #ffffff;
   display: inline-block;
   position: relative;
 }
@@ -30,7 +29,7 @@
 }
 .easy-autocomplete input {
   border-color: #4499d1;
-  border-radius: 0 !important;
+  border-radius: 20px !important;
   border-style: none !important;
   border-width: 0;
   box-shadow: none !important;
@@ -39,9 +38,17 @@
   padding: 6px 12px;
 }
 .dropdown-menu {
-  top: 16px !important;
+  top: 18px !important;
   font-size: .8rem !important;
-  box-shadow: 1px 4px 4px 1px #bdbdbd5e;
+  border: none !important;
+  box-shadow: 0 6px 16px #00000012;
+  transition: .4s;
+}
+.dropdown-item {
+  padding: 0.5rem 2rem !important;
+}
+.dropdown-item i {
+  font-size: 16px;
 }
 .easy-autocomplete-container {
   left: 0;
