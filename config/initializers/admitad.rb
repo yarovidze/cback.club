@@ -71,20 +71,22 @@ def rec_user_actions
   action.each do |client|
     next if client['subid'] == ''
     begin
-      client['subid'] = 1 if client['subid'] == "4"
-      puts client['subid']
       @client = User.find(client['subid']) if User.find(client['subid']).present?
       transaction_params = params.permit(:total).merge(user_id: client['subid'], status: 0)
       @transaction = Transaction.find_by(transaction_params.except(:status, :total))
       @offer = Offer.find_by(name: client['advcampaign_name'])
-      puts @offer.id
-      @transaction = Transaction.create(transaction_params.merge(total: client['cart'])) unless @transaction.present?
-      @transaction.total = client['cart']
-      @transaction.status = 0
-      @transaction.offer_id = @offer.id
-      @transaction.cashback_sum = client['payment']
-      @transaction.action_id = client['id']
-      @transaction.save
+      if @transaction.present?
+
+        puts client['advcampaign_name']
+        @transaction.total = client['cart']
+        @transaction.status = 0
+        @transaction.offer_id = @offer.id
+        @transaction.cashback_sum = client['payment']
+        @transaction.action_id = client['id']
+        @transaction.save
+      else
+        Transaction.create(transaction_params.merge(total: client['payment_sum_open']))
+      end
     rescue ActiveRecord::RecordNotFound
       next
     end
