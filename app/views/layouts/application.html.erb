@@ -45,7 +45,10 @@
           </a>
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="#"><i class="far fa-user"></i> Мій кабінет</a>
+<!--            <a class="dropdown-item" href="#"><i class="far fa-user"></i> Мій кабінет</a>-->
+            <%= link_to user_path(current_user.id), class: "dropdown-item", method: :get do %>
+              <i class="far fa-user"></i> Мій кабінет
+            <% end %>
             <%= link_to favorites_path, class: "dropdown-item", method: :get do %>
               <i class="fas fa-star"></i> Обрані магазини
             <% end %>
