@@ -10,7 +10,7 @@ class FavoritesController < ApplicationController
     if @favorite.save
       render 'favorites/to_favorite'
     else
-      redirect_back fallback_location: root_path, notice: 'Error'
+      redirect_back fallback_location: root_path, notice: 'Помилка'
     end
   end
 
