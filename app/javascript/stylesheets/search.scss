@@ -6,7 +6,7 @@
 }
 .form-control {
   min-width: 300px;
-  padding: .5vh 2vh;
+  padding: 6px 12px !important;
   font-size: 1.866vh;
   line-height: 3vh;
   margin: 0 !important;
@@ -33,6 +33,7 @@
   border-radius: 20px !important;
   border-style: none !important;
   border-width: 0;
+  padding: 6px 12px !important;
   box-shadow: none !important;
   color: #ffffff !important;
   float: none;
