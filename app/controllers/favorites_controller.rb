@@ -9,14 +9,14 @@ class FavoritesController < ApplicationController
     if @favorite.save
       redirect_back fallback_location: root_path, notice: 'Додано в обране'
     else
-      redirect_back fallback_location: root_path, notice: 'Error'
+      redirect_back fallback_location: root_path, notice: 'Помилка'
     end
   end
 
   def destroy
     offer = Offer.find(params[:id])
     @favorite = Favorite.where(user_id: current_user.id, offer_id: offer.id).destroy_all
-    redirect_back fallback_location: root_path, notice: 'Deleted from favorite'
+    redirect_back fallback_location: root_path, notice: 'Видалено з обраного'
   end
 
 end

@@ -2,7 +2,7 @@ class User < ApplicationRecord
   validates :email, 'valid_email_2/email': { strict_mx: true }
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :validatable, :timeoutable,
+         :recoverable, :validatable, :rememberable,
          :omniauthable, omniauth_providers: %i[google_oauth2 facebook]
 
   has_many :cards
