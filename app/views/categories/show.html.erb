@@ -6,15 +6,7 @@
         <div class="offer-list">
           <div class="offer-img">
             <div class="fav-btn">
-              <% if current_user.favorites.exists?(offer_id: offer) %>
-                <%= link_to favorite_path(id: offer.id), title: "Видалити з обраного", method: :delete do %>
-                  <i class="fas fa-star"></i>
-                <% end %>
-              <% else %>
-                <%= link_to favorites_path(user: current_user, offer_id: offer.id), :title => "Видалити з обраного", method: :post do %>
-                  <i class="far fa-star"></i>
-                <% end %>
-              <% end %>
+              <%= render 'offers/fa_star', offer: offer%>
             </div>
             <%= link_to image_tag(offer.image), offer_path(offer) if offer.image.present? %>
           </div>

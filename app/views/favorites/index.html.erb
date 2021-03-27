@@ -3,16 +3,17 @@
     <h4 class="text-center mb-4">Обрані магазини</h4>
     <div class="row">
       <% @favorite.each do |fav| %>
-        <div class=" col-6 col-sm-6 col-lg-3">
+        <div class=" col-6 col-sm-6 col-lg-3" id="fav-box-<%= fav.offer.id %>">
           <div class="offer-list">
             <div class="offer-img">
               <div class="fav-btn">
                 <% if current_user.favorites.exists?(offer_id: fav.offer) %>
-                  <%= link_to favorite_path(id: fav.offer.id), title: "Видалити з обраного", method: :delete do %>
+                  <%= link_to favorite_path(id: fav.offer.id, from_favorites_list: true), title: "Видалити з обраного",
+                              method: :delete, remote: true do %>
                     <i class="fas fa-star"></i>
                   <% end %>
                 <% else %>
-                  <%= link_to favorites_path(user: current_user, offer_id: fav.offer.id), title: "Додати в обране", method: :post do %>
+                  <%= link_to favorites_path(user: current_user, offer_id: fav.offer.id, from_favorites_list: true), title: "Додати в обране", method: :post do %>
                     <i class="far fa-star"></i>
                   <% end %>
                 <% end %>
