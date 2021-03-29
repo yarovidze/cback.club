@@ -1,6 +1,6 @@
 ActiveAdmin.register Transaction do
 
-  permit_params :status, :total, :offer_id, :user_id
+  permit_params :status, :total, :offer_id, :user_id, :cashback_sum
   filter :user_id, as: :select, collection: User.all.ids
 
 
