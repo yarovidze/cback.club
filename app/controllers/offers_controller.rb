@@ -11,10 +11,10 @@ class OffersController < ApplicationController
       format.html
       format.json { render json: @offers.map(&:name) }
     end
-    autorisation_admitad
-    get_action_data
+    #autorisation_admitad
+    #get_action_data
     #get_subid_data
-    rec_user_actions if cookies[:action_data].present?
+    #rec_user_actions if cookies[:action_data].present?
   end
 
   def offer_redirect
