@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class OffersController < ApplicationController
+  before_action :find_offer, only: [:offer_redirect, :show]
+
   def index
     @offers = Offer.where('name ILIKE ?  OR alt_name ILIKE ?', "%#{params[:query]}%", "%#{params[:query]}%").paginate(
       page: params[:page], per_page: 16
@@ -16,7 +18,6 @@ class OffersController < ApplicationController
   end
 
   def offer_redirect
-    @offer = Offer.find(params[:id])
     redirect_to  "#{@offer.link}/?subid=#{current_user.id}".to_s
   end
 
@@ -25,6 +26,12 @@ class OffersController < ApplicationController
   end
 
   def show
+    @category = Category.find(@offer.category_id)
+  end
+
+  private
+
+  def find_offer
     @offer = Offer.find(params[:id])
   end
 end
