@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-sm-12 col-lg-3">
         <div class="offer-detail mb-4 text-center">
-          <div class="text-center mb-2 font-weight-bold">
+          <div class="text-center mb-2 font-weight-bold profile-email">
             <%= current_user.email %>
           </div>
           <div class="text-center">
@@ -15,7 +15,7 @@
       </div>
       <div class="col-sm-12 col-lg-9">
         <div class="row">
-          <div class="col-sm-12 col-lg-4">
+          <div class="col-sm-12 col-md-4 col-lg-4">
             <div class="offer-detail mb-2">
               <div class="mb-3"><i class="fas fa-bullseye text-success"></i> Готові до виводу</div>
               <div class="cback-text">
@@ -23,7 +23,7 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-12 col-lg-4">
+          <div class="col-sm-12 col-md-4 col-lg-4">
             <div class="offer-detail mb-2">
               <div class="mb-3"><i class="fas fa-bullseye text-warning"></i> В очікуванні</div>
               <div class="cback-text">
@@ -31,9 +31,9 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-12 col-lg-4">
+          <div class="col-sm-12 col-md-4 col-lg-4">
             <div class="offer-detail mb-2">
-              <div class="mb-3"><i class="fas fa-bullseye text-info"></i> Зароблено за весь час</div>
+              <div class="mb-3"><i class="fas fa-bullseye text-info"></i> Виплачено</div>
               <div class="cback-text">
                 <%= number_to_currency(@transactions.where(:status => 'paid').collect(&:user_cashback).sum, unit: "₴", separator: ",", delimiter: " ", format: "%n %u") %>
               </div>
@@ -44,39 +44,50 @@
           <div class="col-12">
             <h4 class="font-weight-bold text-left mb-3 mt-3">Покупки:</h4>
             <div class="offer-detail text-center">
+              <div class="filter-transaction">
+                <span><i class="fas fa-signal"></i> Фільтр:</span>
+                <span><i class="fas fa-bullseye text-success"></i> Готові до виводу</span>
+                <span><i class="fas fa-bullseye text-warning"></i> В очікуванні</span>
+                <span><i class="fas fa-bullseye text-info"></i> Виплачено</span>
+              </div>
               <div class="row mb-3">
-                <div class="col-sm-12 col-lg-2">
+                <div class="col-sm-2 col-md-2 col-lg-2">
                   <div class="font-weight-bold">Дата</div>
                 </div>
-                <div class="col-sm-12 col-lg-4">
+                <div class="col-sm-4 col-md-4 col-lg-4">
                   <div class="font-weight-bold">Магазин</div>
                 </div>
-                <div class="col-sm-12 col-lg-2">
+                <div class="col-sm-2 col-md-2 col-lg-2">
                   <div class="font-weight-bold">Сума</div>
                 </div>
-                <div class="col-sm-12 col-lg-2">
+                <div class="col-sm-2 col-md-2 col-lg-2">
                   <div class="font-weight-bold">Кешбек</div>
                 </div>
-                <div class="col-sm-12 col-lg-2">
+                <div class="col-sm-2 col-md-2 col-lg-2">
                   <div class="font-weight-bold">Статус</div>
                 </div>
               </div>
               <div class="row">
                 <% @transactions.each do |trans| %>
-                  <div class="col-sm-12 col-lg-2 mb-2">
+                  <div class="col-sm-2 col-md-2 col-lg-2 mb-2">
                     <div><%= trans.created_at.strftime("%d-%m-%Y") %></div>
                   </div>
-                  <div class="col-sm-12 col-lg-4 mb-2">
+                  <div class="col-sm-4 col-md-4 col-lg-4 mb-2">
                     <div><%= trans.offer.name %></div>
                   </div>
-                  <div class="col-sm-12 col-lg-2 mb-2">
+                  <div class="col-sm-2 col-md-2 col-lg-2 mb-2">
                     <div><%= number_to_currency(trans.total, unit: "₴", separator: ",", delimiter: " ", format: "%n %u") %></div>
                   </div>
-                  <div class="col-sm-12 col-lg-2 mb-2">
+                  <div class="col-sm-2 col-md-2 col-lg-2 mb-2">
                     <div><%= number_to_currency(trans.user_cashback, unit: "₴", separator: ",", delimiter: " ", format: "%n %u") %></div>
                   </div>
-                  <div class="col-sm-12 col-lg-2 mb-2">
-                    <div><%= trans.status %></div>
+                  <div class="col-sm-2 col-md-2 col-lg-2 mb-2">
+                    <div class="
+                      <% if trans.status == "approved" %> text-success
+                      <% elsif trans.status == "pending" %> text-warning
+                      <% else %>
+                        text-info
+                      <% end %>"><i class="fas fa-bullseye"></i></div>
                   </div>
                 <% end %>
               </div>
