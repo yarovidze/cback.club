@@ -1,0 +1,28 @@
+<div class="row" id="trans_list">
+<% if transactions.present? %>
+<% transactions.each do |trans| %>
+<div class="col-sm-2 col-md-2 col-lg-2 mb-2">
+  <div><%= trans.created_at.strftime("%d-%m-%Y") %></div>
+</div>
+<div class="col-sm-4 col-md-4 col-lg-4 mb-2">
+  <div><%= trans.offer.name %></div>
+</div>
+<div class="col-sm-2 col-md-2 col-lg-2 mb-2">
+  <div><%= number_to_currency(trans.total, unit: "₴", separator: ",", delimiter: " ", format: "%n %u") %></div>
+</div>
+<div class="col-sm-2 col-md-2 col-lg-2 mb-2">
+  <div><%= number_to_currency(trans.user_cashback, unit: "₴", separator: ",", delimiter: " ", format: "%n %u") %></div>
+</div>
+<div class="col-sm-2 col-md-2 col-lg-2 mb-2">
+  <div class="
+                      <% if trans.status == "approved" %> text-success
+                      <% elsif trans.status == "pending" %> text-warning
+                      <% else %>
+                        text-info
+                      <% end %>"><i class="fas fa-bullseye"></i></div>
+</div>
+<% end %>
+    <% else %>
+  На даний момент немає таких покупок
+  <% end %>
+</div>

@@ -7,11 +7,12 @@ Rails.application.routes.draw do
   get 'offers/show'
   get 'offers/offer_redirect', to: 'offers#offer_redirect', as: 'redirect'
   get 'autocomplete', to: 'offers#autocomplete', as: 'autocomplete'
+  get 'withdrawal', to:'users#create_withdrawal_request'
+  get 'filter_status', to: 'users#filter_status', as: 'filter_status'
 
   devise_for :users,
              controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations',
                             sessions: 'users/sessions' }
-
   root 'offers#index'
   resources :favorites
   resources :users, only: %i[show]

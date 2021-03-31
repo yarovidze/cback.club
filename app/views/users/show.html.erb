@@ -1,4 +1,5 @@
 <section class="offers-wrap favorite-section">
+  <%= link_to("вивід", withdrawal_path, remote: true) %>
   <div class="container">
     <h4 class="text-left mb-4 font-weight-bold">Мій кабінет:</h4>
     <div class="row">
@@ -46,9 +47,15 @@
             <div class="offer-detail text-center">
               <div class="filter-transaction">
                 <span><i class="fas fa-signal"></i> Фільтр:</span>
-                <span><i class="fas fa-bullseye text-success"></i> Готові до виводу</span>
-                <span><i class="fas fa-bullseye text-warning"></i> В очікуванні</span>
-                <span><i class="fas fa-bullseye text-info"></i> Виплачено</span>
+                <%= link_to filter_status_path(status: 1), remote: true do %>
+                  <i class="fas fa-bullseye text-success"></i> Готові до виводу</i>
+                <% end %>
+                <%= link_to filter_status_path(status: 0), remote: true do %>
+                  <i class="fas fa-bullseye text-warning"></i> В очікуванні
+                <% end %>
+                <%= link_to filter_status_path(status: 4), remote: true do %>
+                  <i class="fas fa-bullseye text-info"></i> Виплачено
+                <% end %>
               </div>
               <div class="row mb-3">
                 <div class="col-sm-2 col-md-2 col-lg-2">
@@ -67,30 +74,7 @@
                   <div class="font-weight-bold">Статус</div>
                 </div>
               </div>
-              <div class="row">
-                <% @transactions.each do |trans| %>
-                  <div class="col-sm-2 col-md-2 col-lg-2 mb-2">
-                    <div><%= trans.created_at.strftime("%d-%m-%Y") %></div>
-                  </div>
-                  <div class="col-sm-4 col-md-4 col-lg-4 mb-2">
-                    <div><%= trans.offer.name %></div>
-                  </div>
-                  <div class="col-sm-2 col-md-2 col-lg-2 mb-2">
-                    <div><%= number_to_currency(trans.total, unit: "₴", separator: ",", delimiter: " ", format: "%n %u") %></div>
-                  </div>
-                  <div class="col-sm-2 col-md-2 col-lg-2 mb-2">
-                    <div><%= number_to_currency(trans.user_cashback, unit: "₴", separator: ",", delimiter: " ", format: "%n %u") %></div>
-                  </div>
-                  <div class="col-sm-2 col-md-2 col-lg-2 mb-2">
-                    <div class="
-                      <% if trans.status == "approved" %> text-success
-                      <% elsif trans.status == "pending" %> text-warning
-                      <% else %>
-                        text-info
-                      <% end %>"><i class="fas fa-bullseye"></i></div>
-                  </div>
-                <% end %>
-              </div>
+<%= render 'transactions/trans_list', transactions: @transactions %>
             </div>
           </div>
         </div>
