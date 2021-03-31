@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :find_transactions, only: %i[show filter_status]
 
-  def show;  end
+  def show; end
 
   def create_withdrawal_request
     Transaction.where(user_id: current_user.id, status: 0).each do |transaction|
