@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def filter_status
-    @transaction_list = @transactions.where(status: params[:status])
+    @transactions = @transactions.where(status: params[:status])
     render 'transactions/_filter_status'
   end
 
