@@ -32,6 +32,6 @@ class OffersController < ApplicationController
   private
 
   def find_offer
-    @offer = Offer.find(params[:id])
+    @offer = Offer.friendly.find(params[:id])
   end
 end
