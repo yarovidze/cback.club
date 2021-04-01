@@ -39,6 +39,9 @@
         <%= link_to favorites_path, class: "btn-custom btn-transparent", method: :get do %>
           <i class="fas fa-star"></i>
         <% end %>
+        <%= link_to new_contact_path, class: "btn-custom btn-transparent", method: :get do %>
+          <i class="fas fa-envelope"></i>
+        <% end %>
         <div class="dropdown btn-group">
           <a class="btn-custom btn-main-color dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="far fa-user"></i>
@@ -64,6 +67,7 @@
       <% else %>
         <%= link_to (fa_icon "user-o", text: "Вхід"), new_user_session_path, class: "btn-custom btn-transparent", method: :get %>
         <%= link_to (fa_icon "user-o", text: "Реєстрація"), new_user_registration_path, class: "btn-custom btn-main-color", method: :get %>
+         <%= link_to (fa_icon "user-o", text: "Зворотній звязок"), new_contact_path, class: "btn-custom btn-main-color", method: :get %>
       <% end %>
     </div>
   </header>
