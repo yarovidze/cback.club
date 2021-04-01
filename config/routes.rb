@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
+  
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-
+  get 'contact/new'
   get 'offers/index'
   get 'offers/show'
   get 'offers/offer_redirect', to: 'offers#offer_redirect', as: 'redirect'
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
   resources :favorites
   resources :users, only: %i[show]
   resources :categories
+  resources :contacts, only: [:new, :create]
   get 'categories/show'
   resources :offers do
     get 'search', on: :collection

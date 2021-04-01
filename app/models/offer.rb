@@ -10,11 +10,12 @@ class Offer < ApplicationRecord
   validates_numericality_of :confirmation, greater_than_or_equal_to: 0
   
 
-  #extend FriendlyId
-  #friendly_id :name, use: :slugged
-  def to_param
-    [id, name.parameterize].join("-")
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+  def normalize_friendly_id(text)
+    text.to_slug.transliterate(:ukrainian).normalize.to_s
   end
+ 
 
   def link_to_offer(link, user_id)
     "#{link + user_id.to_s}"
