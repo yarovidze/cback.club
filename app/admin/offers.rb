@@ -1,9 +1,14 @@
 ActiveAdmin.register Offer do
   controller do
     def find_resource
+      begin
       scoped_collection.friendly.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+      scoped_collection.friendly.where(name: params[:id])
+      end
     end
   end
+  
 
 
 
