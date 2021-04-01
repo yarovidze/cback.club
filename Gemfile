@@ -93,4 +93,7 @@ gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
 gem 'activeadmin_quill_editor'
 #email_validator
 gem 'valid_email2'
+#mail_form
+gem 'mail_form'
+
 
