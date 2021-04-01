@@ -1,11 +1,18 @@
 <section class="offer-detail-wrap">
   <div class="container">
+    <!-- breadcrumbs-->
+    <ol class="breadcrumb offer-detail pt-3 pb-3">
+      <%= link_to "Головна", root_path, class: "breadcrumb-item" %>
+      <%= link_to "#{@category.name}", @category, class: "breadcrumb-item" %>
+      <li class="breadcrumb-item active" aria-current="page"><%= @offer.name %></li>
+    </ol>
+    <!-- breadcrumbs-->
     <div class="row">
       <div class="col-sm-12 col-lg-3">
         <div class="offer-detail mb-4 text-center">
           <div class="offer-img-details">
             <div class="fav-btn">
-              <%= render 'offers/fa_star', offer: @offer%>
+              <%= render 'offers/fa_star', offer: @offer %>
             </div>
             <%= image_tag @offer.image if @offer.image.present? %>
           </div>
@@ -15,12 +22,13 @@
           <%= link_to (fa_icon "user-o", text: "В магазин"), redirect_path(id: @offer.id),
                       class: "btn-custom btn-secondary-color mt-2 mb-2", target: :_blank, method: :get %>
           <div class="offer-cashback-confirm mb-3 mt-2">
-            <i class="far fa-clock"></i> Середній час очікування кешбеку: <strong><%= @offer.confirmation %> днів</strong>
+            <i class="far fa-clock"></i> Середній час очікування кешбеку:
+            <strong><%= @offer.confirmation %> днів</strong>
           </div>
         </div>
         <div class="offer-detail mb-3 text-center">
           <p>Повертаємо від покупок:</p>
-          <strong class="cback-text"><%= @offer.cashback %></strong></p>
+          <strong class="cback-text"><%= @offer.cashback %></strong>
         </div>
       </div>
       <div class="col-sm-12 col-lg-9">

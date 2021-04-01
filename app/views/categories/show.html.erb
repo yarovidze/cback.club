@@ -1,5 +1,11 @@
 <section class="container categories-wrap favorite-section">
 <h4 class="mb-4"><%= @category.name %></h4>
+  <!-- breadcrumbs-->
+      <ol class="breadcrumb offer-detail pt-3 pb-3">
+        <%= link_to "Головна", root_path, class: "breadcrumb-item" %>
+        <li class="breadcrumb-item active" aria-current="page"><%= @category.name %></li>
+      </ol>
+  <!-- breadcrumbs-->
   <div class="row">
     <% @offers.each do |offer| %>
       <div class=" col-6 col-sm-6 col-lg-3">

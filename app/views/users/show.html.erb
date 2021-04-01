@@ -1,5 +1,90 @@
 <section class="offers-wrap favorite-section">
   <div class="container">
-    <h2>User profile</h2>
+    <!-- breadcrumbs-->
+    <ol class="breadcrumb offer-detail pt-3 pb-3">
+      <%= link_to "Головна", root_path, class: "breadcrumb-item" %>
+      <li class="breadcrumb-item active" aria-current="page"><%= "Мій кабінет" %></li>
+    </ol>
+    <!-- breadcrumbs-->
+    <h4 class="text-left mb-4 font-weight-bold">Мій кабінет:</h4>
+    <div class="row">
+      <div class="col-sm-12 col-lg-3">
+        <div class="offer-detail mb-4 text-center">
+          <div class="text-center mb-2 font-weight-bold profile-email">
+            <%= current_user.email %>
+          </div>
+          <div class="text-center">
+            <div class="mb-2">ID користувача:</div>
+            <div class="cback-text"><%= current_user.id %></div>
+          </div>
+          <%= link_to("вивід", withdrawal_path, remote: true) %>
+        </div>
+      </div>
+      <div class="col-sm-12 col-lg-9">
+        <div class="row">
+          <div class="col-sm-12 col-md-4 col-lg-4">
+            <div class="offer-detail mb-2">
+              <div class="mb-3"><i class="fas fa-bullseye text-success"></i> Готові до виводу</div>
+              <div class="cback-text">
+                <%= number_to_currency(@transactions.where(:status => 'approved').collect(&:user_cashback).sum, unit: "₴", separator: ",", delimiter: " ", format: "%n %u") %>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-4 col-lg-4">
+            <div class="offer-detail mb-2">
+              <div class="mb-3"><i class="fas fa-bullseye text-warning"></i> В очікуванні</div>
+              <div class="cback-text">
+                <%= number_to_currency(@transactions.where(:status => 'pending').collect(&:user_cashback).sum, unit: "₴", separator: ",", delimiter: " ", format: "%n %u") %>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-4 col-lg-4">
+            <div class="offer-detail mb-2">
+              <div class="mb-3"><i class="fas fa-bullseye text-info"></i> Виплачено</div>
+              <div class="cback-text">
+                <%= number_to_currency(@transactions.where(:status => 'paid').collect(&:user_cashback).sum, unit: "₴", separator: ",", delimiter: " ", format: "%n %u") %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <h4 class="font-weight-bold text-left mb-3 mt-3">Покупки:</h4>
+            <div class="offer-detail text-center">
+              <div class="filter-transaction">
+                <span><i class="fas fa-signal"></i> Фільтр:</span>
+                <%= link_to filter_status_path(status: 1), remote: true do %>
+                  <i class="fas fa-bullseye text-success"></i> Готові до виводу</i>
+                <% end %>
+                <%= link_to filter_status_path(status: 0), remote: true do %>
+                  <i class="fas fa-bullseye text-warning"></i> В очікуванні
+                <% end %>
+                <%= link_to filter_status_path(status: 4), remote: true do %>
+                  <i class="fas fa-bullseye text-info"></i> Виплачено
+                <% end %>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-2 col-md-2 col-lg-2">
+                  <div class="font-weight-bold">Дата</div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                  <div class="font-weight-bold">Магазин</div>
+                </div>
+                <div class="col-sm-2 col-md-2 col-lg-2">
+                  <div class="font-weight-bold">Сума</div>
+                </div>
+                <div class="col-sm-2 col-md-2 col-lg-2">
+                  <div class="font-weight-bold">Кешбек</div>
+                </div>
+                <div class="col-sm-2 col-md-2 col-lg-2">
+                  <div class="font-weight-bold">Статус</div>
+                </div>
+              </div>
+<%= render 'transactions/trans_list', transactions: @transactions %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

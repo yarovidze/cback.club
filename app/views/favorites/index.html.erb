@@ -1,5 +1,11 @@
 <section class="offers-wrap favorite-section">
   <div class="container">
+    <!-- breadcrumbs-->
+    <ol class="breadcrumb offer-detail pt-3 pb-3">
+      <%= link_to "Головна", root_path, class: "breadcrumb-item" %>
+      <li class="breadcrumb-item active" aria-current="page">Обрані магазини</li>
+    </ol>
+    <!-- breadcrumbs-->
     <h4 class="text-center mb-4">Обрані магазини</h4>
     <div class="row">
       <% @favorite.each do |fav| %>
