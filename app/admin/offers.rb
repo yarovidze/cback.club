@@ -1,4 +1,16 @@
 ActiveAdmin.register Offer do
+  controller do
+    def find_resource
+      begin
+      scoped_collection.friendly.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+      scoped_collection.friendly.where(name: params[:id])
+      end
+    end
+  end
+  
+
+
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
