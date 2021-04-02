@@ -1,6 +1,6 @@
 <div class="row" id="trans_list">
-<% if transactions.present? %>
-<% transactions.each do |trans| %>
+<% if @transactions.present? %>
+<% @transactions.each do |trans| %>
 <div class="col-sm-2 col-md-2 col-lg-2 mb-2">
   <div><%= trans.created_at.strftime("%d-%m-%Y") %></div>
 </div>

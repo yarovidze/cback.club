@@ -1,5 +1,5 @@
 console.log(<%= params[:status] %>);
 console.log("click");
-console.log("<%= @transaction_list %>")
+console.log("<%= @transactions %>")
 $("#trans_list").replaceWith('<%= escape_javascript(render('transactions/trans_list',
- transactions: @transaction_list)).html_safe %>');
+ transactions: @transactions)).html_safe %>');
