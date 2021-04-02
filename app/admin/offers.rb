@@ -17,7 +17,7 @@ ActiveAdmin.register Offer do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-   permit_params :name, :image, :link, :category_id, :description, :cashback, :confirmation, :slug, :alt_name, :cashback_percent
+   permit_params :name, :image, :link, :category_id, :description, :cashback, :confirmation, :alt_name, :cashback_percent
   #
   # or
   #
