@@ -16,7 +16,7 @@ gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
-
+gem 'i18n'
 
 # Admidat api
 
@@ -46,8 +46,8 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
   # Capistrano
+  gem "spring"
   gem "capistrano"
   gem "capistrano-rvm"
   gem "capistrano-rails"
@@ -103,5 +103,5 @@ gem 'mail_form'
 gem 'friendly_id', '~> 5.4.0'
 #babosa
 gem 'babosa'
-
-
+# gem 'ukrainian', '~> 0.2.1'
+gem 'russian', '~> 0.6.0'

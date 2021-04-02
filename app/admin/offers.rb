@@ -1,9 +1,14 @@
 ActiveAdmin.register Offer do
   controller do
     def find_resource
+      begin
       scoped_collection.friendly.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+      scoped_collection.friendly.where(name: params[:id])
+      end
     end
   end
+  
 
 
 
@@ -12,7 +17,7 @@ ActiveAdmin.register Offer do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-   permit_params :name, :image, :link, :category_id, :description, :cashback, :confirmation, :slug, :alt_name, :cashback_percent
+   permit_params :name, :image, :link, :category_id, :description, :cashback, :confirmation, :alt_name, :cashback_percent
   #
   # or
   #
