@@ -5,6 +5,9 @@ require "rails/all"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+I18n.default_locale = :ru
+I18n.locale = :ru
+
 
 module Lesson12
   class Application < Rails::Application
