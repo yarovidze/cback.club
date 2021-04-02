@@ -127,6 +127,7 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
+    babosa (1.0.4)
     bcrypt (3.1.16)
     bcrypt_pbkdf (1.1.0)
     bindex (0.8.1)
@@ -195,6 +196,8 @@ GEM
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
     formtastic_i18n (0.6.0)
+    friendly_id (5.4.2)
+      activerecord (>= 4.0.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     has_scope (0.8.0)
@@ -257,6 +260,9 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
+    mail_form (1.9.0)
+      actionmailer (>= 5.2)
+      activemodel (>= 5.2)
     marcel (1.0.0)
     method_source (1.0.0)
     mime-types (3.3.1)
@@ -364,6 +370,8 @@ GEM
       ffi (~> 1.12)
     ruby2_keywords (0.0.4)
     rubyzip (2.3.0)
+    russian (0.6.0)
+      i18n (>= 0.5.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -458,6 +466,7 @@ DEPENDENCIES
   admitad
   ancestry
   aws-sdk-s3
+  babosa
   bcrypt_pbkdf (>= 1.0, < 2.0)
   bootsnap (>= 1.4.4)
   bootstrap
@@ -474,12 +483,15 @@ DEPENDENCIES
   dotenv-rails
   ed25519 (>= 1.2, < 2.0)
   font-awesome-rails
+  friendly_id (~> 5.4.0)
   http
+  i18n
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   jquery-ui-rails
   liqpay
   listen (~> 3.3)
+  mail_form
   omniauth
   omniauth-facebook
   omniauth-google-oauth2
@@ -489,6 +501,7 @@ DEPENDENCIES
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.1)
   recaptcha
+  russian (~> 0.6.0)
   sass-rails (>= 6)
   seed_dump
   selenium-webdriver
