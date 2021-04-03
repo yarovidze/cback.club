@@ -58,13 +58,13 @@
   box-shadow: 0 6px 16px #00000012;
 }
 .offer-percent {
-  font-family: 'Comfortaa', cursive;
   font-weight: 800;
   text-align: center;
   position: absolute;
   width: 100%;
   bottom: 10px;
-  font-size: 12px;
+  font-size: 18px;
+  font-family: 'Montserrat', sans-serif;
   color: white;
 }
 
@@ -149,6 +149,15 @@
   border-radius: 5px;
   font-size: 1.5rem;
 }
+//.percent-label::before {
+//  content: "";
+//  background: url("../images/cback.svg") no-repeat;
+//  display: inline-block;
+//  vertical-align: middle;
+//  width: 1em;
+//  height: 1em;
+//  background-size: cover;
+//}
 
 .offer-category-detail {
   text-align: right;
