@@ -177,6 +177,11 @@
 .rules-warning {
   background: #fffad8 url("../images/lamp.svg") 96% 30px no-repeat;
   background-size: 100px;
+  ol {
+    font-size: .9rem;
+    line-height: 24px;
+    font-family: Comfortaa,cursive;
+  }
 }
 @media (max-width: 720px) {
   .offer-title h3 {
