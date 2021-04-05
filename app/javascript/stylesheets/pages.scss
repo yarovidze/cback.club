@@ -145,6 +145,16 @@ body {
   justify-content: center;
 }
 
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px 0;
+  margin-bottom: 1rem;
+  list-style: none;
+  background-color: #ffffff;
+  border-radius: .25rem;
+}
+
 //.g-recaptcha {
 //  display: none;
 //}
