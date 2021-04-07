@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require 'liqpay'
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :find_transactions, only: %i[show filter_status]
@@ -19,11 +19,31 @@ class UsersController < ApplicationController
     render 'transactions/_filter_status'
   end
 
+  def withdrawal_liqpay
+    liqpay = Liqpay.new
+    # @a = Transaction.create(user_id: current_user.id, action_id: '111111')
+
+    liqpay.api('request', {
+      action: 'p2pcredit',
+      version: '3',
+      amount: '1',
+      currency: 'UAH',
+      description: 'Кешбек з cback.clib',
+      order_id: '111',
+      receiver_card: '4731195301524633',
+      receiver_last_name: 'LastName',
+      receiver_first_name: 'FirstName',
+      server_url: '127.0.0.1:3000'
+    })
+  end
+
   private
 
   def find_transactions
     @transactions = current_user.transactions
   end
+
+
 
   # def sort_column
   #  Transaction.column_names.include?(params[:sort]) ? params[:sort] : nil

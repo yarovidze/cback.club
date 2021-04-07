@@ -77,7 +77,7 @@ def rec_user_actions
       puts client['subid']
       client['subid'] = '1' if client['subid'] == '4'
       puts client['subid']
-      @client = User.find(client['subid']) if User.find(client['subid']).present?
+      @client = User.find(client['subid'].to_i) if User.find(client['subid'].to_i).present?
       transaction_params = params.permit(:offer_id, :status, :total, :cashback_sum).merge(
         user_id: client['subid'], action_id: client['id']
       )
