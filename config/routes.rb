@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   get 'withdrawal_liqpay', to: 'users#withdrawal_liqpay', as: 'withdrawal_liqpay'
   post 'withdrawal_get', to: 'admins#withdrawal_get', as: 'withdrawal_get'
 
-  get 'test_lcall', to: 'users#test_lcall', as: 'test_lcall'
 
   devise_for :users,
              controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations',
