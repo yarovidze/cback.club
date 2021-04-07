@@ -78,7 +78,6 @@
 
 .offer-detail-wrap {
   padding-top: 100px;
-  height: 100vh;
 }
 
 .offer-detail {
@@ -174,6 +173,15 @@
 .offer-cashback-confirm strong {
   font-weight: 800;
   color: #000000;
+}
+.rules-warning {
+  background: #ffeeac url("../images/lamp.svg") 96% 30px no-repeat;
+  background-size: 100px;
+  ol {
+    font-size: .9rem;
+    line-height: 24px;
+    font-family: Comfortaa,cursive;
+  }
 }
 @media (max-width: 720px) {
   .offer-title h3 {
