@@ -33,7 +33,7 @@ class UsersController < ApplicationController
       receiver_card: '4731195301524633',
       receiver_last_name: 'LastName',
       receiver_first_name: 'FirstName',
-      server_url: '127.0.0.1:3000'
+      server_url: 'cback.club/withdrawal_get'
     })
   end
 
