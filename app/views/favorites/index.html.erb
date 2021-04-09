@@ -1,12 +1,14 @@
 <section class="offers-wrap favorite-section">
   <div class="container">
     <!-- breadcrumbs-->
-    <ol class="breadcrumb offer-detail pt-3 pb-3">
-      <%= link_to "Головна", root_path, class: "breadcrumb-item" %>
-      <li class="breadcrumb-item active" aria-current="page">Обрані магазини</li>
-    </ol>
+      <div class="offer-detail mb-3">
+        <ol class="breadcrumb">
+          <%= link_to "Головна", root_path, class: "breadcrumb-item" %>
+          <li class="breadcrumb-item active" aria-current="page">Обрані магазини</li>
+        </ol>
+        <h4 class="text-left">Обрані магазини</h4>
+      </div>
     <!-- breadcrumbs-->
-    <h4 class="text-center mb-4">Обрані магазини</h4>
     <div class="row">
       <% @favorite.each do |fav| %>
         <div class=" col-6 col-sm-6 col-lg-3" id="fav-box-<%= fav.offer.id %>">
@@ -32,10 +34,10 @@
             </div>
             <div class="offer-descr-list">
               <div class="offer-percent">
-                <i class="fas fa-undo-alt"></i> кешбек: <strong><%= fav.offer.cashback %></strong>
+                <strong><%= fav.offer.cashback %></strong>
               </div>
               <div class="offer-link">
-                <%= link_to (fa_icon "user-o", text: "В магазин"), fav.offer.link_to_offer(fav.offer.link, current_user.id),
+                <%= link_to (fa_icon "user-o", text: "В магазин"), redirect_path(id: fav.offer.id),
                             class: "btn-custom btn-main-color btn-custom-sm", target: :_blank, method: :get %>
               </div>
             </div>

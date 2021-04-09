@@ -10,6 +10,4 @@ class Transaction < ApplicationRecord
   def user_cashback
     cashback_sum * offer.cashback_percent
   end
-
-
 end

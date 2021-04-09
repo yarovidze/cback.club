@@ -1,10 +1,12 @@
 <section class="container categories-wrap favorite-section">
-<h4 class="mb-4"><%= @category.name %></h4>
   <!-- breadcrumbs-->
-      <ol class="breadcrumb offer-detail pt-3 pb-3">
-        <%= link_to "Головна", root_path, class: "breadcrumb-item" %>
-        <li class="breadcrumb-item active" aria-current="page"><%= @category.name %></li>
-      </ol>
+  <div class="offer-detail mb-3">
+    <ol class="breadcrumb">
+      <%= link_to "Головна", root_path, class: "breadcrumb-item" %>
+      <li class="breadcrumb-item active" aria-current="page"><%= @category.name %></li>
+    </ol>
+    <h4 class="text-left"><%= @category.name %></h4>
+  </div>
   <!-- breadcrumbs-->
   <div class="row">
     <% @offers.each do |offer| %>
@@ -21,10 +23,10 @@
           </div>
           <div class="offer-descr-list">
             <div class="offer-percent">
-              <i class="fas fa-undo-alt"></i> кешбек: <strong><%= offer.cashback %></strong>
+              <strong><%= offer.cashback %></strong>
             </div>
             <div class="offer-link">
-              <%= link_to (fa_icon "user-o", text: "В магазин"), offer.link_to_offer(offer.link, current_user.id),
+              <%= link_to (fa_icon "user-o", text: "В магазин"), redirect_path(id: offer.id),
                           class: "btn-custom btn-main-color btn-custom-sm", target: :_blank, method: :get %>
             </div>
           </div>

@@ -7,12 +7,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
-(0..20).each do |_i|
+users_ids = User.all.ids
+(0..User.count * 20).each do |_i|
   a = rand(1.00..500)
-  Transaction.create!(user_id: 1,
+  Transaction.create!(user_id: users_ids.sample,
                       offer_id: rand(1..4),
-                      status: 0,
+                      status: rand(1..4),
                       total: a,
                       cashback_sum: rand(1.00..a),
                       action_id: 250)

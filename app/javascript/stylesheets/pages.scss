@@ -36,10 +36,11 @@ body {
 
 .home-section-register {
   padding-top: 95px;
+  min-height: 100vh;
 }
 
 .favorite-section {
-  padding-top: 95px;
+  padding-top: 100px;
   min-height: 100vh;
 }
 
@@ -96,7 +97,7 @@ body {
   text-align: center;
 }
 
-.form-wrap input {
+.form-wrap input, textarea {
   width: 100%;
   padding: 3px 5px;
   border: none;
@@ -121,15 +122,44 @@ body {
     margin-right: 10px;
   }
 }
+.footer-wrap {
+  width: 100%;
+  z-index: 102;
+  padding: 2vh 3vh;
+  bottom: 0;
+  background: #484848;
+  color: white;
+  i {
+    font-size: 2vh;
+    margin-left: .5em;
+  }
+  a {
+    color: white !important;
+    &:hover {
+      color: #f8ff14 !important;
+      transition: .3s;
+    }
+  }
+}
 #trans_list {
   justify-content: center;
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px 0;
+  margin-bottom: 1rem;
+  list-style: none;
+  background-color: #ffffff;
+  border-radius: .25rem;
 }
 
 //.g-recaptcha {
 //  display: none;
 //}
 
-input:focus {
+input:focus, textarea:focus {
   outline: none !important;
   box-shadow: none !important;
 }
