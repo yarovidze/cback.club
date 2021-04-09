@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  validates :email, 'valid_email_2/email': { disposable_domain: true }
+
 
   devise :database_authenticatable, :registerable,
          :recoverable, :validatable, :rememberable,

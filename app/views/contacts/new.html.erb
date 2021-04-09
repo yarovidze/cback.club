@@ -3,7 +3,7 @@
     <h2 class="mb-4">Зворотній зв'язок</h2>
     <%= form_for @contact do |f| %>
       <% if flash[:error].present? %>
-        <p> flash[:error]</p>
+     <%=flash[:alert] %>
       <% end %>
 
       <div class="field">
