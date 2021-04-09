@@ -1,7 +1,7 @@
 <% if current_user %>
   <section class="home-section-register">
-      <%= render 'categories/categories' , cached: true%>
-      <%= render 'offers/offers' , cached: true%>
+    <%= render 'categories/categories', cached: true %>
+    <%= render 'offers/offers', cached: true %>
     <div class="digg_pagination">
       <%= will_paginate @offers, :page_links => false %>
     </div>
@@ -20,6 +20,88 @@
       </div>
     </div>
   </section>
+  <section class="work-section">
+    <div class="container">
+      <h3 class="text-center font-weight-bold">Як це працює?</h3>
+      <div class="text-center mb-5">кешбек за кілька легких кроків</div>
+      <div class="row text-center pt-3 pb-3">
+        <div class="col-sm-6 col-md-6 col-lg-3">
+          <div class="work-list mb-3">
+            <div class="step-label">1</div>
+            <div class="row align-items-center">
+              <div class="col-sm-4 col-md-4 col-lg-3">
+                <i class="fas fa-sign-in-alt"></i>
+              </div>
+              <div class="col-sm-8 col-md-8 col-lg-9 text-center">
+                Авторизуйся
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-3">
+          <div class="work-list mb-3">
+            <div class="step-label">2</div>
+            <div class="row align-items-center">
+              <div class="col-sm-4 col-md-4 col-lg-3">
+                <i class="far fa-hand-pointer"></i>
+              </div>
+              <div class="col-sm-8 col-md-8 col-lg-9 text-center">
+                Обери магазин
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-3">
+          <div class="work-list mb-3">
+            <div class="step-label">3</div>
+            <div class="row align-items-center">
+              <div class="col-sm-4 col-md-4 col-lg-3">
+                <i class="fas fa-shopping-basket"></i>
+              </div>
+              <div class="col-sm-8 col-md-8 col-lg-9 text-center">
+                Зроби покупку
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-3">
+          <div class="work-list mb-3">
+            <div class="step-label">4</div>
+            <div class="row align-items-center">
+              <div class="col-sm-4 col-md-4 col-lg-3">
+                <i class="fas fa-cookie"></i>
+              </div>
+              <div class="col-sm-8 col-md-8 col-lg-9 text-center">
+                Отримай кешбек
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="payout-info">
+        <div class="row align-items-center">
+          <div class="col-sm-12 col-md-6 col-lg-6">
+            <h4 class="text-center font-weight-bold pt-3">Зручний вивід коштів</h4>
+          </div>
+          <div class="col-4 col-sm-4 col-md-2 col-lg-2">
+            <div class="pay-list-img">
+              <%= image_pack_tag("media/images/mastercardc.svg") %>
+            </div>
+          </div>
+          <div class="col-4 col-sm-4 col-md-2 col-lg-2">
+            <div class="pay-list-img">
+              <%= image_pack_tag("media/images/visac.svg") %>
+            </div>
+          </div>
+          <div class="col-4 col-sm-4 col-md-2 col-lg-2">
+            <div class="pay-list-img">
+              <%= image_pack_tag("media/images/simc.svg") %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 <% end %>
 <%#= link_to 'GET CODE', 'https://www.admitad.com/api/authorize/?scope=statistics advcampaigns banners websites&state=7c232ff20e64432fbe071228c0779f&redirect_uri=https://cback.club/&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ'%>
 
@@ -28,7 +110,7 @@
 <!--<div>-->
 <%#= @response %>
 <!--  <h1>________</h1>-->
-  <%#=  @subid_data %>
+<%#=  @subid_data %>
 <!--  <h1>________</h1>-->
-  <%#= @action_data %>
+<%#= @action_data %>
 <!--</div>-->
