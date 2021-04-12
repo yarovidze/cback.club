@@ -22,8 +22,7 @@ class UsersController < ApplicationController
   def withdrawal_liqpay
 
     liqpay = Liqpay.new
-    # @a = Transaction.create(user_id: current_user.id, action_id: '111111')
-
+    @a = Transaction.create(user_id: current_user.id, action_id: "111111".to_i, offer_id: 1, status: 3 ).save
     liqpay.api('request', {
       action: 'p2pcredit',
       version: '3',
