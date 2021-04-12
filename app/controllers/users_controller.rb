@@ -20,6 +20,7 @@ class UsersController < ApplicationController
   end
 
   def withdrawal_liqpay
+
     liqpay = Liqpay.new
     # @a = Transaction.create(user_id: current_user.id, action_id: '111111')
 

@@ -39,3 +39,4 @@ yarn-debug.log*
 /config/secrets.yml
 /config/secrets.production.yml
 /admitad/
+/spec/
