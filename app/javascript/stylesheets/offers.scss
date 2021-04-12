@@ -55,7 +55,6 @@
   background-color: #4499d1;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
-  box-shadow: 0 6px 16px #00000012;
 }
 .offer-percent {
   font-weight: 800;
@@ -63,9 +62,8 @@
   position: absolute;
   width: 100%;
   bottom: 10px;
-  font-size: 18px;
-  font-family: 'Montserrat', sans-serif;
-  color: white;
+  font-size: 16px;
+  color: #ffffff;
 }
 
 .offer-link {
@@ -86,6 +84,44 @@
   border-radius: 15px;
   position: relative;
   box-shadow: 0 6px 16px #00000012;
+}
+
+.work-section {
+  padding: 75px 0;
+  font-size: 16px;
+  background: url("../images/work-time.svg") 88% 80px no-repeat;
+  background-size: 150px;
+  .work-list {
+    //display: flex;
+    //justify-content: space-between;
+    //align-items: center;
+    padding: 10px 15px;
+    background-color: #fff;
+    border-radius: 15px;
+    position: relative;
+    box-shadow: 0 6px 16px #00000012;
+    .step-label {
+      position: absolute;
+      font-weight: bold;
+      left: -7px;
+      top: -5px;
+      padding: 6px 7px 4px;
+      color: white;
+      font-size: 14px;
+      line-height: 0.9;
+      border-radius: 30px;
+      background-color: #18d615;
+      z-index: 99;
+    }
+    i {
+      margin-right: 5px;
+      padding: 15px;
+      background-color: whitesmoke;
+      border-radius: 10px;
+      color: #18d615;
+      font-size: 20px;
+    }
+  }
 }
 
 .offer-detail h3 {
@@ -142,10 +178,6 @@
 }
 
 .custom-title {
-  padding: 5px 15px;
-  background-color: #f8ff14;
-  color: black;
-  border-radius: 5px;
   font-size: 1.5rem;
 }
 //.percent-label::before {
@@ -175,16 +207,21 @@
   color: #000000;
 }
 .rules-warning {
-  background: #ffeeac url("../images/lamp.svg") 96% 30px no-repeat;
+  background: #fffad8 url("../images/lamp.svg") 96% 30px no-repeat;
   background-size: 100px;
   ol {
     font-size: .9rem;
-    line-height: 24px;
+    line-height: 28px;
     font-family: Comfortaa,cursive;
   }
 }
 @media (max-width: 720px) {
   .offer-title h3 {
     font-size: 0.8rem;
+  }
+}
+@media (max-width: 991px) {
+  .work-section {
+    padding: 50px 0;
   }
 }

@@ -1,16 +1,78 @@
-<section class="home-section">
+<% if current_user %>
+  <section class="home-section-register">
+    <%= render 'categories/categories' , cached: true %>
+    <%= render 'offers/offers' , cached: true %>
+    <div class="digg_pagination">
+      <%= will_paginate @offers, :page_links => false %>
+    </div>
+  </section>
+<% else %>
+  <section class="home-section">
     <div class="container">
       <div class="row">
         <div class="col-sm-12 col-lg-6">
           <h1 class="text-left mt-4">Повертаємо до 60% від вартості покупок в популярних інтернет-магазинах</h1>
-          <%= link_to (fa_icon "user-o", text: "Обрати магазин"), root_path, class: "btn-custom btn-main-color btn-custom-lg mt-4 mb-4", method: :get %>
+          <%= link_to (fa_icon "user-o", text: "Отримати кешбек"), new_user_registration_path, class: "btn-custom btn-main-color btn-custom-lg mt-4 mb-4", method: :get %>
         </div>
         <div class="col-sm-12 col-lg-6 text-center">
           <%= image_pack_tag("media/images/img-main_1.svg") %>
-          <%#= link_to (fa_icon "user-o", text: "Умови та правила"), root_path, class: "btn-link", method: :get %>
         </div>
       </div>
     </div>
-</section>
-
-
+  </section>
+  <section class="work-section">
+    <div class="container">
+      <h3 class="text-center font-weight-bold mb-5">Як це працює?</h3>
+      <div class="row text-center pt-3 pb-3">
+        <div class="col-sm-6 col-md-6 col-lg-3">
+          <div class="work-list mb-3">
+            <div class="row align-items-center">
+              <div class="col-sm-4 col-md-4 col-lg-3">
+                <i class="fas fa-sign-in-alt"></i>
+              </div>
+              <div class="col-sm-8 col-md-8 col-lg-9 text-center">
+                Авторизуйся
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-3">
+          <div class="work-list mb-3">
+            <div class="row align-items-center">
+              <div class="col-sm-4 col-md-4 col-lg-3">
+                <i class="far fa-hand-pointer"></i>
+              </div>
+              <div class="col-sm-8 col-md-8 col-lg-9 text-center">
+                Обери магазин
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-3">
+          <div class="work-list mb-3">
+            <div class="row align-items-center">
+              <div class="col-sm-4 col-md-4 col-lg-3">
+                <i class="fas fa-shopping-basket"></i>
+              </div>
+              <div class="col-sm-8 col-md-8 col-lg-9 text-center">
+                Зроби покупку
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-3">
+          <div class="work-list mb-3">
+            <div class="row align-items-center">
+              <div class="col-sm-4 col-md-4 col-lg-3">
+                <i class="fas fa-cookie"></i>
+              </div>
+              <div class="col-sm-8 col-md-8 col-lg-9 text-center">
+                Отримай кешбек
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>

@@ -17,10 +17,11 @@
             <%= current_user.email %>
           </div>
           <div class="text-center">
-            <div class="mb-2">ID користувача:</div>
+            <div class="mb-3 mt-3">ID користувача:</div>
             <div class="cback-text"><%= current_user.id %></div>
           </div>
-          <%= link_to("вивід", withdrawal_path, remote: true) %>
+          <%= link_to (fa_icon "user-o", text: "Вивести кошти"), withdrawal_path,
+                      class: "btn-custom btn-secondary-color mt-2 mb-2", remote: true %>
         </div>
       </div>
       <div class="col-sm-12 col-lg-9">
