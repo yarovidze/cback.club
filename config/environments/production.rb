@@ -51,7 +51,10 @@ Rails.application.configure do
   # Include generic and useful information about system operation, but avoid logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII).
   # config.log_level = :info
-  config.log_level = :error
+  # config.log_level = :error
+  config.log_level = :warn
+  config.log_tags = ["cv-#{Rails.env[0]}"]
+  config.logger = ActiveSupport::TaggedLogging.new(ActiveSupport::Logger.new(File.join(Rails.root, "log", "#{Rails.env}.log")))
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
