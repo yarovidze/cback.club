@@ -1,7 +1,7 @@
 <% if current_user %>
   <section class="home-section-register">
-    <%= render 'categories/categories', cached: true %>
-    <%= render 'offers/offers', cached: true %>
+      <%= render 'categories/categories' , cached: true%>
+      <%= render 'offers/offers' , cached: true%>
     <div class="digg_pagination">
       <%= will_paginate @offers, :page_links => false %>
     </div>
