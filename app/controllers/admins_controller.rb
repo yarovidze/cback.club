@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-  skip_before_action :authenticate_user!
+
   def create_json(request)
     raw_json = JSON.generate(request)
     raw_json = JSON.parse raw_json.gsub('=>', ':')
