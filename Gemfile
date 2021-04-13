@@ -18,6 +18,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'i18n'
 
+
+gem 'concise_logging'
 # Admidat api
 
 gem 'admitad'
