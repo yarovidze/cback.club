@@ -11,9 +11,6 @@
   transform: scale(1);
   transition: .2s;
   cursor: pointer;
-  .offer-percent {
-    display: none;
-  }
   .offer-link {
     display: block;
     transition: .5s;
@@ -25,12 +22,12 @@
 }
 
 .offer-title h3 {
-  font-size: 1.2rem;
+  font-size: 1rem;
   text-align: center;
 }
 
 .offer-title h3 a {
-  color: #4499d1 !important;
+  color: #000000 !important;
 }
 
 .offer-title h3 a:hover {
@@ -43,7 +40,6 @@
   padding: 10px;
   height: 60px;
   text-align: center;
-  border-bottom: 2px solid #efefef;
 }
 
 .offer-img img {
@@ -51,19 +47,19 @@
 }
 .offer-descr-list {
   position: relative;
-  padding: 20px 0;
-  background-color: #4499d1;
+  display: flex;
+  padding: 10px 0;
+  background-color: #ffffff;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
 }
 .offer-percent {
   font-weight: 800;
   text-align: center;
-  position: absolute;
   width: 100%;
   bottom: 10px;
   font-size: 16px;
-  color: #ffffff;
+  color: #ff5f00;
 }
 
 .offer-link {
@@ -72,6 +68,7 @@
   text-align: center;
   width: 100%;
   bottom: 2px;
+  background-color: white;
 }
 
 .offer-detail-wrap {
@@ -113,6 +110,12 @@
       background-color: #18d615;
       z-index: 99;
     }
+    .step-label-first {
+      padding: 6px 8px 4px;
+    }
+    .step-label-last {
+      padding: 6px 6px 4px;
+    }
     i {
       margin-right: 5px;
       padding: 15px;
@@ -135,7 +138,6 @@
   height: 70px;
   padding: 10px;
   text-align: center;
-  border-bottom: 2px solid #efefef;
 }
 
 .offer-img-details img {
@@ -218,6 +220,11 @@
 @media (max-width: 720px) {
   .offer-title h3 {
     font-size: 0.8rem;
+  }
+}
+@media (max-width: 576px) {
+  .header-trans-desktop {
+    display: none;
   }
 }
 @media (max-width: 991px) {

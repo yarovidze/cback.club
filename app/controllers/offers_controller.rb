@@ -4,6 +4,7 @@ class OffersController < ApplicationController
   before_action :find_offer, only: [:offer_redirect, :show]
 
   def index
+    @offers_rand = Offer.order('RANDOM()').limit(8)
     @offers = Offer.where('name ILIKE ?  OR alt_name ILIKE ?', "%#{params[:query]}%", "%#{params[:query]}%").paginate(
       page: params[:page], per_page: 16
     )

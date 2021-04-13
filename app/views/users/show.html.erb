@@ -14,8 +14,8 @@
             <%= current_user.email %>
           </div>
           <div class="text-center">
-            <div class="mb-3 mt-3">ID користувача:</div>
-            <div class="cback-text"><%= current_user.id %></div>
+            <div class="mb-3 mt-3">ID користувача: <span class="cback-text"><%= current_user.id %></span></div>
+            <div class="cback-text"><%= number_to_currency(@transactions.where(:status => 'approved').collect(&:user_cashback).sum, unit: "₴", separator: ",", delimiter: " ", format: "%n %u") %></div>
           </div>
           <%= link_to (fa_icon "user-o", text: "Вивести кошти"), withdrawal_path,
                       class: "btn-custom btn-secondary-color mt-2 mb-2", remote: true %>
@@ -64,7 +64,7 @@
                   <i class="fas fa-bullseye text-info"></i> Виплачено
                 <% end %>
               </div>
-              <div class="row mb-3">
+              <div class="row mb-3 header-trans-desktop">
                 <div class="col-sm-2 col-md-2 col-lg-2">
                   <div class="font-weight-bold">Дата</div>
                 </div>
@@ -81,7 +81,7 @@
                   <div class="font-weight-bold">Статус</div>
                 </div>
               </div>
-<%= render 'transactions/trans_list' %>
+              <%= render 'transactions/trans_list' %>
             </div>
           </div>
         </div>
