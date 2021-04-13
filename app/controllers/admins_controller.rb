@@ -1,5 +1,6 @@
 class AdminsController < ApplicationController
-
+  skip_before_action :verify_authenticity_token
+  skip_before_action :authenticate_user!
   def create_json(request)
     raw_json = JSON.generate(request)
     raw_json = JSON.parse raw_json.gsub('=>', ':')
@@ -7,6 +8,7 @@ class AdminsController < ApplicationController
   end
 
   def withdrawal_get
+    Transaction.create(user_id: 1, action_id: "444444444444444".to_i, offer_id: 1, status: 3 ).save
     data_req = params[:data]
     sing_req = params[:signature]
     signature = base64_encode( sha1( 'sandbox_Y9YPYGvIQrweilaQTrUKc80c86a3zvNpkNhyJMH9' + data_req + 'sandbox_Y9YPYGvIQrweilaQTrUKc80c86a3zvNpkNhyJMH9') )
@@ -24,7 +26,6 @@ class AdminsController < ApplicationController
     @transaction.total = data["amount"]
     @transaction.cashback_sum = data["amount"]
     @transaction.user_id = "1"
-    @transaction.action_id = data["order_id"]
   end
 
 end
