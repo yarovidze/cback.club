@@ -1,9 +1,9 @@
 # frozen_string_literal: true
-
 class OffersController < ApplicationController
   before_action :find_offer, only: [:offer_redirect, :show]
 
   def index
+    @offers_rand = Offer.order('RANDOM()').limit(8)
     @offers = Offer.where('name ILIKE ?  OR alt_name ILIKE ?', "%#{params[:query]}%", "%#{params[:query]}%").paginate(
       page: params[:page], per_page: 16
     )
@@ -13,7 +13,6 @@ class OffersController < ApplicationController
     end
     autorisation_admitad
     get_action_data
-    #get_subid_data
     rec_user_actions if cookies[:action_data].present?
   end
 
@@ -26,11 +25,12 @@ class OffersController < ApplicationController
   end
 
   def show
+    @offer = Offer.find_by(params[:name])
     @category = Category.find(@offer.category_id)
+    @related_offers = Offer.where.not(name: @offer.name).order('RANDOM()').limit(8)
   end
 
   private
-
   def find_offer
     @offer = Offer.friendly.find(params[:id])
   end

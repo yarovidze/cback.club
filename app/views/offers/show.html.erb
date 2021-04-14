@@ -17,7 +17,7 @@
             <%= image_tag @offer.image if @offer.image.present? %>
           </div>
           <div class="offer-category-detail">
-            <%= @offer.category.name %>
+            <%= @category.name %>
           </div>
           <%= link_to (fa_icon "user-o", text: "В магазин"), redirect_path(id: @offer.id),
                       class: "btn-custom btn-secondary-color mt-2 mb-2", target: :_blank, method: :get %>
@@ -43,7 +43,7 @@
         </div>
         <div class="offer-detail rules-warning mb-4">
           <%= render 'layouts/rules' , cached: true %>
-        </div>
+        </div>       
       </div>
     </div>
   </div>

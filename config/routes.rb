@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   get 'autocomplete', to: 'offers#autocomplete', as: 'autocomplete'
   get 'withdrawal', to:'users#create_withdrawal_request'
   get 'filter_status', to: 'users#filter_status', as: 'filter_status'
+  get 'withdrawal_liqpay', to: 'users#withdrawal_liqpay', as: 'withdrawal_liqpay'
+  post 'withdrawal_get', to: 'admins#withdrawal_get', as: 'withdrawal_get'
+
 
   devise_for :users,
              controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations',
