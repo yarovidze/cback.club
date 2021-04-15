@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 class OffersController < ApplicationController
   before_action :find_offer, only: [:offer_redirect, :show]
 
@@ -26,11 +25,12 @@ class OffersController < ApplicationController
   end
 
   def show
+    @offer = Offer.find_by(params[:name])
     @category = Category.find(@offer.category_id)
+    @related_offers = Offer.where.not(name: @offer.name).order('RANDOM()').limit(8)
   end
 
   private
-
   def find_offer
     @offer = Offer.friendly.find(params[:id])
   end
