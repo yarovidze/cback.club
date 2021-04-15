@@ -177,6 +177,16 @@ input:focus, textarea:focus {
     }
   }
 }
+.modal-footer {
+  justify-content: center !important;
+}
+.modal-body {
+  padding: 1rem .5rem !important;
+  p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
 
 @media (max-width: 720px) {
   h1 {
@@ -187,5 +197,10 @@ input:focus, textarea:focus {
   }
   .logo-header img {
     max-height: 40px;
+  }
+}
+@media (min-width: 576px) {
+  .modal-sm {
+    max-width: 350px !important;
   }
 }

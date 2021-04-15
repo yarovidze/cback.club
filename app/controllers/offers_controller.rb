@@ -25,7 +25,7 @@ class OffersController < ApplicationController
   end
 
   def show
-    @offer = Offer.find_by(params[:name])
+    @offer = Offer.friendly.find(params[:id])
     @category = Category.find(@offer.category_id)
     @related_offers = Offer.where.not(name: @offer.name).order('RANDOM()').limit(8)
   end
