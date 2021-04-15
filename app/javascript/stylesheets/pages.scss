@@ -127,7 +127,7 @@ body {
   z-index: 102;
   padding: 2vh 3vh;
   bottom: 0;
-  background: #484848;
+  background: #000000;
   color: white;
   i {
     font-size: 2vh;
@@ -166,6 +166,16 @@ input:focus, textarea:focus {
 
 .dropdown-item:hover {
   background-color: #e9ecef !important;
+}
+.payout-info {
+  border: 1px solid #d2d2d2;
+  border-radius: 10px;
+  .pay-list-img {
+    padding: 15px;
+    img {
+      width: 100%;
+    }
+  }
 }
 
 @media (max-width: 720px) {
