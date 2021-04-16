@@ -37,7 +37,7 @@ class CookieBar {
     }
 }
 
-window.onload = function() {
+window.onload = function () {
     const cookieBar = new CookieBar();
 
     cookieBar.init();
