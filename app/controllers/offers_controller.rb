@@ -4,8 +4,8 @@ class OffersController < ApplicationController
 
   def index
     @offers_rand = Offer.order('RANDOM()').limit(8)
-    @offers = Offer.where('name ILIKE ?  OR alt_name ILIKE ?', "%#{params[:query]}%", "%#{params[:query]}%").paginate(
-      page: params[:page], per_page: 16
+    @offers = Offer.where('name ILIKE ?  OR alt_name ILIKE ?', "%#{params[:query]}%", "%#{params[:query]}%").page(params[:page]).paginate(
+        page: params[:page], per_page: 16
     )
     respond_to do |format|
       format.html
@@ -17,7 +17,7 @@ class OffersController < ApplicationController
   end
 
   def offer_redirect
-    redirect_to  "#{@offer.link}/?subid=#{current_user.id}".to_s
+    redirect_to "#{@offer.link}/?subid=#{current_user.id}".to_s
   end
 
   def autocomplete
@@ -30,7 +30,9 @@ class OffersController < ApplicationController
     @related_offers = Offer.where.not(name: @offer.name).order('RANDOM()').limit(8)
   end
 
+
   private
+
   def find_offer
     @offer = Offer.friendly.find(params[:id])
   end

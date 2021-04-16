@@ -22,6 +22,7 @@ require("easy-autocomplete")
 
 
 require("packs/offers")
+require("packs/cookies")
 
 require.context("../images", true);
 window.jQuery = $;
@@ -39,6 +40,7 @@ $(document).ready(function () {
         })
     }, 4500);
 });
+
 
 
 
