@@ -4,9 +4,7 @@ class OffersController < ApplicationController
 
   def index
     @offers_rand = Offer.order('RANDOM()').limit(8)
-    @offers = Offer.where('name ILIKE ?  OR alt_name ILIKE ?', "%#{params[:query]}%", "%#{params[:query]}%").page(params[:page]).paginate(
-        page: params[:page], per_page: 16
-    )
+    @offers = Offer.all.paginate(page: params[:page], per_page: 16)
     respond_to do |format|
       format.html
       format.json { render json: @offers.map(&:name) }
@@ -17,11 +15,18 @@ class OffersController < ApplicationController
   end
 
   def offer_redirect
-    redirect_to "#{@offer.link}/?subid=#{current_user.id}".to_s
+    redirect_to  "#{@offer.link}/?subid=#{current_user.id}".to_s
   end
 
   def autocomplete
     render json: Offer.all.map(&:alt_name)
+  end
+
+  def search
+    @offers = Offer.where('name ILIKE ?  OR alt_name ILIKE ?', "%#{params[:query]}%", "%#{params[:query]}%").paginate(
+      page: params[:page], per_page: 16
+    )
+    render :index
   end
 
   def show
@@ -29,7 +34,6 @@ class OffersController < ApplicationController
     @category = Category.find(@offer.category_id)
     @related_offers = Offer.where.not(name: @offer.name).order('RANDOM()').limit(8)
   end
-
 
   private
 
