@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   devise_for :users,
              controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations',
                             sessions: 'users/sessions' }
-  root to: 'offers#index'
+  root 'offers#index'
+  get '/agreement', to: 'pages#agreement', as: "agreement"
   resources :favorites
   resources :users, only: %i[show]
   resources :categories
