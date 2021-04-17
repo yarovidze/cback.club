@@ -18,8 +18,8 @@ class AdminsController < ApplicationController
   end
 
   def rec_withdrawal(data)
-    Transaction.create(user_id: 1, action_id: "33333333333333".to_i, offer_id: 1, status: 3 ).save
-    @transaction = Transaction.create(user_id: 1, action_id: "2222222222".to_i, offer_id: 1, status: 3).save
+    Transaction.create(user_id: 1, action_id: "33333333333333".to_i, offer_id: 1, status: 3, cashback_percent: 2).save
+    @transaction = Transaction.create(user_id: 1, action_id: "2222222222".to_i, offer_id: 1, status: 3, cashback_percent: 2).save
     @transaction.offer_id = "1"
     @transaction.status = "0"
     @transaction.total = data["amount"]
