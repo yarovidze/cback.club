@@ -7,13 +7,16 @@ class AdminsController < ApplicationController
   end
 
   def withdrawal_get
-    data_req = params[:data]
-    sing_req = params[:signature]
-    signature = base64_encode( sha1( 'sandbox_Y9YPYGvIQrweilaQTrUKc80c86a3zvNpkNhyJMH9' + data_req + 'sandbox_Y9YPYGvIQrweilaQTrUKc80c86a3zvNpkNhyJMH9') )
-    Trial.create(name: 'liqpay_sing', test_field1: sing_req.to_s, test_field1: signature.to_s).save
-    data_raw = Base64.decode64(data_req)
-    data = create_json(data_raw.force_encoding('utf-8'))
-    rec_withdrawal(data)
+    data = params[:data]
+    signature = params[:signature]
+    #signature_my = base64_encode( sha1( 'sandbox_Y9YPYGvIQrweilaQTrUKc80c86a3zvNpkNhyJMH9' + data_req + 'sandbox_Y9YPYGvIQrweilaQTrUKc80c86a3zvNpkNhyJMH9') )
+    Trial.create(name: 'liqpay_sing',
+                 test_field1: signature.to_s,
+                 test_field2: liqpay.match?(data, signature)).save
+
+    data_raw = liqpay.decode_data(data)
+    data_j = create_json(data_raw.force_encoding('utf-8'))
+    rec_withdrawal(data_j)
   end
 
   def rec_withdrawal(data)
