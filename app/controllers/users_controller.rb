@@ -30,7 +30,7 @@ class UsersController < ApplicationController
       currency: 'UAH',
       description: 'Кешбек з cback.club',
       order_id: "5874#{Time.now.strftime("%I%M%S")}",
-      receiver_card: '4731195301524633',
+      receiver_card: '5375414122055758',
       receiver_last_name: 'LastName',
       receiver_first_name: 'FirstName',
       server_url: 'https://cback.club/withdrawal_get'
