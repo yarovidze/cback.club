@@ -10,6 +10,7 @@ class AdminsController < ApplicationController
   def withdrawal_get
     data = params[:data]
     signature = params[:signature]
+    liqpay = Liqpay.new
     #signature_my = base64_encode( sha1( 'sandbox_Y9YPYGvIQrweilaQTrUKc80c86a3zvNpkNhyJMH9' + data_req + 'sandbox_Y9YPYGvIQrweilaQTrUKc80c86a3zvNpkNhyJMH9') )
     Trial.create(name: 'liqpay_sing',
                  test_field1: signature.to_s,
