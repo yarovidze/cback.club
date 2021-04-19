@@ -19,22 +19,28 @@ class UsersController < ApplicationController
     render 'transactions/_filter_status'
   end
 
-  def withdrawal_liqpay
+  def withdrawal_liqpay_form;  end
 
-    liqpay = Liqpay.new
-    Trial.create(name: 'successfully activate withdrawal_liqpay', test_field1: 'true').save
-    liqpay.api('request', {
-      action: 'p2pcredit',
-      version: '3',
-      amount: '1',
-      currency: 'UAH',
-      description: 'Кешбек з cback.club',
-      order_id: "5874#{Time.now.strftime("%I%M%S")}",
-      receiver_card: '5375414122055758',
-      receiver_last_name: 'LastName',
-      receiver_first_name: 'FirstName',
-      server_url: 'https://cback.club/withdrawal_get'
-    })
+  def create_withdrawal_liqpay
+    if user_data_correct?
+      liqpay = Liqpay.new
+      Trial.create(name: 'successfully activate withdrawal_liqpay', test_field1: 'true').save
+      liqpay.api('request', {
+        action: 'p2pcredit',
+        version: '3',
+        amount: '1',
+        currency: 'UAH',
+        description: 'Кешбек з cback.club',
+        order_id: "5874#{Time.now.strftime("%I%M%S")}",
+        receiver_card: params[:card_num],
+        receiver_last_name: params[:last_name],
+        receiver_first_name: params[:first_name],
+        server_url: 'https://cback.club/withdrawal_get'
+      })
+      redirect_to action:"show", controller:"users", id: current_user.id, notice: "Очікуйте зарахування на баланс"
+    else
+      redirect_back fallback_location: :withdrawal_liqpay
+    end
   end
 
   private
@@ -43,7 +49,9 @@ class UsersController < ApplicationController
     @transactions = current_user.transactions
   end
 
-
+  def user_data_correct?
+    (params[:card_num].present? && params[:last_name].present? && params[:first_name].present?) ? true : false
+  end
 
   # def sort_column
   #  Transaction.column_names.include?(params[:sort]) ? params[:sort] : nil
