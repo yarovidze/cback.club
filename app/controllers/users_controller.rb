@@ -29,7 +29,7 @@ class UsersController < ApplicationController
       amount: '1',
       currency: 'UAH',
       description: 'Кешбек з cback.club',
-      order_id: '4549834487',
+      order_id: "5874#{Time.now.strftime("%I%M%S")}",
       receiver_card: '4731195301524633',
       receiver_last_name: 'LastName',
       receiver_first_name: 'FirstName',
