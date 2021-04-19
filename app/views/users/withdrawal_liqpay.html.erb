@@ -1,0 +1,33 @@
+<div style="margin-top: 90px">
+<%= form_with url: withdrawal_liqpay_path do |form| %>
+<!--
+  <%# if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%#= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <ul>
+        <%# post.errors.each do |error| %>
+          <li><%#= error.full_message %></li>
+        <%# end %>
+      </ul>
+    </div>
+--->
+  <div class="field">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name, class: "form-control"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name, class: "form-control"  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :card_num %>
+    <%= form.number_field :card_num, class: "form-control", minlength: "16", maxlength: "16"  %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Вивести", ( {:class => "btn btn-success",id: "button"})%>
+  </div>
+<% end %>
+</div>
