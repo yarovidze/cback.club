@@ -10,8 +10,7 @@ Rails.application.routes.draw do
   get 'offers/offer_redirect', to: 'offers#offer_redirect', as: 'redirect'
   get 'withdrawal', to:'users#create_withdrawal_request'
   get 'filter_status', to: 'users#filter_status', as: 'filter_status'
-  get 'withdrawal_liqpay', to: 'users#withdrawal_liqpay_form', as: 'withdrawal_liqpay'
-  post 'create_withdrawal_liqpay', to: 'users#create_withdrawal_liqpay', as: 'create_withdrawal_liqpay'
+  match 'withdrawal_liqpay', to: 'users#withdrawal_liqpay_form', as: 'withdrawal_liqpay', via: [:get, :post]
   post 'withdrawal_get', to: 'admins#withdrawal_get', as: 'withdrawal_get'
 
 

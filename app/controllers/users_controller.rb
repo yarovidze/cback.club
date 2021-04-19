@@ -19,9 +19,7 @@ class UsersController < ApplicationController
     render 'transactions/_filter_status'
   end
 
-  def withdrawal_liqpay_form;  end
-
-  def create_withdrawal_liqpay
+  def withdrawal_liqpay_form
     if user_data_correct?
       liqpay = Liqpay.new
       Trial.create(name: 'successfully activate withdrawal_liqpay', test_field1: 'true').save
