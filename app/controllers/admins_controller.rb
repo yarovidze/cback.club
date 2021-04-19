@@ -12,8 +12,11 @@ class AdminsController < ApplicationController
     signature = params[:signature]
     #signature_my = base64_encode( sha1( 'sandbox_Y9YPYGvIQrweilaQTrUKc80c86a3zvNpkNhyJMH9' + data_req + 'sandbox_Y9YPYGvIQrweilaQTrUKc80c86a3zvNpkNhyJMH9') )
     Trial.create(name: 'liqpay_sing',
-                 test_field1: signature.to_s).save
-
+                 test_field1: signature.to_s,
+                 test_field2: data.to_s).save
+    Trial.create(name: 'liqpay_sing_correct?',
+                 test_field1: liqpay.match?(data, signature),
+                 test_field2: liqpay.decode_data(data)).save
     #data_raw = liqpay.decode_data(data)
     #data_j = create_json(data_raw.force_encoding('utf-8'))
     #rec_withdrawal(data_j)
