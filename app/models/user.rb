@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  
 
 
   devise :database_authenticatable, :registerable,
@@ -8,6 +9,9 @@ class User < ApplicationRecord
   has_many :cards
   has_many :favorites, dependent: :destroy
   has_many :transactions
+
+
+
 
 
   def self.from_omniauth(auth)
