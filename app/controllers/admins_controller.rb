@@ -8,7 +8,6 @@ class AdminsController < ApplicationController
     signature = params[:signature]
     liqpay = Liqpay.new
     if liqpay.match?(data, signature)
-    #signature_my = base64_encode( sha1( 'sandbox_Y9YPYGvIQrweilaQTrUKc80c86a3zvNpkNhyJMH9' + data_req + 'sandbox_Y9YPYGvIQrweilaQTrUKc80c86a3zvNpkNhyJMH9') )
     Trial.create(name: 'liqpay_sing',
                  test_field1: signature.to_s,
                  test_field2: data.to_s).save
