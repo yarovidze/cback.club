@@ -37,8 +37,8 @@ class UsersController < ApplicationController
                      description: 'Кешбек з cback.club',
                      order_id: "5874#{Time.now.strftime('%I%M%S')}",
                      receiver_card: params[:card_num],
-                     receiver_last_name: params[:last_name],
-                     receiver_first_name: params[:first_name],
+                     receiver_last_name: params[:last_name].capitalize,
+                     receiver_first_name: params[:first_name].capitalize,
                      server_url: 'https://cback.club/withdrawal_get'
                    })
         redirect_to action: 'show', controller: 'users', id: current_user.id, notice: 'Очікуйте зарахування на баланс'
