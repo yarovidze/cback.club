@@ -15,6 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
   <meta name="verify-admitad" content="4669a05cac"/>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 </head>
 <body>
 <section class="main-section">
@@ -24,14 +25,12 @@
     </div>
     <% if current_user %>
       <div class="search-desktop">
-        <form class="form-inline">
-          <%= form_with url: search_offers_path, method: :get, local: true do |form| %>
-            <%= form.text_field :query, id: :query, data: {behavior: "autocomplete"}, class: "form-control", placeholder: "Введіть назву магазину" %>
-            <%= button_tag type: 'submit', class: "btn-search" do %>
-              <i class="fab fa-sistrix"></i>
-            <% end %>
+        <%= form_with url: search_offers_path, class: "form-inline", method: :get, local:true do |f|  %>
+          <%= f.text_field :query, id: :query, data: {behavior: "autocomplete"}, class: "form-control", placeholder: "Введіть назву магазину"%>
+          <%= button_tag type: 'submit', class: "btn-search" do %>
+            <i class="fab fa-sistrix"></i>
           <% end %>
-        </form>
+        <%end %>
       </div>
     <% end %>
     <div class="btn-group-header">
@@ -67,6 +66,9 @@
     </div>
   </header>
   <%= yield %>
+  <% if cookies[:allow_cookies].blank? %>
+    <%= render 'layouts/cookies_bar' %>
+  <% end %>
   <% if notice %>
     <div id="notice-wraper">
       <div id="notice"><%= notice %></div>
@@ -79,10 +81,10 @@
 </section>
 <footer class="footer-wrap">
   <div class="row">
-    <div class="col-12 col-md-6 col-lg-6 text-center">
-      <%= link_to("Магазини", offers_path, method: :get) %>
+    <div class="col-12 col-md-6 col-lg-6 text-center pt-2 pb-2">
+      <%= link_to("Угода користувача", agreement_path, method: :get) %>
     </div>
-    <div class="col-12 col-md-6 col-lg-6 text-center">
+    <div class="col-12 col-md-6 col-lg-6 text-center pt-2 pb-2">
       <%= link_to "https://t.me/cback_club", method: :get do %>
         <i class="fab fa-telegram-plane"></i>
       <% end %>

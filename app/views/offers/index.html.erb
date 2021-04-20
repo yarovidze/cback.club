@@ -12,7 +12,10 @@
       <div class="row">
         <div class="col-sm-12 col-lg-6">
           <h1 class="text-left mt-4">Повертаємо до 60% від вартості покупок в популярних інтернет-магазинах</h1>
-          <%= link_to (fa_icon "user-o", text: "Отримати кешбек"), new_user_registration_path, class: "btn-custom btn-main-color btn-custom-lg mt-4 mb-4", method: :get %>
+          <button type="button" class="btn-custom btn-main-color btn-custom-lg mt-4 mb-4" data-toggle="modal" data-target="#exampleModal">
+            Отримати кешбек
+          </button>
+          <%#= link_to (fa_icon "user-o", text: "Отримати кешбек"), new_user_registration_path, class: "btn-custom btn-main-color btn-custom-lg mt-4 mb-4", method: :get %>
         </div>
         <div class="col-sm-12 col-lg-6 text-center">
           <%= image_pack_tag("media/images/img-main_1.svg") %>
@@ -122,6 +125,24 @@
       </div>
     </div>
   </section>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content pt-3">
+        <div class="pr-3">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="text-center">Для отримання кешбеку потрібна авторизація</p>
+        </div>
+        <div class="modal-footer">
+          <%= link_to (fa_icon "user-o", text: "Вхід"), new_user_session_path, class: "btn-custom btn-secondary-color", method: :get %>
+          <%= link_to (fa_icon "user-o", text: "Реєстрація"), new_user_registration_path, class: "btn-custom btn-secondary-color", method: :get %>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
 <%#= link_to 'GET CODE', 'https://www.admitad.com/api/authorize/?scope=statistics advcampaigns banners websites&state=7c232ff20e64432fbe071228c0779f&redirect_uri=https://cback.club/&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ'%>
 

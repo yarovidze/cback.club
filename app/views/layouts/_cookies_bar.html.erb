@@ -1,0 +1,7 @@
+<div id="cookies-bar" class="cookies-bar">
+  <h6 class="font-weight-bolder">Ми використовуємо Cookie-файли</h6>
+  <p>На нашому сайті ми використовуємо файли кукі, це допомагає нам поліпшити роботу сайту.
+    <%= link_to("Докладніше", agreement_path, class: 'link-custom', method: :get) %></p>
+  <%= link_to 'Погоджуюсь', request.original_url, class: 'btn-custom btn-main-color accept' %>
+  <%#= link_to 'Reject', request.original_url, class: 'btn reject' %>
+</div>

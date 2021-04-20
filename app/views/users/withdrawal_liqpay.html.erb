@@ -1,0 +1,26 @@
+
+<div id="spline" style="margin-top: 90px"></div>
+<div>
+<%= form_with url: withdrawal_liqpay_path, id: "withdrawal_liqpay_form", local: false do |form| %>
+<%# if post.errors.any? %>
+
+  <div class="field">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name, class: "form-control"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name, class: "form-control"  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :card_num %>
+    <%= form.number_field :card_num, class: "form-control", minlength: "16", maxlength: "16"  %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Вивести", ( {:class => "btn btn-success",id: "button", remote: true})%>
+  </div>
+<% end %>
+</div>

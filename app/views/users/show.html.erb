@@ -1,5 +1,5 @@
 <section class="offers-wrap favorite-section">
-  <%= link_to("ТЕСТ ВИВОДУ", withdrawal_liqpay_path, remote: true) %>
+  <%= link_to("ТЕСТ ВИВОДУ", withdrawal_liqpay_path) %>
 
   <div class="container">
     <!-- breadcrumbs-->
@@ -53,7 +53,7 @@
         <div class="row">
           <div class="col-12">
             <h4 class="font-weight-bold text-left mb-3 mt-3">Покупки:</h4>
-            <div class="offer-detail text-center">
+            <div class="offer-detail text-center mb-4">
               <div class="filter-transaction">
                 <span><i class="fas fa-signal"></i> Фільтр:</span>
                 <%= link_to filter_status_path(status: 1), remote: true do %>
