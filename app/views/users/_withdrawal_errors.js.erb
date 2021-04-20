@@ -1,5 +1,5 @@
 console.log("click");
 console.log("<%= @errors %>");
 $('#spline').append(
-    '<div id="notice-wraper"><div id="alert"><% @errors.each do |e| %><%= e + "\n" %><%end%></div></div>'
+    '<div id="notice-wraper"><div id="alert"><% @errors.each do |e| %><%= e %><%end%></div></div>'
                     );

@@ -58,10 +58,10 @@ class UsersController < ApplicationController
     error_notice.push('Введіть карту') if params[:card_num].blank?
     error_notice.push('Введіть Прізвище') if params[:last_name].blank?
     error_notice.push("Введіть Ім'я") if params[:first_name].blank?
-    # error_notice.push("В Прізвещі не можуть бути спец символи та цифри") unless params[:last_name].match(valid_name_regex)
-    # error_notice.push("В Імені не можуть бути спец символи та цифри") unless params[:first_name].match(valid_name_regex)
-    # error_notice.push("Закороткий номер картки") unless params[:card_num].match(/^[1-9]*$/)
-    # error_notice.push("Неправильний номер картки") unless params[:card_num].length < 16
+    error_notice.push("В Прізвещі не можуть бути спец символи та цифри") unless params[:last_name].match(valid_name_regex)
+    error_notice.push("В Імені не можуть бути спец символи та цифри") unless params[:first_name].match(valid_name_regex)
+    error_notice.push("Закороткий номер картки") unless params[:card_num].match(/^[1-9]*$/)
+    error_notice.push("Неправильний номер картки") unless params[:card_num].length < 16
     error_notice
   end
 
