@@ -108,17 +108,19 @@
         <% @offers_rand.each do |offer| %>
           <div class=" col-6 col-sm-6 col-lg-3">
             <div class="offer-list">
-              <div class="offer-img">
-                <%= image_tag(offer.image) if offer.image.present? %>
-              </div>
-              <div class="offer-title">
-                <h3><%= offer.name %></h3>
-              </div>
-              <div class="offer-descr-list">
-                <div class="offer-percent">
-                  <strong><%= offer.cashback %></strong>
+              <%= link_to(offer) do %>
+                <div class="offer-img">
+                  <%= image_tag(offer.image) if offer.image.present? %>
                 </div>
-              </div>
+                <div class="offer-title">
+                  <h3><%= offer.name %></h3>
+                </div>
+                <div class="offer-descr-list">
+                  <div class="offer-percent">
+                    <strong><%= offer.cashback %></strong>
+                  </div>
+                </div>
+              <% end %>
             </div>
           </div>
         <% end %>
@@ -127,7 +129,7 @@
   </section>
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
-      <div class="modal-content pt-3">
+      <div class="modal-content">
         <div class="pr-3">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
