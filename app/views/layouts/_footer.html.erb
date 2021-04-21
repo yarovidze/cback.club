@@ -1,0 +1,15 @@
+<footer class="footer-wrap">
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-6 text-center pt-2 pb-2">
+      <%= link_to("Угода користувача", agreement_path, method: :get) %>
+    </div>
+    <div class="col-12 col-md-6 col-lg-6 text-center pt-2 pb-2">
+      <%= link_to "https://t.me/cback_club", method: :get do %>
+        <i class="fab fa-telegram-plane"></i>
+      <% end %>
+      <%= link_to new_contact_path, method: :get do %>
+        <i class="far fa-envelope"></i> Зворотній зв'язок
+      <% end %>
+    </div>
+  </div>
+</footer>

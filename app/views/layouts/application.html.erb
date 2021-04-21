@@ -24,41 +24,19 @@
       <a href="/"><%= image_pack_tag("media/images/logo_1.svg") %></a>
     </div>
     <% if current_user %>
-      <div class="search-desktop">
-        <%= form_with url: search_offers_path, class: "form-inline", method: :get, local:true do |f|  %>
-          <%= f.text_field :query, id: :query, data: {behavior: "autocomplete"}, class: "form-control", placeholder: "Введіть назву магазину"%>
-          <%= button_tag type: 'submit', class: "btn-search" do %>
-            <i class="fab fa-sistrix"></i>
-          <% end %>
-        <%end %>
-      </div>
+      <%= render 'layouts/search_bar' %>
     <% end %>
     <div class="btn-group-header">
-      <% if current_user %>
+     <% if current_user && current_user.admin?%>
         <%= link_to favorites_path, class: "btn-custom btn-transparent", method: :get do %>
           <i class="fas fa-star"></i>
         <% end %>
-        <div class="dropdown btn-group">
-          <a class="btn-custom btn-main-color dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="far fa-user"></i>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <!--            <a class="dropdown-item" href="#"><i class="far fa-user"></i> Мій кабінет</a>-->
-            <%= link_to user_path(current_user.id), class: "dropdown-item", method: :get do %>
-              <i class="far fa-user"></i> Мій кабінет
-            <% end %>
-            <%= link_to favorites_path, class: "dropdown-item", method: :get do %>
-              <i class="fas fa-star"></i> Обрані магазини
-            <% end %>
-            <a class="dropdown-item" href="#"><i class="fab fa-cc-mastercard"></i> Вивести кошти</a>
-            <%= link_to 'https://www.admitad.com/api/authorize/?scope=statistics advcampaigns banners websites&state=7c232ff20e64432fbe071228c0779f&redirect_uri=https://cback.club/&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ', class: "dropdown-item" do %>
-              <i class="fas fa-database"></i> Отримати дані
-            <% end %>
-            <%= link_to destroy_user_session_path, class: "dropdown-item", method: :delete do %>
-              <i class="fas fa-sign-out-alt"></i> Вихід
-            <% end %>
-          </div>
-        </div>
+        <%= render 'layouts/admin_dropdown' %>
+        <%elsif current_user%>
+          <%= link_to favorites_path, class: "btn-custom btn-transparent", method: :get do %>
+          <i class="fas fa-star"></i>
+        <% end %>
+     <%= render 'layouts/user_dropdown' %>
       <% else %>
         <%= link_to (fa_icon "user-o", text: "Вхід"), new_user_session_path, class: "btn-custom btn-transparent", method: :get %>
         <%= link_to (fa_icon "user-o", text: "Реєстрація"), new_user_registration_path, class: "btn-custom btn-main-color", method: :get %>
@@ -79,20 +57,6 @@
     </div>
   <% end %>
 </section>
-<footer class="footer-wrap">
-  <div class="row">
-    <div class="col-12 col-md-6 col-lg-6 text-center pt-2 pb-2">
-      <%= link_to("Угода користувача", agreement_path, method: :get) %>
-    </div>
-    <div class="col-12 col-md-6 col-lg-6 text-center pt-2 pb-2">
-      <%= link_to "https://t.me/cback_club", method: :get do %>
-        <i class="fab fa-telegram-plane"></i>
-      <% end %>
-      <%= link_to new_contact_path, method: :get do %>
-        <i class="far fa-envelope"></i> Зворотній зв'язок
-      <% end %>
-    </div>
-  </div>
-</footer>
+<%= render 'layouts/footer' %>
 </body>
 </html>
