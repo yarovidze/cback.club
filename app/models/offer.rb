@@ -21,3 +21,4 @@ class Offer < ApplicationRecord
     "#{link + user_id.to_s}"
   end
 end
+  

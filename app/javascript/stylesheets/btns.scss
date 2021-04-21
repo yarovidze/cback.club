@@ -74,15 +74,13 @@
   color: white !important;
 }
 
-.fav-btn {
+.fav-btn, .fav-btn-offer-detail {
   position: absolute;
   left: 0;
-  top: 0;
-  padding: 2px;
+  top: -15px;
+  padding: 5px;
   line-height: 1.1;
   border-radius: 30px;
-  background-color: #000000;
-  box-shadow: 1px 4px 4px 1px #bdbdbd5e;
 
   &:hover {
     box-shadow: none;
@@ -91,9 +89,13 @@
   }
 
   a {
-    color: #f8ff13 !important;
-    font-size: 16px;
+    color: #484848!important;
+    font-size: 18px;
   }
+}
+.fav-btn-offer-detail {
+  top: 0;
+  padding: 0;
 }
 
 .btn-search {

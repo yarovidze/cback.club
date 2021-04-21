@@ -6,7 +6,6 @@ body {
 
 body, p, ol, ul, td {
   //font-family: verdana, arial, helvetica, sans-serif;
-  font-family: 'Montserrat', sans-serif;
   font-size: 13px;
   line-height: 18px;
 }
@@ -64,15 +63,15 @@ div.actions {
 }
 
 .field_with_errors {
-  padding: 2px;
-  background-color: red;
+  padding: 1px;
+  background-color: #e88080;
   width: 100%;
   display: table;
+  color: white;
 }
 
 #error_explanation {
   width: 100%;
-  border: 2px solid red;
   padding: 7px 7px 0;
   margin-bottom: 20px;
   background-color: #f0f0f0;
@@ -84,13 +83,13 @@ div.actions {
   padding: 5px 5px 5px 15px;
   font-size: 12px;
   margin: -7px -7px 0;
-  background-color: #c00;
+  background-color: #e88080;
   color: #fff;
 }
 
 #error_explanation ul li {
   font-size: 12px;
-  list-style: square;
+  list-style: circle;
 }
 
 label {

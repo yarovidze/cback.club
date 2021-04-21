@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'liqpay'
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :find_transactions, only: %i[show filter_status]
@@ -19,10 +20,49 @@ class UsersController < ApplicationController
     render 'transactions/_filter_status'
   end
 
+  def withdrawal_liqpay
+    if request.post?
+      error_notice = user_data_correct
+      if error_notice.any?
+        @errors = error_notice
+        render 'users/_withdrawal_errors'
+      else
+        liqpay = Liqpay.new
+        #Trial.create(name: 'successfully activate withdrawal_liqpay', test_field1: 'true').save
+        liqpay.api('request', {
+                     action: 'p2pcredit',
+                     version: '3',
+                     amount: '1',
+                     currency: 'UAH',
+                     description: 'Кешбек з cback.club',
+                     order_id: "5874#{Time.now.strftime('%I%M%S')}",
+                     receiver_card: params[:card_num],
+                     receiver_last_name: params[:last_name],
+                     receiver_first_name: params[:first_name],
+                     server_url: 'https://cback.club/withdrawal_get'
+                   })
+        redirect_to action: 'show', controller: 'users', id: current_user.id, notice: 'Очікуйте зарахування на баланс'
+      end
+    end
+  end
+
   private
 
   def find_transactions
     @transactions = current_user.transactions
+  end
+
+  def user_data_correct
+    error_notice = []
+    valid_name_regex = /^[a-zA-Zа-яА-Я]*$/
+    error_notice.push('Введіть карту') if params[:card_num].blank?
+    error_notice.push('Введіть Прізвище') if params[:last_name].blank?
+    error_notice.push("Введіть Ім'я") if params[:first_name].blank?
+    error_notice.push("В Прізвещі не можуть бути спец символи та цифри") unless params[:last_name].match(valid_name_regex)
+    error_notice.push("В Імені не можуть бути спец символи та цифри") unless params[:first_name].match(valid_name_regex)
+    error_notice.push("Закороткий номер картки") unless params[:card_num].match(/^[1-9]*$/)
+    error_notice.push("Неправильний номер картки") unless params[:card_num].length <= 16
+    error_notice
   end
 
   # def sort_column

@@ -1,7 +1,7 @@
 <% if current_user %>
   <section class="home-section-register">
-    <%= render 'categories/categories', cached: true %>
-    <%= render 'offers/offers', cached: true %>
+      <%= render 'categories/categories' , cached: true%>
+      <%= render 'offers/offers' , cached: true%>
     <div class="digg_pagination">
       <%= will_paginate @offers, :page_links => false %>
     </div>
@@ -12,7 +12,10 @@
       <div class="row">
         <div class="col-sm-12 col-lg-6">
           <h1 class="text-left mt-4">Повертаємо до 60% від вартості покупок в популярних інтернет-магазинах</h1>
-          <%= link_to (fa_icon "user-o", text: "Отримати кешбек"), new_user_registration_path, class: "btn-custom btn-main-color btn-custom-lg mt-4 mb-4", method: :get %>
+          <button type="button" class="btn-custom btn-main-color btn-custom-lg mt-4 mb-4" data-toggle="modal" data-target="#exampleModal">
+            Отримати кешбек
+          </button>
+          <%#= link_to (fa_icon "user-o", text: "Отримати кешбек"), new_user_registration_path, class: "btn-custom btn-main-color btn-custom-lg mt-4 mb-4", method: :get %>
         </div>
         <div class="col-sm-12 col-lg-6 text-center">
           <%= image_pack_tag("media/images/img-main_1.svg") %>
@@ -27,7 +30,7 @@
       <div class="row text-center pt-3 pb-3">
         <div class="col-sm-6 col-md-6 col-lg-3">
           <div class="work-list mb-3">
-            <div class="step-label">1</div>
+            <div class="step-label step-label-first">1</div>
             <div class="row align-items-center">
               <div class="col-sm-4 col-md-4 col-lg-3">
                 <i class="fas fa-sign-in-alt"></i>
@@ -66,7 +69,7 @@
         </div>
         <div class="col-sm-6 col-md-6 col-lg-3">
           <div class="work-list mb-3">
-            <div class="step-label">4</div>
+            <div class="step-label step-label-last">4</div>
             <div class="row align-items-center">
               <div class="col-sm-4 col-md-4 col-lg-3">
                 <i class="fas fa-cookie"></i>
@@ -100,8 +103,46 @@
           </div>
         </div>
       </div>
+      <h3 class="text-left mb-4 mt-5 font-weight-bold">Популярні магазини</h3>
+      <div class="row">
+        <% @offers_rand.each do |offer| %>
+          <div class=" col-6 col-sm-6 col-lg-3">
+            <div class="offer-list">
+              <div class="offer-img">
+                <%= image_tag(offer.image) if offer.image.present? %>
+              </div>
+              <div class="offer-title">
+                <h3><%= offer.name %></h3>
+              </div>
+              <div class="offer-descr-list">
+                <div class="offer-percent">
+                  <strong><%= offer.cashback %></strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
   </section>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content pt-3">
+        <div class="pr-3">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="text-center">Для отримання кешбеку потрібна авторизація</p>
+        </div>
+        <div class="modal-footer">
+          <%= link_to (fa_icon "user-o", text: "Вхід"), new_user_session_path, class: "btn-custom btn-secondary-color", method: :get %>
+          <%= link_to (fa_icon "user-o", text: "Реєстрація"), new_user_registration_path, class: "btn-custom btn-secondary-color", method: :get %>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
 <%#= link_to 'GET CODE', 'https://www.admitad.com/api/authorize/?scope=statistics advcampaigns banners websites&state=7c232ff20e64432fbe071228c0779f&redirect_uri=https://cback.club/&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ'%>
 

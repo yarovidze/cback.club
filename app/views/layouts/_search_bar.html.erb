@@ -1,0 +1,8 @@
+<div class="search-desktop">
+        <%= form_with url: search_offers_path, class: "form-inline", method: :get, local:true do |f|  %>
+          <%= f.text_field :query, id: :query, data: {behavior: "autocomplete"}, class: "form-control", placeholder: "Введіть назву магазину"%>
+          <%= button_tag type: 'submit', class: "btn-search" do %>
+            <i class="fab fa-sistrix"></i>
+          <% end %>
+        <%end %>
+      </div>

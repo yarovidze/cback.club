@@ -11,6 +11,12 @@ GIT
       warden (~> 1.2.3)
 
 GIT
+  remote: https://github.com/liqpay/sdk-ruby.git
+  revision: a7a990f1410bdfc281fcfc66828555b4bc1e6260
+  specs:
+    liqpay (0.0.2)
+
+GIT
   remote: https://github.com/seuros/capistrano-puma.git
   revision: 186826736ac83c550fd6129728284584b8c9c782
   specs:
@@ -251,7 +257,6 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
-    liqpay (1.0.1)
     listen (3.5.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -489,7 +494,7 @@ DEPENDENCIES
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   jquery-ui-rails
-  liqpay
+  liqpay!
   listen (~> 3.3)
   mail_form
   omniauth
