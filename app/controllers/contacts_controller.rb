@@ -8,9 +8,9 @@ class ContactsController < ApplicationController
     @contact = Contact.new(params[:contact])
     @contact.request = request
     if @contact.deliver
-  redirect_to root_path, notice: 'Message sent successfully'
+  redirect_to root_path, notice: 'Лист надіслано успішно'
     else
-      flash.now[:alert] = 'Invalid e-mail or message'
+      flash.now[:alert] = 'Невірний E-mail або відсутнє повідомлення'
       render :new
     end
   end
