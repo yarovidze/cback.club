@@ -16,11 +16,16 @@
 
   <div class="field">
     <%= form.label :card_num %>
-    <%= form.number_field :card_num, class: "form-control", minlength: "16", maxlength: "16"  %>
+    <%= form.text_field :card_num, class: "form-control", minlength: "16", maxlength: "16"  %>
   </div>
-
   <div class="actions">
     <%= form.submit "Вивести", ( {:class => "btn btn-success",id: "button", remote: true})%>
   </div>
 <% end %>
 </div>
+<script>
+    document.getElementById("card_num").addEventListener("keyup",function()
+    {
+        $("#card_num").val(($("#card_num").val()).replace(/[^0-9]/g, ''));
+    });
+</script>
