@@ -1,5 +1,5 @@
 <section class="offers-wrap favorite-section">
-  <%= link_to("ТЕСТ ВИВОДУ", withdrawal_liqpay_path) %>
+  <%#= link_to("ТЕСТ ВИВОДУ", withdrawal_liqpay_path) %>
 
   <div class="container">
     <!-- breadcrumbs-->
@@ -15,12 +15,12 @@
           <div class="text-center mb-2 font-weight-bold profile-email">
             <%= current_user.email %>
           </div>
-          <div class="text-center">
+          <div class="text-center mb-2">
             <div class="mb-3 mt-3">ID користувача: <span class="cback-text"><%= current_user.id %></span></div>
             <div class="cback-text"><%= number_to_currency(@transactions.where(:status => 'approved').collect(&:user_cashback).sum, unit: "₴", separator: ",", delimiter: " ", format: "%n %u") %></div>
           </div>
-          <%= link_to (fa_icon "user-o", text: "Вивести кошти"), withdrawal_path,
-                      class: "btn-custom btn-secondary-color mt-2 mb-2", remote: true %>
+          <%= link_to (fa_icon "user-o", text: "Вивести кошти"), withdrawal_liqpay_path,
+                      class: "btn-custom btn-secondary-color mt-2 mb-2" %>
         </div>
       </div>
       <div class="col-sm-12 col-lg-9">
