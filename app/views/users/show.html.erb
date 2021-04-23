@@ -18,8 +18,12 @@
             <div class="mb-3 mt-3">ID користувача: <span class="cback-text"><%= current_user.id %></span></div>
             <div class="cback-text"><%= number_to_currency(@transactions.where(:status => 'approved').collect(&:user_cashback).sum, unit: "₴", separator: ",", delimiter: " ", format: "%n %u") %></div>
           </div>
+          <% if @transactions.where(:status => 'approved').collect(&:user_cashback).sum > 0 %>
           <%= link_to (fa_icon "user-o", text: "Вивести кошти"), withdrawal_liqpay_path,
                       class: "btn-custom btn-secondary-color mt-2 mb-2" %>
+            <%else %>
+            <p class="text-center font-weight-bolder">У Вас поки що немає коштів готових до виводу</p>
+          <% end %>
         </div>
       </div>
       <div class="col-sm-12 col-lg-9">
