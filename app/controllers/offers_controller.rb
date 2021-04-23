@@ -4,7 +4,7 @@ class OffersController < ApplicationController
 
   def index
     @offers_rand = Offer.order('RANDOM()').limit(8)
-    @offers = Offer.all.paginate(page: params[:page], per_page: 8)
+    @offers = Offer.all.paginate(page: params[:page], per_page: 16)
     respond_to do |format|
       format.html
       format.json { render json: @offers.map(&:name) }
