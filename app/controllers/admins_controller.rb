@@ -17,15 +17,15 @@ class AdminsController < ApplicationController
   end
 
   def rec_withdrawal(data)
-    interim_transaction = Transaction.find_by(action_id: data['order_id'])
+    interim_transaction = Transaction.find_by(action_id: data['order_id'].to_i)
     user = User.find(interim_transaction.user_id)
     Trial.create(name: 'rec_withdrawal test',
                  test_field1: interim_transaction.action_id.to_s,
                  test_field2: user.id.to_s).save
     transactions_open = user.transactions.where(status: 1)
-    if transactions_open.sum(:total) == data['amount'].to_f
+    if transactions_open.sum(:cashback_sum) == data['amount'].to_f
       transactions_open.each do |trans|
-        trans.first.status = 4
+        trans.status = 4
         trans.save
       end
     end

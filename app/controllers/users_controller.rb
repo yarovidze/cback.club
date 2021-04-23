@@ -29,12 +29,13 @@ class UsersController < ApplicationController
       else
         liqpay = Liqpay.new
         withdrawal_id = "1000#{Time.now.strftime('%I%M%S')}".to_i
-        amount = current_user.transactions.where(status: 0).sum(:cashback_sum).to_s
-        a = Transaction.create(user_id: current_user.id.to_i,
-                               action_id: withdrawal_id.to_i,
-                               total: amount,
+        amount = current_user.transactions.where(status: 1).sum(:cashback_sum)
+        Transaction.create(user_id: current_user.id,
+                               action_id: withdrawal_id,
+                               cashback_sum: amount,
                                status: 5,
                                offer_id: Offer.first.id).save
+
         liqpay.api('request', {
                      action: 'p2pcredit',
                      version: '3',
