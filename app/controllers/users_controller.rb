@@ -28,7 +28,7 @@ class UsersController < ApplicationController
         render 'users/_withdrawal_errors'
       else
         liqpay = Liqpay.new
-        withdrawal_id = "0000#{Time.now.strftime('%I%M%S')}"
+        withdrawal_id = "1000#{Time.now.strftime('%I%M%S')}".to_i
         amount = current_user.transactions.where(status: 0).sum(:cashback_sum).to_s
         a = Transaction.create(user_id: current_user.id.to_i,
                                action_id: withdrawal_id.to_i,
