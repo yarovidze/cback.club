@@ -17,7 +17,7 @@ class AdminsController < ApplicationController
   end
 
   def rec_withdrawal(data)
-    interim_transaction = Transaction.where(action_id: data['order_id'])
+    interim_transaction = Transaction.find_by(action_id: data['order_id'])
     user = User.find(interim_transaction.user_id)
     Trial.create(name: 'rec_withdrawal test',
                  test_field1: interim_transaction.action_id.to_s,
