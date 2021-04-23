@@ -9,11 +9,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 users_ids = User.all.ids
 (0..User.count * 20).each do |_i|
-  a = rand(1.00..500)
+  a = rand(1.00..500).round(2)
   Transaction.create!(user_id: users_ids.sample,
                       offer_id: rand(1..4),
                       status: rand(1..4),
                       total: a,
-                      cashback_sum: rand(1.00..a),
+                      cashback_sum: rand(1.00..a).round(2),
                       action_id: 250)
 end

@@ -5,12 +5,12 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :find_transactions, only: %i[show filter_status]
 
-  def show; end
+  def show;  end
 
   def create_withdrawal_request
     Transaction.where(user_id: current_user.id, status: 0).each do |transaction|
       puts transaction.id
-      transaction.status = 1
+      transaction.first.status = 1
       transaction.save
     end
   end
@@ -28,17 +28,23 @@ class UsersController < ApplicationController
         render 'users/_withdrawal_errors'
       else
         liqpay = Liqpay.new
-        #Trial.create(name: 'successfully activate withdrawal_liqpay', test_field1: 'true').save
+        withdrawal_id = "0000#{Time.now.strftime('%I%M%S')}"
+        amount = current_user.transactions.where(status: 0).sum(:cashback_sum).to_s
+        a = Transaction.create(user_id: current_user.id.to_i,
+                               action_id: withdrawal_id.to_i,
+                               total: amount,
+                               status: 5,
+                               offer_id: Offer.first.id).save
         liqpay.api('request', {
                      action: 'p2pcredit',
                      version: '3',
-                     amount: '1',
+                     amount: amount,
                      currency: 'UAH',
                      description: 'Кешбек з cback.club',
-                     order_id: "5874#{Time.now.strftime('%I%M%S')}",
+                     order_id: withdrawal_id.to_i,
                      receiver_card: params[:card_num],
-                     receiver_last_name: params[:last_name],
-                     receiver_first_name: params[:first_name],
+                     receiver_last_name: params[:last_name].capitalize,
+                     receiver_first_name: params[:first_name].capitalize,
                      server_url: 'https://cback.club/withdrawal_get'
                    })
         redirect_to action: 'show', controller: 'users', id: current_user.id, notice: 'Очікуйте зарахування на баланс'
@@ -58,10 +64,12 @@ class UsersController < ApplicationController
     error_notice.push('Введіть карту') if params[:card_num].blank?
     error_notice.push('Введіть Прізвище') if params[:last_name].blank?
     error_notice.push("Введіть Ім'я") if params[:first_name].blank?
-    error_notice.push("В Прізвещі не можуть бути спец символи та цифри") unless params[:last_name].match(valid_name_regex)
-    error_notice.push("В Імені не можуть бути спец символи та цифри") unless params[:first_name].match(valid_name_regex)
-    error_notice.push("Закороткий номер картки") unless params[:card_num].match(/^[1-9]*$/)
-    error_notice.push("Неправильний номер картки") unless params[:card_num].length <= 16
+    unless params[:last_name].match(valid_name_regex)
+      error_notice.push('В Прізвещі не можуть бути спец символи та цифри')
+    end
+    error_notice.push('В Імені не можуть бути спец символи та цифри') unless params[:first_name].match(valid_name_regex)
+    error_notice.push('Закороткий номер картки') unless params[:card_num].match(/^[1-9]*$/)
+    error_notice.push('Неправильний номер картки') unless params[:card_num].length <= 16
     error_notice
   end
 
