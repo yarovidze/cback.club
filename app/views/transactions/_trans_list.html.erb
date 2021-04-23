@@ -1,6 +1,7 @@
 <div class="row" id="trans_list">
   <% if @transactions.present? %>
     <% @transactions.each do |trans| %>
+      <% if trans.status != "interim_proces"%>
       <div class="col-4 col-sm-2 col-md-2 col-lg-2 mb-2">
         <div><%= trans.created_at.strftime("%d-%m-%Y") %></div>
       </div>
@@ -16,13 +17,15 @@
       <div class="col-4 col-sm-2 col-md-2 col-lg-2 mb-2">
         <div class="
                       <% if trans.status == "approved" %> text-success
-                      <% elsif trans.status == "pending" %> text-warning
+                      <% elsif trans.status == "paid" %> text-info
                       <% else %>
-                        text-info
+                        text-warning
                       <% end %>"><i class="fas fa-bullseye"></i></div>
       </div>
+    <% end %>
     <% end %>
   <% else %>
     На даний момент немає таких покупок
   <% end %>
+
 </div>
