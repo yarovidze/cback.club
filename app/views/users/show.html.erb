@@ -36,7 +36,7 @@
             <div class="offer-detail mb-2">
               <div class="mb-3"><i class="fas fa-bullseye text-warning"></i> В очікуванні</div>
               <div class="cback-text">
-                <%= number_to_currency(@transactions.where(:status => 1).collect(&:user_cashback).sum, unit: "₴", separator: ",", delimiter: " ", format: "%n %u") %>
+                <%= number_to_currency(@transactions.where(:status => 'pending').or(@transactions.where(:status => 'approved_but_stalled')).collect(&:user_cashback).sum, unit: "₴", separator: ",", delimiter: " ", format: "%n %u") %>
               </div>
             </div>
           </div>
