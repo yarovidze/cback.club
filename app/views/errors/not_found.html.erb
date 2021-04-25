@@ -1,0 +1,13 @@
+<section class="form-wrap text-center">
+  <div class="container custom-container">
+    <h2 class="text-center display-3">Ooops!!!</h2>
+    <p class="font-weight-bold">Сторінку на яку ви намагаєтесь перейти не знайдено</p>
+    <div class="errors-img"><%= image_pack_tag("media/images/binocular.svg") %></div>
+    <div class="display-2 font-weight-bold text-center">404</div>
+    <div class="text-center">
+      <p>Давай почнемо спочатку ;-)</p>
+      <%= link_to (fa_icon "user-o", text: "На головну"), root_path,
+                  class: "btn-custom btn-secondary-color mt-2 mb-2" %>
+    </div>
+  </div>
+</section>

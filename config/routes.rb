@@ -19,9 +19,9 @@ Rails.application.routes.draw do
                             sessions: 'users/sessions' }
   root 'offers#index'
   get '/agreement', to: 'pages#agreement', as: "agreement"
-  match '/422', to: "pages#unacceptable", via: :all
-  match "/404", to: "pages#not_found", via: :all
-  match "/500", to: "pages#internal_server_error", via: :all
+  match "/404", to: "errors#not_found", via: :all
+  match "/422", to: "errors#unacceptable", via: :all
+  match "/500", to: "errors#internal_server_error", via: :all
   resources :favorites
   resources :users, only: %i[show]
   resources :categories

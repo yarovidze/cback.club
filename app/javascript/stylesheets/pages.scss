@@ -103,6 +103,7 @@ body {
   border: none;
   border-radius: 0;
   border-bottom: 2px solid #4499D1;
+  resize: none;
 }
 
 .profile-email {
@@ -205,6 +206,12 @@ input:focus, textarea:focus {
   z-index: 100;
   .link-custom {
       color: #f8ff14 !important;
+  }
+}
+.errors-img {
+  height: 100px;
+  img {
+    max-height: 100px;
   }
 }
 
