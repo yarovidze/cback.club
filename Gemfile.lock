@@ -133,7 +133,6 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
-    babosa (1.0.4)
     bcrypt (3.1.16)
     bcrypt_pbkdf (1.1.0)
     bindex (0.8.1)
@@ -429,9 +428,6 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.7)
-    valid_email2 (3.6.0)
-      activemodel (>= 3.2)
-      mail (~> 2.5)
     virtus (1.0.5)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
@@ -472,7 +468,6 @@ DEPENDENCIES
   admitad
   ancestry
   aws-sdk-s3
-  babosa
   bcrypt_pbkdf (>= 1.0, < 2.0)
   bootsnap (>= 1.4.4)
   bootstrap
@@ -517,7 +512,6 @@ DEPENDENCIES
   trix
   turbolinks (~> 5)
   tzinfo-data
-  valid_email2
   web-console (>= 4.1.0)
   webdrivers
   webpacker (~> 5.0)

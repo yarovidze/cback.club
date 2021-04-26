@@ -18,10 +18,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'i18n'
 
-# Admidat api
-
+# Admitad api
 gem 'admitad'
-#gem 'admitad_query'
 gem "http"
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
@@ -95,13 +93,9 @@ gem 'recaptcha'
 gem 'ed25519', '>= 1.2', '< 2.0'
 gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
 gem 'activeadmin_quill_editor'
-#email_validator
-gem 'valid_email2'
 #mail_form
 gem 'mail_form'
 #friendly_id
 gem 'friendly_id', '~> 5.4.0'
-#babosa
-gem 'babosa'
-# gem 'ukrainian', '~> 0.2.1'
+#rails-i18n
 gem 'rails-i18n', '~> 6.0.0'

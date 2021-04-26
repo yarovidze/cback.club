@@ -12,10 +12,7 @@ class Offer < ApplicationRecord
 
   extend FriendlyId
   friendly_id :name, use: :slugged
-  def normalize_friendly_id(text)
-    text.to_slug.transliterate(:ukrainian).normalize.to_s
-  end
- 
+
 
   def link_to_offer(link, user_id)
     "#{link + user_id.to_s}"

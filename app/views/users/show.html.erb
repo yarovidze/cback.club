@@ -1,6 +1,5 @@
 <section class="offers-wrap favorite-section">
-  <%#= link_to("ТЕСТ ВИВОДУ", withdrawal_liqpay_path) %>
-
+  <%= render 'users/withdrawal_liqpay' %>
   <div class="container">
     <!-- breadcrumbs-->
     <ol class="breadcrumb offer-detail pt-3 pb-3">
@@ -19,8 +18,12 @@
             <div class="mb-3 mt-3">ID користувача: <span class="cback-text"><%= current_user.id %></span></div>
             <div class="cback-text"><%= number_to_currency(@transactions.where(:status => 'approved').collect(&:user_cashback).sum, unit: "₴", separator: ",", delimiter: " ", format: "%n %u") %></div>
           </div>
+          <% if @transactions.where(:status => 'approved').collect(&:user_cashback).sum > 0 %>
           <%= link_to (fa_icon "user-o", text: "Вивести кошти"), withdrawal_liqpay_path,
                       class: "btn-custom btn-secondary-color mt-2 mb-2" %>
+            <%else %>
+            <p class="text-center font-weight-bolder">У Вас поки що немає коштів готових до виводу</p>
+          <% end %>
         </div>
       </div>
       <div class="col-sm-12 col-lg-9">
@@ -37,7 +40,7 @@
             <div class="offer-detail mb-2">
               <div class="mb-3"><i class="fas fa-bullseye text-warning"></i> В очікуванні</div>
               <div class="cback-text">
-                <%= number_to_currency(@transactions.where(:status => 'pending').collect(&:user_cashback).sum, unit: "₴", separator: ",", delimiter: " ", format: "%n %u") %>
+                <%= number_to_currency(@transactions.where(:status => 'pending').or(@transactions.where(:status => 'approved_but_stalled')).collect(&:user_cashback).sum, unit: "₴", separator: ",", delimiter: " ", format: "%n %u") %>
               </div>
             </div>
           </div>
@@ -45,7 +48,7 @@
             <div class="offer-detail mb-2">
               <div class="mb-3"><i class="fas fa-bullseye text-info"></i> Виплачено</div>
               <div class="cback-text">
-                <%= number_to_currency(@transactions.where(:status => 'paid').collect(&:user_cashback).sum, unit: "₴", separator: ",", delimiter: " ", format: "%n %u") %>
+                <%= number_to_currency(@transactions.where(:status => 4).collect(&:user_cashback).sum, unit: "₴", separator: ",", delimiter: " ", format: "%n %u") %>
               </div>
             </div>
           </div>

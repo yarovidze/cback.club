@@ -1,10 +1,4 @@
-class PagesController < ApplicationController
-
-  def index
-  end
-
-  def agreement
-  end
+class ErrorsController < ApplicationController
 
   def not_found
     render status: 404
@@ -17,4 +11,5 @@ class PagesController < ApplicationController
   def internal_server_error
     render status: 500
   end
+
 end

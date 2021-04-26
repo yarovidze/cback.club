@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'offers/offer_redirect', to: 'offers#offer_redirect', as: 'redirect'
   get 'withdrawal', to:'users#create_withdrawal_request'
   get 'filter_status', to: 'users#filter_status', as: 'filter_status'
-  match 'withdrawal_liqpay', to: 'users#withdrawal_liqpay', as: 'withdrawal_liqpay', via: [:get, :post]
+  post 'withdrawal_liqpay', to: 'users#withdrawal_liqpay', as: 'withdrawal_liqpay'
   post 'withdrawal_get', to: 'admins#withdrawal_get', as: 'withdrawal_get'
 
 
@@ -19,6 +19,9 @@ Rails.application.routes.draw do
                             sessions: 'users/sessions' }
   root 'offers#index'
   get '/agreement', to: 'pages#agreement', as: "agreement"
+  match "/404", to: "errors#not_found", via: :all
+  match "/422", to: "errors#unacceptable", via: :all
+  match "/500", to: "errors#internal_server_error", via: :all
   resources :favorites
   resources :users, only: %i[show]
   resources :categories

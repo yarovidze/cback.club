@@ -102,7 +102,6 @@ def rec_user_data
   action = cookies[:subid_data]
   action.each do |client|
     next if client['subid'] == ''
-
     begin
       @client = User.find(client['subid']) if User.find(client['subid']).present?
       transaction_params = params.permit(:total).merge(user_id: client['subid'], offer_id: 1, status: 0)
