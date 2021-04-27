@@ -1,3 +1,4 @@
+<% content_for :meta_title, "Обрані магазини | #{DEFAULT_META["meta_title"]}" %>
 <section class="offers-wrap favorite-section">
   <div class="container">
     <!-- breadcrumbs-->
@@ -9,41 +10,47 @@
         <h4 class="text-left">Обрані магазини</h4>
       </div>
     <!-- breadcrumbs-->
+    <% if current_user.favorites.collect.sum > 0 %>
     <div class="row">
-      <% @favorite.each do |fav| %>
-        <div class=" col-6 col-sm-6 col-lg-3" id="fav-box-<%= fav.offer.id %>">
-          <div class="offer-list">
-            <div class="offer-img">
-              <div class="fav-btn">
-                <% if current_user.favorites.exists?(offer_id: fav.offer) %>
-                  <%= link_to favorite_path(id: fav.offer.id, from_favorites_list: true), title: "Видалити з обраного",
-                              method: :delete, remote: true do %>
-                    <i class="fas fa-star"></i>
+        <% @favorite.each do |fav| %>
+          <div class=" col-6 col-sm-6 col-lg-3" id="fav-box-<%= fav.offer.id %>">
+            <div class="offer-list">
+              <div class="offer-img">
+                <div class="fav-btn">
+                  <% if current_user.favorites.exists?(offer_id: fav.offer) %>
+                    <%= link_to favorite_path(id: fav.offer.id, from_favorites_list: true), title: "Видалити з обраного",
+                                method: :delete, remote: true do %>
+                      <i class="fas fa-star"></i>
+                    <% end %>
+                  <% else %>
+                    <%= link_to favorites_path(user: current_user, offer_id: fav.offer.id, from_favorites_list: true), title: "Додати в обране", method: :post do %>
+                      <i class="far fa-star"></i>
+                    <% end %>
                   <% end %>
-                <% else %>
-                  <%= link_to favorites_path(user: current_user, offer_id: fav.offer.id, from_favorites_list: true), title: "Додати в обране", method: :post do %>
-                    <i class="far fa-star"></i>
-                  <% end %>
-                <% end %>
+                </div>
+                <%= link_to image_tag(fav.offer.image), offer_path(fav.offer) if fav.offer.image.present? %>
+                <%#= image_tag fav.offer.image if fav.offer.image.present? %>
               </div>
-              <%= link_to image_tag(fav.offer.image), offer_path(fav.offer) if fav.offer.image.present? %>
-              <%#= image_tag fav.offer.image if fav.offer.image.present? %>
-            </div>
-            <div class="offer-title">
-              <h3><%= link_to fav.offer.name, offer_path(fav.offer) %></h3>
-            </div>
-            <div class="offer-descr-list">
-              <div class="offer-percent">
-                <strong><%= fav.offer.cashback %></strong>
+              <div class="offer-title">
+                <h3><%= link_to fav.offer.name, offer_path(fav.offer) %></h3>
               </div>
-              <div class="offer-link">
-                <%= link_to (fa_icon "user-o", text: "В магазин"), redirect_path(id: fav.offer.id),
-                            class: "btn-custom btn-secondary-color btn-custom-sm", target: :_blank, method: :get %>
+              <div class="offer-descr-list">
+                <div class="offer-percent">
+                  <strong><%= fav.offer.cashback %></strong>
+                </div>
+                <div class="offer-link">
+                  <%= link_to (fa_icon "user-o", text: "В магазин"), redirect_path(id: fav.offer.id),
+                              class: "btn-custom btn-secondary-color btn-custom-sm", target: :_blank, method: :get %>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
     </div>
+    <% else %>
+      <div class="text-center mt-4 mb-3">
+        <p class="mt-3">Ви поки що не додали нічого в обране</p>
+      </div>
+    <% end %>
   </div>
 </section>
