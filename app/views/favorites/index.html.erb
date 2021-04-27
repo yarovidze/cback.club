@@ -11,8 +11,14 @@
     </div>
     <!-- breadcrumbs-->
     <% if current_user.favorites.blank? %>
-      <div class="text-center mt-4 mb-3">
-        <p class="mt-3">Ви поки що не додали нічого в обране</p>
+      <div class="d-flex align-items-center justify-content-center ">
+        <div class="text-center mt-4 mb-3 error-container">
+          <h6 class="font-weight-bold mt-3 mb-3">У Вас поки що немає обраних магазинів </h6>
+          <div class="errors-img"><%= image_pack_tag("media/images/star.svg") %></div>
+          <h6 class="font-weight-bold mt-3 mb-3">Але це легко поправити :-)</h6>
+          <%= link_to (fa_icon "user-o", text: "Всі магазини"), root_path,
+                      class: "btn-custom btn-secondary-color mt-2 mb-2" %>
+        </div>
       </div>
     <% else %>
       <div class="row">

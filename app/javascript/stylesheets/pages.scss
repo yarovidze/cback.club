@@ -238,9 +238,12 @@ input:focus, textarea:focus {
   }
 }
 .errors-img {
-  height: 100px;
+  height: 150px;
   img {
-    max-height: 100px;
+    max-height: 150px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 50%;
   }
 }
 
