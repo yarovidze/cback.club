@@ -26,7 +26,6 @@ class OffersController < ApplicationController
     @offers = Offer.where('name ILIKE ?  OR alt_name ILIKE ?', "%#{params[:query]}%", "%#{params[:query]}%").paginate(
       page: params[:page], per_page: 16
     )
-    flash[:alert] = "Пошук не дав результатів." if @offers.blank?
     render :index
   end
 
