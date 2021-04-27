@@ -1,5 +1,4 @@
-console.log("click");
-console.log("<%= params %>");
-$('#spline').append(
-    '<div id="notice-wraper"><div id="alert"><% @errors.each do |e| %><%= e %><%end%></div></div>'
+$("#notice-wraper").remove();
+$('#exampleModal').append(
+    '<div id="notice-wraper" class="ms-5"><div id="alert"><% @errors.each do |e| %><%= simple_format(e) %><%end%></div></div>'
                     );
