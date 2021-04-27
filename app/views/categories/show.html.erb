@@ -10,7 +10,8 @@
   </div>
   <!-- breadcrumbs-->
   <div class="row">
-    <% @offers.each do |offer| %>
+  <% if @offers.present? %>
+        <% @offers.each do |offer| %>
       <div class=" col-6 col-sm-6 col-lg-3">
         <div class="offer-list">
           <% if current_user %>
@@ -40,5 +41,11 @@
         </div>
       </div>
     <% end %>
+    <% else %>
+      <div class="text-center mt-4 mb-3 alert alert-danger">
+        <p> Категорія порожня спробуйте пізніше</p>
+      </div>
+  <% end %>
+
   </div>
 </section>

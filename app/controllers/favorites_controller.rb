@@ -4,7 +4,7 @@ class FavoritesController < ApplicationController
   before_action :authenticate_user!
   def index
     @favorite = Favorite.where(user_id: current_user.id)
-    flash.now[:alert] = 'Список обраного порожній додайте оффери.' if @favorite.blank?
+
   end
 
   def create
