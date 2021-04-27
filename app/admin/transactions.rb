@@ -6,7 +6,7 @@ ActiveAdmin.register Transaction do
 
   form do |f|
     f.inputs do
-      f.input :user_id, as: :select, collection: User.all.ids
+      f.input :user_id, as: :select, collection: User.all.ids.sort()
       f.input :offer
       f.input :status
       f.input :total

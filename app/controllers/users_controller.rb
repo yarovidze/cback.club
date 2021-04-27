@@ -61,13 +61,11 @@ class UsersController < ApplicationController
 
   def user_data_correct
     error_notice = []
-    valid_name_regex = /^[a-zA-Zа-яА-Я]*$/
+    valid_name_regex = /^[a-zA-Zа-яА-Яі]*$/
     error_notice.push('Введіть карту') if params[:card_num].blank?
     error_notice.push('Введіть прізвище') if params[:last_name].blank?
-    error_notice.push("Введіть ім'я") if params[:first_name].blank?
-    unless params[:last_name].match(valid_name_regex)
-      error_notice.push('В прізвищі не можуть бути спец символи та цифри')
-    end
+    error_notice.push("Введіть ім\\'я") if params[:first_name].blank?
+    error_notice.push('В прізвищі не можуть бути спец символи та цифри') unless params[:last_name].match(valid_name_regex)
     error_notice.push('В імені не можуть бути спец символи та цифри') unless params[:first_name].match(valid_name_regex)
     error_notice.push('Неправильний номер картки') unless params[:card_num].to_s.scan(/\D/).empty?
     error_notice.push('Закороткий номер картки') unless params[:card_num].length <= 16
