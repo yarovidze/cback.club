@@ -1,3 +1,4 @@
+<% content_for :meta_title, "#{@category.name} з кешбеком від | Cback.club" %>
 <section class="container categories-wrap favorite-section">
   <!-- breadcrumbs-->
   <div class="offer-detail mb-4">
@@ -8,36 +9,46 @@
     <h4 class="text-left"><%= @category.name %></h4>
   </div>
   <!-- breadcrumbs-->
+  <% if @offers.present? %>
   <div class="row">
-    <% @offers.each do |offer| %>
-      <div class=" col-6 col-sm-6 col-lg-3">
-        <div class="offer-list">
-          <% if current_user %>
-            <div class="fav-btn">
-              <%= render 'offers/fa_star', offer: offer %>
-            </div>
-          <% end %>
-          <%= link_to(offer) do %>
-          <div class="offer-img">
-            <%= image_tag(offer.image) if offer.image.present? %>
-          </div>
-          <div class="offer-title">
-            <h3><%= offer.name %></h3>
-          </div>
-          <div class="offer-descr-list">
-            <div class="offer-percent">
-              <strong><%= offer.cashback %></strong>
-            </div>
-          </div>
-          <% end %>
-          <div class="offer-link">
+      <% @offers.each do |offer| %>
+        <div class=" col-6 col-sm-6 col-lg-3">
+          <div class="offer-list">
             <% if current_user %>
-              <%= link_to (fa_icon "user-o", text: "В магазин"), redirect_path(id: offer.id),
-                          class: "btn-custom btn-secondary-color btn-custom-sm", target: :_blank, method: :get %>
+              <div class="fav-btn">
+                <%= render 'offers/fa_star', offer: offer %>
+              </div>
             <% end %>
+            <%= link_to(offer) do %>
+              <div class="offer-img">
+                <%= image_tag(offer.image) if offer.image.present? %>
+              </div>
+              <div class="offer-title">
+                <h3><%= offer.name %></h3>
+              </div>
+              <div class="offer-descr-list">
+                <div class="offer-percent">
+                  <strong><%= offer.cashback %></strong>
+                </div>
+              </div>
+            <% end %>
+            <div class="offer-link">
+              <% if current_user %>
+                <%= link_to (fa_icon "user-o", text: "В магазин"), redirect_path(id: offer.id),
+                            class: "btn-custom btn-secondary-color btn-custom-sm", target: :_blank, method: :get %>
+              <% end %>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
   </div>
+  <% else %>
+    <div class="d-flex align-items-center justify-content-center ">
+      <div class="text-center mt-4 mb-3 alert error-container">
+        <h6 class="font-weight-bold mt-3 mb-3">Категорія порожня :-( </h6>
+        <div class="errors-img"><%= image_pack_tag("media/images/binocular.svg") %></div>
+        <h6 class="font-weight-bold mt-3 mb-3">Спробуйте пізніше</h6>
+      </div>
+    </div>
+  <% end %>
 </section>

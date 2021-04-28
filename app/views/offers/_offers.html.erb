@@ -1,8 +1,10 @@
 <section class="offers-wrap">
   <div class="container">
-    <div class="row">
-      <% @offers.each do |offer| %>
-        <div class=" col-6 col-sm-6 col-lg-3">
+    <% if @offers.present? %>
+      <div class="row">
+
+        <% @offers.each do |offer| %>
+          <div class=" col-6 col-sm-6 col-lg-3">
             <div class="offer-list">
               <div class="fav-btn">
                 <%= render 'offers/fa_star', offer: offer %>
@@ -25,8 +27,17 @@
                             class: "btn-custom btn-secondary-color btn-custom-sm", target: :_blank, method: :get %>
               </div>
             </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="d-flex align-items-center justify-content-center ">
+        <div class="text-center mt-4 mb-3 alert error-container">
+          <h6 class="font-weight-bold mt-3 mb-3">Нажаль пошук не дав результатів :-( </h6>
+          <div class="errors-img"><%= image_pack_tag("media/images/binman.svg") %></div>
+          <h6 class="font-weight-bold mt-3 mb-3">Cпробуйте ввести інший запит</h6>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </section>

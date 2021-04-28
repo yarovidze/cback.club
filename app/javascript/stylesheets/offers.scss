@@ -12,6 +12,7 @@
   transform: scale(1);
   transition: .2s;
   cursor: pointer;
+
   .offer-link {
     display: block;
     transition: .5s;
@@ -46,6 +47,7 @@
 .offer-img img {
   max-height: 40px;
 }
+
 .offer-descr-list {
   position: relative;
   display: flex;
@@ -54,6 +56,7 @@
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
 }
+
 .offer-percent {
   font-weight: 800;
   text-align: center;
@@ -90,6 +93,7 @@
   font-size: 16px;
   background: url("../images/work-time.svg") 88% 80px no-repeat;
   background-size: 150px;
+
   .work-list {
     //display: flex;
     //justify-content: space-between;
@@ -99,6 +103,7 @@
     border-radius: 15px;
     position: relative;
     box-shadow: 0 6px 16px #00000012;
+
     .step-label {
       position: absolute;
       font-weight: bold;
@@ -112,12 +117,15 @@
       background-color: #18d615;
       z-index: 19;
     }
+
     .step-label-first {
       padding: 6px 8px 4px;
     }
+
     .step-label-last {
       padding: 6px 6px 4px;
     }
+
     i {
       margin-right: 5px;
       padding: 15px;
@@ -184,6 +192,7 @@
 .custom-title {
   font-size: 1.5rem;
 }
+
 //.percent-label::before {
 //  content: "";
 //  background: url("../images/cback.svg") no-repeat;
@@ -210,25 +219,35 @@
   font-weight: 800;
   color: #000000;
 }
+
 .rules-warning {
   background: #fffad8 url("../images/lamp.svg") 96% 30px no-repeat;
   background-size: 100px;
+
   ol {
     font-size: .9rem;
     line-height: 28px;
-    font-family: Comfortaa,cursive;
+    font-family: Comfortaa, cursive;
   }
 }
+
+.error-container {
+  max-width: 400px;
+  border-radius: 25px;
+}
+
 @media (max-width: 720px) {
   .offer-title h3 {
     font-size: 0.8rem;
   }
 }
+
 @media (max-width: 576px) {
   .header-trans-desktop {
     display: none;
   }
 }
+
 @media (max-width: 991px) {
   .work-section {
     padding: 50px 0;
