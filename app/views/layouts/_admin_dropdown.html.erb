@@ -14,8 +14,12 @@
             <%= link_to 'https://www.admitad.com/api/authorize/?scope=statistics advcampaigns banners websites&state=7c232ff20e64432fbe071228c0779f&redirect_uri=https://cback.club/&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ', class: "dropdown-item" do %>
               <i class="fas fa-database"></i> Отримати дані
             <% end %>
+            <%= link_to admin_panel_path, class: "dropdown-item", method: :get do %>
+              <i class="fas fa-database"></i> Адмінпанель
+            <% end %>
             <%= link_to destroy_user_session_path, class: "dropdown-item", method: :delete do %>
               <i class="fas fa-sign-out-alt"></i> Вихід
             <% end %>
+
           </div>
         </div>
