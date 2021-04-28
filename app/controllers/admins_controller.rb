@@ -25,8 +25,7 @@ class AdminsController < ApplicationController
     https.use_ssl = true
 
     request = Net::HTTP::Post.new(url)
-    request['Authorization'] =
-      'Basic OU9vOUxzRElhUWhxQ1V0VmtiU0ZJUGZTbVhRN21ROjBjRDV5UUVWREFBOGhLNE5TcURWSkY3VlVISFU1QQ=='
+    request['Authorization'] = 'Basic OU9vOUxzRElhUWhxQ1V0VmtiU0ZJUGZTbVhRN21ROjBjRDV5UUVWREFBOGhLNE5TcURWSkY3VlVISFU1QQ=='
     request['Cookie'] = 'gdpr_country=0'
 
     request = create_json(https.request(request).read_body)
@@ -51,23 +50,23 @@ class AdminsController < ApplicationController
     if correct_admitad_token?
       cookies[:action_data] = request['results']
       rec_user_actions(@action_data)
-    else
-      redirect_to 'https://www.admitad.com/api/authorize/?scope=statistics advcampaigns banners websites&state=7c232ff20e64432fbe071228c0779f&redirect_uri=http://127.0.0.1:3000/autorisation_admitad&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ'
+    else redirect_to 'https://www.admitad.com/api/authorize/?scope=statistics advcampaigns banners websites&state=7c232ff20e64432fbe071228c0779f&redirect_uri=https://cback.club/autorisation_admitad&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ'
     end
   end
 
   def rec_user_actions(action)
     # if status aproved count users for whitdrawl and all sum
+    @users_count = action.count
+    @all_sum = 0
+    @ready_to_withdrawal = 0
     action.each do |client|
       next if client['subid'] == ''
 
       begin
         # on production absent user with id 4
         client['subid'] = '1' if client['subid'] == '4'
-
         @client = User.find(client['subid'].to_i) if User.find(client['subid'].to_i).present?
-        transaction_params = params.permit(:offer_id, :status, :total, :cashback_sum).merge(
-          user_id: client['subid'], action_id: client['id']
+        transaction_params = params.permit(:offer_id, :status, :total, :cashback_sum).merge(user_id: client['subid'], action_id: client['id']
         )
         @transaction = Transaction.find_by(transaction_params.except(:status, :total))
         @offer = Offer.find_by(name: client['advcampaign_name'])
@@ -78,14 +77,16 @@ class AdminsController < ApplicationController
         unless @transaction.status == 4
           @transaction.total = client['cart']
           @transaction.status = client['status']
+          @ready_to_withdrawal += 1 if client['status'] == "approved"
           @transaction.offer_id = @offer.id
           @transaction.cashback_sum = client['payment']
+          @all_sum += client['payment']
           @transaction.save
         end
       rescue ActiveRecord::RecordNotFound
         next
       end
-      render 'admin/rec_actions_result'
+      render 'admins/_rec_actions_result'
     end
   end
 
@@ -95,9 +96,7 @@ class AdminsController < ApplicationController
     signature = params[:signature]
     liqpay = Liqpay.new
     if liqpay.match?(data, signature)
-      Trial.create(name: 'liqpay_sing_correct?',
-                   test_field1: liqpay.match?(data, signature),
-                   test_field2: liqpay.decodemetr_lab4_data(data)).save
+      Trial.create(name: 'liqpay_sing_correct?', test_field1: liqpay.match?(data, signature), test_field2: liqpay.decodemetr_lab4_data(data)).save
       rec_withdrawal(liqpay.decode_data(data))
     end
   end
@@ -105,9 +104,7 @@ class AdminsController < ApplicationController
   def rec_withdrawal(data)
     interim_transaction = Transaction.find_by(action_id: data['order_id'].to_i)
     user = User.find(interim_transaction.user_id)
-    Trial.create(name: 'rec_withdrawal test',
-                 test_field1: interim_transaction.action_id.to_s,
-                 test_field2: user.id.to_s).save
+    Trial.create(name: 'rec_withdrawal test', test_field1: interim_transaction.action_id.to_s, test_field2: user.id.to_s).save
     transactions_open = user.transactions.where(status: 1)
     if transactions_open.sum(:cashback_sum) == data['amount'].to_f
       transactions_open.each do |trans|
