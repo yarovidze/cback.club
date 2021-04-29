@@ -1,49 +1,62 @@
+<% content_for :meta_title, "Обрані магазини | #{DEFAULT_META["meta_title"]}" %>
 <section class="offers-wrap favorite-section">
   <div class="container">
     <!-- breadcrumbs-->
-      <div class="offer-detail mb-3">
-        <ol class="breadcrumb">
-          <%= link_to "Головна", root_path, class: "breadcrumb-item" %>
-          <li class="breadcrumb-item active" aria-current="page">Обрані магазини</li>
-        </ol>
-        <h4 class="text-left">Обрані магазини</h4>
-      </div>
+    <div class="offer-detail mb-3">
+      <ol class="breadcrumb">
+        <%= link_to "Головна", root_path, class: "breadcrumb-item" %>
+        <li class="breadcrumb-item active" aria-current="page">Обрані магазини</li>
+      </ol>
+      <h4 class="text-left">Обрані магазини</h4>
+    </div>
     <!-- breadcrumbs-->
-    <div class="row">
-      <% @favorite.each do |fav| %>
-        <div class=" col-6 col-sm-6 col-lg-3" id="fav-box-<%= fav.offer.id %>">
-          <div class="offer-list">
-            <div class="offer-img">
-              <div class="fav-btn">
-                <% if current_user.favorites.exists?(offer_id: fav.offer) %>
-                  <%= link_to favorite_path(id: fav.offer.id, from_favorites_list: true), title: "Видалити з обраного",
-                              method: :delete, remote: true do %>
-                    <i class="fas fa-star"></i>
+    <% if current_user.favorites.blank? %>
+      <div class="d-flex align-items-center justify-content-center ">
+        <div class="text-center mt-4 mb-3 error-container">
+          <h6 class="font-weight-bold mt-3 mb-3">У Вас поки що немає обраних магазинів </h6>
+          <div class="errors-img"><%= image_pack_tag("media/images/star.svg") %></div>
+          <h6 class="font-weight-bold mt-3 mb-3">Але це легко поправити :-)</h6>
+          <%= link_to (fa_icon "user-o", text: "Всі магазини"), root_path,
+                      class: "btn-custom btn-secondary-color mt-2 mb-2" %>
+        </div>
+      </div>
+    <% else %>
+      <div class="row">
+        <% @favorite.each do |fav| %>
+          <div class=" col-6 col-sm-6 col-lg-3" id="fav-box-<%= fav.offer.id %>">
+            <div class="offer-list">
+              <div class="offer-img">
+                <div class="fav-btn">
+                  <% if current_user.favorites.exists?(offer_id: fav.offer) %>
+                    <%= link_to favorite_path(id: fav.offer.id, from_favorites_list: true), title: "Видалити з обраного",
+                                method: :delete, remote: true do %>
+                      <i class="fas fa-star"></i>
+                    <% end %>
+                  <% else %>
+                    <%= link_to favorites_path(user: current_user, offer_id: fav.offer.id, from_favorites_list: true), title: "Додати в обране", method: :post do %>
+                      <i class="far fa-star"></i>
+                    <% end %>
                   <% end %>
-                <% else %>
-                  <%= link_to favorites_path(user: current_user, offer_id: fav.offer.id, from_favorites_list: true), title: "Додати в обране", method: :post do %>
-                    <i class="far fa-star"></i>
-                  <% end %>
-                <% end %>
+                </div>
+                <%= link_to image_tag(fav.offer.image), offer_path(fav.offer) if fav.offer.image.present? %>
+                <%#= image_tag fav.offer.image if fav.offer.image.present? %>
               </div>
-              <%= link_to image_tag(fav.offer.image), offer_path(fav.offer) if fav.offer.image.present? %>
-              <%#= image_tag fav.offer.image if fav.offer.image.present? %>
-            </div>
-            <div class="offer-title">
-              <h3><%= link_to fav.offer.name, offer_path(fav.offer) %></h3>
-            </div>
-            <div class="offer-descr-list">
-              <div class="offer-percent">
-                <strong><%= fav.offer.cashback %></strong>
+              <div class="offer-title">
+                <h3><%= link_to fav.offer.name, offer_path(fav.offer) %></h3>
               </div>
-              <div class="offer-link">
-                <%= link_to (fa_icon "user-o", text: "В магазин"), redirect_path(id: fav.offer.id),
-                            class: "btn-custom btn-secondary-color btn-custom-sm", target: :_blank, method: :get %>
+              <div class="offer-descr-list">
+                <div class="offer-percent">
+                  <strong><%= fav.offer.cashback %></strong>
+                </div>
+                <div class="offer-link">
+                  <%= link_to (fa_icon "user-o", text: "В магазин"), redirect_path(id: fav.offer.id),
+                              class: "btn-custom btn-secondary-color btn-custom-sm", target: :_blank, method: :get %>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      <% end %>
-    </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </section>

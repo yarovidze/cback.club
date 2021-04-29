@@ -1,5 +1,5 @@
+<% content_for :meta_title, "Мій кабінет | #{DEFAULT_META["meta_title"]}" %>
 <section class="offers-wrap favorite-section">
-  <%= render 'users/withdrawal_liqpay' %>
   <div class="container">
     <!-- breadcrumbs-->
     <ol class="breadcrumb offer-detail pt-3 pb-3">
@@ -19,8 +19,9 @@
             <div class="cback-text"><%= number_to_currency(@transactions.where(:status => 'approved').collect(&:user_cashback).sum, unit: "₴", separator: ",", delimiter: " ", format: "%n %u") %></div>
           </div>
           <% if @transactions.where(:status => 'approved').collect(&:user_cashback).sum > 0 %>
-          <%= link_to (fa_icon "user-o", text: "Вивести кошти"), withdrawal_liqpay_path,
-                      class: "btn-custom btn-secondary-color mt-2 mb-2" %>
+            <button type="button" class="btn-custom btn-secondary-color mt-2 mb-2" data-toggle="modal" data-target="#exampleModal">
+              Вивести кошти
+            </button>
             <%else %>
             <p class="text-center font-weight-bolder">У Вас поки що немає коштів готових до виводу</p>
           <% end %>
@@ -89,6 +90,20 @@
               <%= render 'transactions/trans_list' %>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content card-modal">
+        <div class="pr-3">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <%= render 'users/withdrawal_liqpay' %>
         </div>
       </div>
     </div>
