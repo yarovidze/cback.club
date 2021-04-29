@@ -96,7 +96,9 @@ class AdminsController < ApplicationController
     signature = params[:signature]
     liqpay = Liqpay.new
     if liqpay.match?(data, signature)
-      Trial.create(name: 'liqpay_sing_correct?', test_field1: liqpay.match?(data, signature), test_field2: liqpay.decodemetr_lab4_data(data)).save
+      Trial.create(name: 'liqpay_sing_correct?',
+                   test_field1: liqpay.match?(data, signature),
+                   test_field2: liqpay.decode_data(data)).save
       rec_withdrawal(liqpay.decode_data(data))
     end
   end
