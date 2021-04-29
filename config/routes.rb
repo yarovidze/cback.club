@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   devise_for :users,
              controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations',
                             sessions: 'users/sessions' }
+  devise_scope :user do
+  get '/users', to: 'devise/registrations#new'
+  get '/users/password', to: 'devise/passwords#new'
+end
   root 'offers#index'
   get '/agreement', to: 'pages#agreement', as: "agreement"
   match "/404", to: "errors#not_found", via: :all
