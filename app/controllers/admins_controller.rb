@@ -25,7 +25,8 @@ class AdminsController < ApplicationController
     https.use_ssl = true
 
     request = Net::HTTP::Post.new(url)
-    request['Authorization'] = 'Basic OU9vOUxzRElhUWhxQ1V0VmtiU0ZJUGZTbVhRN21ROjBjRDV5UUVWREFBOGhLNE5TcURWSkY3VlVISFU1QQ=='
+    request['Authorization'] =
+      'Basic OU9vOUxzRElhUWhxQ1V0VmtiU0ZJUGZTbVhRN21ROjBjRDV5UUVWREFBOGhLNE5TcURWSkY3VlVISFU1QQ=='
     request['Cookie'] = 'gdpr_country=0'
 
     request = create_json(https.request(request).read_body)
@@ -36,7 +37,8 @@ class AdminsController < ApplicationController
   end
 
   def get_action_data
-    url = URI("https://api.admitad.com/statistics/actions/?date_start=#{Date.strptime(params[:start_data], '%Y-%m-%d').strftime("%d.%m.%Y")}&limit=222&order_by=date&action_type=1")
+    url = URI("https://api.admitad.com/statistics/actions/?date_start=#{Date.strptime(params[:start_data],
+                                                                                      '%Y-%m-%d').strftime('%d.%m.%Y')}&limit=222&order_by=date&action_type=1")
 
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
@@ -47,11 +49,20 @@ class AdminsController < ApplicationController
 
     request = create_json(https.request(request).read_body.force_encoding('utf-8'))
     @action_data = request['results']
-    if correct_admitad_token?
+    if correct_admitad_token? && @action_data.present?
       cookies[:action_data] = request['results']
+      Trial.create(name: 'action_data_result',
+                   test_field1: @action_data).save
       rec_user_actions(@action_data)
     else redirect_to 'https://www.admitad.com/api/authorize/?scope=statistics advcampaigns banners websites&state=7c232ff20e64432fbe071228c0779f&redirect_uri=https://cback.club/autorisation_admitad&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ'
+      # else redirect_to 'https://www.admitad.com/api/authorize/?scope=statistics advcampaigns banners websites&state=7c232ff20e64432fbe071228c0779f&redirect_uri=http://127.0.0.1:3000/autorisation_admitad&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ'
     end
+  end
+  def rec_user_actions_test
+    @users_count = 2
+    @all_sum = 0
+    @ready_to_withdrawal = 0
+    render 'admins/_rec_actions_result'
   end
 
   def rec_user_actions(action)
@@ -64,10 +75,10 @@ class AdminsController < ApplicationController
 
       begin
         # on production absent user with id 4
-        client['subid'] = '1' if client['subid'] == '4'
+        client['subid'] = '28' if client['subid'] == '4'
         @client = User.find(client['subid'].to_i) if User.find(client['subid'].to_i).present?
-        transaction_params = params.permit(:offer_id, :status, :total, :cashback_sum).merge(user_id: client['subid'], action_id: client['id']
-        )
+        transaction_params = params.permit(:offer_id, :status, :total, :cashback_sum).merge(user_id: client['subid'],
+                                                                                            action_id: client['id'])
         @transaction = Transaction.find_by(transaction_params.except(:status, :total))
         @offer = Offer.find_by(name: client['advcampaign_name'])
         unless @transaction.present?
@@ -77,17 +88,27 @@ class AdminsController < ApplicationController
         unless @transaction.status == 4
           @transaction.total = client['cart']
           @transaction.status = client['status']
-          @ready_to_withdrawal += 1 if client['status'] == "approved"
+          @ready_to_withdrawal += 1 if client['status'] == 'approved'
           @transaction.offer_id = @offer.id
           @transaction.cashback_sum = client['payment']
           @all_sum += client['payment']
           @transaction.save
         end
+        Trial.create(name: 'test',
+                     test_field1: 1).save
       rescue ActiveRecord::RecordNotFound
         next
       end
-      render 'admins/_rec_actions_result'
+      puts @client, @transaction, '---------------------------------'
+      Trial.create(name: 'action_each',
+                   test_field1: @client,
+                   test_field2: @transaction).save
     end
+    Trial.create(name: 'action_result2',
+                 test_field1: @users_count,
+                 test_field2: @all_sum,
+                 test_field3: @ready_to_withdrawal).save
+    render 'admins/_rec_actions_result'
   end
 
   # liqpay
@@ -96,7 +117,9 @@ class AdminsController < ApplicationController
     signature = params[:signature]
     liqpay = Liqpay.new
     if liqpay.match?(data, signature)
-      Trial.create(name: 'liqpay_sing_correct?', test_field1: liqpay.match?(data, signature), test_field2: liqpay.decodemetr_lab4_data(data)).save
+      Trial.create(name: 'liqpay_sing_correct?',
+                   test_field1: liqpay.match?(data, signature),
+                   test_field2: liqpay.decode_data(data)).save
       rec_withdrawal(liqpay.decode_data(data))
     end
   end
@@ -104,7 +127,8 @@ class AdminsController < ApplicationController
   def rec_withdrawal(data)
     interim_transaction = Transaction.find_by(action_id: data['order_id'].to_i)
     user = User.find(interim_transaction.user_id)
-    Trial.create(name: 'rec_withdrawal test', test_field1: interim_transaction.action_id.to_s, test_field2: user.id.to_s).save
+    Trial.create(name: 'rec_withdrawal test', test_field1: interim_transaction.action_id.to_s,
+                 test_field2: user.id.to_s).save
     transactions_open = user.transactions.where(status: 1)
     if transactions_open.sum(:cashback_sum) == data['amount'].to_f
       transactions_open.each do |trans|
@@ -117,6 +141,6 @@ class AdminsController < ApplicationController
   private
 
   def correct_admitad_token?
-    (request['status_code'] == 401) ? false : true
+    request['status_code'] != 401
   end
 end
