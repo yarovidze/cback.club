@@ -19,7 +19,6 @@ Rails.application.routes.draw do
   get 'admin_panel', to: 'admins#index', as: 'admin_panel'
   get 'autorisation_admitad', to: 'admins#autorisation_admitad', as: 'autorisation_admitad'
   post 'get_action_data', to: 'admins#get_action_data', as: 'get_action_data'
-  get 'rec_user_actions_test', to: 'admins#rec_user_actions_test', as: 'rec_user_actions_test'
 
   devise_for :users,
              controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations',
