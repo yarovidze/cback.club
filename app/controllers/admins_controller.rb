@@ -58,6 +58,12 @@ class AdminsController < ApplicationController
       # else redirect_to 'https://www.admitad.com/api/authorize/?scope=statistics advcampaigns banners websites&state=7c232ff20e64432fbe071228c0779f&redirect_uri=http://127.0.0.1:3000/autorisation_admitad&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ'
     end
   end
+  def rec_user_actions_test
+    @users_count = 2
+    @all_sum = 0
+    @ready_to_withdrawal = 0
+    render 'admins/_rec_actions_result'
+  end
 
   def rec_user_actions(action)
     # if status aproved count users for whitdrawl and all sum
