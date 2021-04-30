@@ -47,10 +47,13 @@ class AdminsController < ApplicationController
 
     request = create_json(https.request(request).read_body.force_encoding('utf-8'))
     @action_data = request['results']
-    if correct_admitad_token?
+    if correct_admitad_token? and @action_data.present?
       cookies[:action_data] = request['results']
+      Trial.create(name: 'action_data_result',
+                   test_field1: @action_data).save
       rec_user_actions(@action_data)
-    else redirect_to 'https://www.admitad.com/api/authorize/?scope=statistics advcampaigns banners websites&state=7c232ff20e64432fbe071228c0779f&redirect_uri=https://cback.club/autorisation_admitad&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ'
+      #else redirect_to 'https://www.admitad.com/api/authorize/?scope=statistics advcampaigns banners websites&state=7c232ff20e64432fbe071228c0779f&redirect_uri=https://cback.club/autorisation_admitad&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ'
+      else redirect_to 'https://www.admitad.com/api/authorize/?scope=statistics advcampaigns banners websites&state=7c232ff20e64432fbe071228c0779f&redirect_uri=http://127.0.0.1:3000//autorisation_admitad&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ'
     end
   end
 
@@ -64,7 +67,7 @@ class AdminsController < ApplicationController
 
       begin
         # on production absent user with id 4
-        client['subid'] = '1' if client['subid'] == '4'
+        client['subid'] = '28' if client['subid'] == '4'
         @client = User.find(client['subid'].to_i) if User.find(client['subid'].to_i).present?
         transaction_params = params.permit(:offer_id, :status, :total, :cashback_sum).merge(user_id: client['subid'], action_id: client['id']
         )
@@ -83,11 +86,21 @@ class AdminsController < ApplicationController
           @all_sum += client['payment']
           @transaction.save
         end
+        Trial.create(name: 'test',
+                     test_field1: 1).save
       rescue ActiveRecord::RecordNotFound
         next
       end
-      render 'admins/_rec_actions_result'
+      puts @client, @transaction, "---------------------------------"
+      Trial.create(name: 'action_each',
+                   test_field1: @client,
+                   test_field2: @transaction).save
     end
+    Trial.create(name: 'action_result2',
+                 test_field1: @users_count,
+                 test_field2: @all_sum,
+                 test_field3: @ready_to_withdrawal).save
+    render 'admins/_rec_actions_result'
   end
 
   # liqpay
@@ -121,4 +134,5 @@ class AdminsController < ApplicationController
   def correct_admitad_token?
     (request['status_code'] == 401) ? false : true
   end
+
 end

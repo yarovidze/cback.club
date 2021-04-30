@@ -35,7 +35,6 @@ class UsersController < ApplicationController
                            cashback_sum: amount,
                            status: 5,
                            offer_id: Offer.first.id).save
-
         liqpay.api('request', {
                      action: 'p2pcredit',
                      version: '3',
