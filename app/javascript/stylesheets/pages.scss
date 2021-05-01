@@ -82,7 +82,14 @@ body {
 }
 
 .categories-list {
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    max-width: 16px;
+    margin-right: 5px;
+    margin-top: -3px;
+  }
 }
 
 .form-wrap {

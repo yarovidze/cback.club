@@ -5,4 +5,5 @@ class ApplicationController < ActionController::Base
   def current_favorite
     Favorite.find_by(user_id: current_user.id)
   end
+
 end

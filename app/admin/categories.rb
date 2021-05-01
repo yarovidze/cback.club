@@ -5,7 +5,7 @@ ActiveAdmin.register Category do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name
+  permit_params :name, :category_icon
   #
   # or
   #
@@ -23,6 +23,7 @@ ActiveAdmin.register Category do
   form do |f|
     f.inputs do
       f.input :name
+      f.input :category_icon, as: :file
     end
     f.actions
   end

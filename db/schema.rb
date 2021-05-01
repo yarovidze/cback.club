@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_20_111830) do
+ActiveRecord::Schema.define(version: 2021_05_01_192934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 2021_04_20_111830) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "category_icon"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -113,11 +114,10 @@ ActiveRecord::Schema.define(version: 2021_04_20_111830) do
     t.text "description"
     t.string "cashback"
     t.integer "confirmation"
+    t.string "slug"
     t.string "alt_name"
     t.float "cashback_percent", default: 0.5
-    t.string "slug"
     t.index ["category_id"], name: "index_offers_on_category_id"
-    t.index ["slug"], name: "index_offers_on_slug", unique: true
   end
 
   create_table "transactions", force: :cascade do |t|
