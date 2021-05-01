@@ -65,40 +65,40 @@ class AdminsController < ApplicationController
     @ready_to_withdrawal = 0
     action.each do |client|
       next if client['subid'] == ''
+      # on production absent user with id 4
+      client['subid'] = '1' if client['subid'] == '4'
+      p client['subid'], "111111111111111111111111111111111111111111111111111111111111"
+      @client = User.find_by(id: client['subid'].to_i)
+      p @client
+      next if @client.nil?
 
-      begin
-        # on production absent user with id 4
-        client['subid'] = '1' if client['subid'] == '4'
-        @client = User.find(client['subid'].to_i) if User.find(client['subid'].to_i).present?
-        transaction_params = params.permit(:offer_id, :status, :total, :cashback_sum).merge(user_id: client['subid'],
-                                                                                            action_id: client['id'])
-        @transaction = Transaction.find_by(transaction_params.except(:status, :total))
-        @offer = Offer.find_by(name: client['advcampaign_name'])
-        Trial.create(name: 'test_admidat_methods',
-                     test_field1: @client.id,
-                     test_field2: @transaction.id,
-                     test_field3: @offer.id).save
-        unless @transaction.present?
-          @transaction = Transaction.create(transaction_params.merge(total: client['payment_sum_open']))
-          @transaction.action_id = client['id']
-        end
-        unless @transaction.status == 4
-          @transaction.total = client['cart']
-          @transaction.status = client['status']
-          @ready_to_withdrawal += 1 if client['status'] == 'approved'
-          @transaction.offer_id = @offer.id
-          @transaction.cashback_sum = client['payment']
-          @all_sum += client['payment']
-          @transaction.save
-        end
-      rescue ActiveRecord::RecordNotFound
-        next
+      transaction_params = params.permit(:offer_id, :status, :total, :cashback_sum).merge(user_id: @client.id,
+                                                                                          action_id: client['id'])
+
+      @transaction = Transaction.find_by(transaction_params.except(:status, :total))
+      @offer = Offer.find_by(name: client['advcampaign_name'])
+      Trial.create(name: 'test_admidat_methods',
+                   test_field1: @client.id,
+                   test_field2: @transaction.id,
+                   test_field3: @offer.id).save
+      unless @transaction.present?
+        @transaction = Transaction.create(transaction_params.merge(total: client['payment_sum_open']))
+        @transaction.action_id = client['id']
       end
-      Trial.create(name: 'test_admidat_methods2',
-                   test_field1: @users_count,
-                   test_field2: @all_sum,
-                   test_field3: @ready_to_withdrawal).save
-      render 'admins/_rec_actions_result'
+      unless @transaction.status == 4
+        @transaction.total = client['cart']
+        @transaction.status = client['status']
+        @ready_to_withdrawal += 1 if client['status'] == 'approved'
+        @transaction.offer_id = @offer.id
+        @transaction.cashback_sum = client['payment']
+        @all_sum += client['payment']
+        @transaction.save
+        Trial.create(name: 'test_admidat_methods2',
+                     test_field1: @users_count,
+                     test_field2: @all_sum,
+                     test_field3: @ready_to_withdrawal).save
+        render 'admins/_rec_actions_result'
+      end
     end
   end
 
@@ -163,7 +163,7 @@ class AdminsController < ApplicationController
                      test_field1: @users_count,
                      test_field2: @all_sum,
                      test_field3: @ready_to_withdrawal).save
-        render 'admins/_rec_actions_result'
+        render 'admins/rec_actions_result_test'
       end
     end
   end
