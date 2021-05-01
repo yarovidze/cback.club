@@ -50,7 +50,9 @@ class AdminsController < ApplicationController
     if correct_admitad_token?
       cookies[:action_data] = request['results']
       rec_user_actions(@action_data)
-    else redirect_to 'https://www.admitad.com/api/authorize/?scope=statistics advcampaigns banners websites&state=7c232ff20e64432fbe071228c0779f&redirect_uri=https://cback.club/autorisation_admitad&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ'
+      #else redirect_to 'https://www.admitad.com/api/authorize/?scope=statistics advcampaigns banners websites&state=7c232ff20e64432fbe071228c0779f&redirect_uri=https://cback.club/autorisation_admitad&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ'
+    else redirect_to 'https://www.admitad.com/api/authorize/?scope=statistics advcampaigns banners websites&state=7c232ff20e64432fbe071228c0779f&redirect_uri=http://127.0.0.1:3000/autorisation_admitad&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ'
+
     end
   end
 
@@ -59,9 +61,10 @@ class AdminsController < ApplicationController
     @users_count = action.count
     @all_sum = 0
     @ready_to_withdrawal = 0
+    puts "-----------------------"
     action.each do |client|
       next if client['subid'] == ''
-
+      puts"111111111111111111111111111111111111111111111111111111111111111111111111111"
       begin
         # on production absent user with id 4
         client['subid'] = '1' if client['subid'] == '4'
