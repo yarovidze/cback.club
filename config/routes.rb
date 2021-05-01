@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  get 'contact/new'
+  get '/contacts', to:'contacts#new'
   get 'offers/index'
   get 'offers/show'
   get 'autocomplete', to: 'offers#autocomplete', as: 'autocomplete'
