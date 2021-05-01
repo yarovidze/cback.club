@@ -1,0 +1,21 @@
+<br><br><br><br>
+<h1><%= params[:notice]%></h1>
+
+<%= link_to 'get tokens in admidat', "https://www.admitad.com/api/authorize/?scope=statistics advcampaigns banners websites&state=7c232ff20e64432fbe071228c0779f&redirect_uri=#{request.base_url + "/autorisation_admitad"}&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ"%>
+<br>
+<%= form_with url: get_action_data_path, id: "get_action_data_form", local: false do |form| %>
+  <%= form.date_field("start_data", value: "2020-01-01") %>
+  <%= form.submit "Оновити" %>
+<% end %>
+
+<div id="results">
+
+</div>
+<h1>DEBUG</h1>
+<div>
+<%= @response %>
+<h1>________</h1>
+
+<h1>________</h1>
+<%= @action_data %>
+</div>
