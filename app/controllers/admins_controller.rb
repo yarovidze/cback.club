@@ -94,6 +94,10 @@ class AdminsController < ApplicationController
       rescue ActiveRecord::RecordNotFound
         next
       end
+      Trial.create(name: 'test_admidat_methods2',
+                   test_field1: @users_count,
+                   test_field2: @all_sum,
+                   test_field3: @ready_to_withdrawal).save
       render 'admins/_rec_actions_result'
     end
   end
