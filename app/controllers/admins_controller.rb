@@ -50,7 +50,6 @@ class AdminsController < ApplicationController
     request = create_json(https.request(request).read_body.force_encoding('utf-8'))
     @action_data = request['results']
     if correct_admitad_token? && @action_data.present?
-      cookies[:action_data] = request['results']
       rec_user_actions(@action_data)
     else redirect_to 'https://www.admitad.com/api/authorize/?scope=statistics advcampaigns banners websites&state=7c232ff20e64432fbe071228c0779f&redirect_uri=https://cback.club/autorisation_admitad&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ'
     end
