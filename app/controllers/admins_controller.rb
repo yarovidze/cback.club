@@ -111,13 +111,12 @@ class AdminsController < ApplicationController
     https.use_ssl = true
 
     request = Net::HTTP::Get.new(url)
-    request['Authorization'] = "Bearer #{cookies[:access_token]}"
+    request['Authorization'] = "Bearer #{params[:token]}"
     request['Cookie'] = 'gdpr_country=0; user_default_language=en'
 
     request = create_json(https.request(request).read_body.force_encoding('utf-8'))
     @action_data = request['results']
     if correct_admitad_token? && @action_data.present?
-      cookies[:action_data] = request['results']
       rec_user_actions_test(@action_data)
       # else redirect_to 'https://www.admitad.com/api/authorize/?scope=statistics advcampaigns banners websites&state=7c232ff20e64432fbe071228c0779f&redirect_uri=https://cback.club/autorisation_admitad&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ'
     else redirect_to 'https://www.admitad.com/api/authorize/?scope=statistics advcampaigns banners websites&state=7c232ff20e64432fbe071228c0779f&redirect_uri=http://127.0.0.1:3000/autorisation_admitad&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ'
