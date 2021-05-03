@@ -5,9 +5,10 @@
 <br>
 <%= form_with url: get_action_data_path, id: "get_action_data_form", local: false do |form| %>
   <%= form.date_field("start_data", value: "2020-01-01") %>
+  <%= form.hidden_field("token", value: cookies[:access_token]) %>
   <%= form.submit "Оновити" %>
 <% end %>
-<%= form_with url: get_action_data_test_path, id: "get_action_data_form", local: false do |form| %>
+<%= form_with url: get_action_data_test_path, id: "get_action_data_form" do |form| %>
   <%= form.date_field("start_data", value: "2020-01-01") %>
   <%= form.submit "Оновити" %>
 <% end %>
