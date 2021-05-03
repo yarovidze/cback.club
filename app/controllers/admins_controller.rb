@@ -44,7 +44,7 @@ class AdminsController < ApplicationController
     https.use_ssl = true
 
     request = Net::HTTP::Get.new(url)
-    request['Authorization'] = "Bearer #{cookies[:access_token]}"
+    request['Authorization'] = "Bearer #{params[:token]}"
     request['Cookie'] = 'gdpr_country=0; user_default_language=en'
 
     request = create_json(https.request(request).read_body.force_encoding('utf-8'))
