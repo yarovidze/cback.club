@@ -10,7 +10,7 @@ class AdminsController < ApplicationController
 
   def index; end
 
-  # admidat
+  # admitad
 
   def create_json(request)
     raw_json = JSON.generate(request)
@@ -19,14 +19,22 @@ class AdminsController < ApplicationController
   end
 
   def autorisation_admitad
-    cookies[:code] = params[:code] unless params[:code].nil?
-    url = URI("https://api.admitad.com/token/?state=7c232ff20e64432fbe071228c0779f&redirect_uri=#{request.base_url + request.path}&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ&client_secret=0cD5yQEVDAA8hK4NSqDVJF7VUHHU5A&code=#{cookies[:code]}&grant_type=authorization_code")
+    code = params[:code] unless params[:code].nil?
+    # request params
+    state = '7c232ff20e64432fbe071228c0779f'
+    redirect_uri = request.base_url + request.path
+    response_type = 'code'
+    grant_type = 'authorization_code'
+    client_id = Rails.application.credentials.admidat[:client_id]
+    client_secret = Rails.application.credentials.admidat[:client_secret]
+
+    url = URI("https://api.admitad.com/token/?state=#{state}&redirect_uri=#{redirect_uri}&response_type=#{response_type}&client_id=#{client_id}&client_secret=#{client_secret}&code=#{code}&grant_type=#{grant_type}")
+
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
 
     request = Net::HTTP::Post.new(url)
-    request['Authorization'] =
-      'Basic OU9vOUxzRElhUWhxQ1V0VmtiU0ZJUGZTbVhRN21ROjBjRDV5UUVWREFBOGhLNE5TcURWSkY3VlVISFU1QQ=='
+    request['Authorization'] = "Basic #{Base64.strict_encode64("#{client_id}:#{client_secret}")}"
     request['Cookie'] = 'gdpr_country=0'
 
     request = create_json(https.request(request).read_body)
@@ -37,8 +45,12 @@ class AdminsController < ApplicationController
   end
 
   def get_action_data
-    url = URI("https://api.admitad.com/statistics/actions/?date_start=#{Date.strptime(params[:start_data],
-                                                                                      '%Y-%m-%d').strftime('%d.%m.%Y')}&limit=222&order_by=date&action_type=1")
+    date = Date.strptime(params[:start_data], '%Y-%m-%d').strftime('%d.%m.%Y')
+    limit = '222'
+    order_by = 'date'
+    action_type = 1
+
+    url = URI("https://api.admitad.com/statistics/actions/?date_start=#{date}&limit=#{limit}&order_by=#{order_by}&action_type=#{action_type}")
 
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
@@ -51,7 +63,13 @@ class AdminsController < ApplicationController
     @action_data = request['results']
     if correct_admitad_token? && @action_data.present?
       rec_user_actions(@action_data)
-    else redirect_to 'https://www.admitad.com/api/authorize/?scope=statistics advcampaigns banners websites&state=7c232ff20e64432fbe071228c0779f&redirect_uri=https://cback.club/autorisation_admitad&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ'
+    else
+      scope = 'statistics advcampaigns banners websites'
+      state = '7c232ff20e64432fbe071228c0779f'
+      redirect_uri = 'https://cback.club/autorisation_admitad'
+      response_type = 'code'
+      client_id = Rails.application.credentials.admidat[:client_id]
+      redirect_to "https://www.admitad.com/api/authorize/?scope=#{scope}&state=#{state}&redirect_uri=#{redirect_uri}&response_type=#{response_type}&client_id=#{client_id}"
     end
   end
 
@@ -73,7 +91,7 @@ class AdminsController < ApplicationController
 
       @transaction = Transaction.find_by(transaction_params.except(:status, :total))
       @offer = Offer.find_by(name: client['advcampaign_name'])
-      Trial.create(name: 'test_admidat_methods',
+      Trial.create(name: 'test_admitad_methods',
                    test_field1: @client.id,
                    test_field2: @transaction.id,
                    test_field3: @offer.id).save
@@ -90,7 +108,7 @@ class AdminsController < ApplicationController
       @transaction.cashback_sum = client['payment']
       @all_sum += client['payment']
       @transaction.save
-      Trial.create(name: 'test_admidat_methods2',
+      Trial.create(name: 'test_admitad_methods2',
                    test_field1: @users_count,
                    test_field2: @all_sum,
                    test_field3: @ready_to_withdrawal).save
