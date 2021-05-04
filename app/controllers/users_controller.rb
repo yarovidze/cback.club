@@ -9,7 +9,6 @@ class UsersController < ApplicationController
 
   def create_withdrawal_request
     Transaction.where(user_id: current_user.id, status: 0).each do |transaction|
-      puts transaction.id
       transaction.first.status = 1
       transaction.save
     end
