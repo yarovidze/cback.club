@@ -20,7 +20,7 @@ namespace :puma do
     on roles(:app) do
       execute "cd #{release_path} && #{bundle_wrapper_path} exec pumactl -P #{shared_path}/tmp/pids/puma.pid stop"
 
-      sudo "services puma restart"
+      sudo "service puma restart"
     end
   end
 end
