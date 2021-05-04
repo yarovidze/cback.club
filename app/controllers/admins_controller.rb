@@ -21,11 +21,6 @@ class AdminsController < ApplicationController
   def autorisation_admitad
     code = params[:code] unless params[:code].nil?
     # request params
-    p Rails.application.credentials.facebook[:APP_ID],
-      Rails.application.credentials.facebook[:APP_SECRET],
-      Rails.application.credentials.google[:APP_ID],
-      Rails.application.credentials.google[:APP_SECRET],
-      "------------------------------------------"
     state = '7c232ff20e64432fbe071228c0779f'
     redirect_uri = request.base_url + request.path
     response_type = 'code'
