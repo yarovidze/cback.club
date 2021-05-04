@@ -2,7 +2,7 @@
   <% Category.all.each do |category| %>
     <%= link_to category_path(category) do %>
       <div class="categories-list btn-categories">
-        <%= image_tag(category.category_icon) if category.category_icon.present? %>
+        <span class="category-icon"><%= image_tag(category.category_icon) if category.category_icon.present? %></span>
         <%= category.name %>
       </div>
     <% end %>

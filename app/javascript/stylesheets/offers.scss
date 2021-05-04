@@ -2,7 +2,6 @@
   background-color: white;
   border-radius: 15px;
   margin-bottom: 30px;
-  transform: scale(1.02);
   box-shadow: 0 6px 16px #00000012;
   position: relative;
 }
@@ -10,7 +9,7 @@
 .offer-list:hover {
   box-shadow: none;
   transform: scale(1);
-  transition: .2s;
+  transition: .5s;
   cursor: pointer;
 
   .offer-link {
