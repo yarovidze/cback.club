@@ -3,73 +3,27 @@
 class AdminsController < ApplicationController
   skip_before_action :verify_authenticity_token
   require 'liqpay'
-  require 'http'
-  require 'uri'
-  require 'net/http'
-  require 'json'
 
   def index; end
 
-  # admitad
-
-  def create_json(request)
-    raw_json = JSON.generate(request)
-    raw_json = JSON.parse raw_json.gsub('=>', ':')
-    JSON(raw_json)
-  end
-
   def autorisation_admitad
-    code = params[:code] unless params[:code].nil?
-    # request params
-    state = '7c232ff20e64432fbe071228c0779f'
-    redirect_uri = request.base_url + request.path
-    response_type = 'code'
-    grant_type = 'authorization_code'
-    client_id = Rails.application.credentials.admidat[:client_id]
-    client_secret = Rails.application.credentials.admidat[:client_secret]
-
-    url = URI("https://api.admitad.com/token/?state=#{state}&redirect_uri=#{redirect_uri}&response_type=#{response_type}&client_id=#{client_id}&client_secret=#{client_secret}&code=#{code}&grant_type=#{grant_type}")
-
-    https = Net::HTTP.new(url.host, url.port)
-    https.use_ssl = true
-
-    request = Net::HTTP::Post.new(url)
-    request['Authorization'] = "Basic #{Base64.strict_encode64("#{client_id}:#{client_secret}")}"
-    request['Cookie'] = 'gdpr_country=0'
-
-    request = create_json(https.request(request).read_body)
-    @response = request
-    cookies[:refresh_token] = request['refresh_token'] unless request['refresh_token'].nil?
-    cookies[:access_token] = request['access_token'] unless request['refresh_token'].nil?
+    @admitad = AdmitadService.new
+    if !params[:code].nil?
+      @response = @admitad.get_admitad_access_token(request.base_url + request.path, params[:code])
+      cookies[:refresh_token] = @response['refresh_token'] unless @response['refresh_token'].nil?
+      cookies[:access_token] = @response['access_token'] unless @response['refresh_token'].nil?
+    else redirect_to @admitad.get_admitad_code
+    end
     render :index
   end
 
   def get_action_data
-    date = Date.strptime(params[:start_data], '%Y-%m-%d').strftime('%d.%m.%Y')
-    limit = '222'
-    order_by = 'date'
-    action_type = 1
-
-    url = URI("https://api.admitad.com/statistics/actions/?date_start=#{date}&limit=#{limit}&order_by=#{order_by}&action_type=#{action_type}")
-
-    https = Net::HTTP.new(url.host, url.port)
-    https.use_ssl = true
-
-    request = Net::HTTP::Get.new(url)
-    request['Authorization'] = "Bearer #{params[:token]}"
-    request['Cookie'] = 'gdpr_country=0; user_default_language=en'
-
-    request = create_json(https.request(request).read_body.force_encoding('utf-8'))
-    @action_data = request['results']
+    @admitad = AdmitadService.new
+    @action_data = @admitad.get_admitad_action_data(params[:start_data], params[:token])
     if correct_admitad_token? && @action_data.present?
-      rec_user_actions(@action_data)
+      rec_user_actions(@action_data['results'])
     else
-      scope = 'statistics advcampaigns banners websites'
-      state = '7c232ff20e64432fbe071228c0779f'
-      redirect_uri = 'https://cback.club/autorisation_admitad'
-      response_type = 'code'
-      client_id = Rails.application.credentials.admidat[:client_id]
-      redirect_to "https://www.admitad.com/api/authorize/?scope=#{scope}&state=#{state}&redirect_uri=#{redirect_uri}&response_type=#{response_type}&client_id=#{client_id}"
+      redirect_to @admitad.get_admitad_code
     end
   end
 
@@ -145,6 +99,6 @@ class AdminsController < ApplicationController
   private
 
   def correct_admitad_token?
-    request['status_code'] != 401
+    @action_data['status_code'] != 401
   end
 end
