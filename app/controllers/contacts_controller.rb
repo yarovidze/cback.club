@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-
+  before_action :contact_params, only: [:create]
   def new 
     @contact = Contact.new
   end
@@ -13,6 +13,11 @@ class ContactsController < ApplicationController
       flash.now[:alert] = 'Невірний E-mail або відсутнє повідомлення'
       render :new
     end
+  end
+
+  private
+  def contact_params
+    params.require(:contact).permit(:email, :message)
   end
 end
 
