@@ -1,7 +1,7 @@
 <section class="form-wrap">
   <div class="container custom-container">
     <h2 class="mb-4">Отримання даних про покупки</h2>
-    <%= form_with url: get_action_data_path, id: "get_action_data_form", local: false do |form| %>
+    <%= form_with url: admitad_action_data_path, id: "get_action_data_form", local: false do |form| %>
       <div class="field">
         <div><%= form.label :date_field, "Оберіть період від" %></div>
         <%= form.date_field("start_data", value: "2020-01-01") %>
@@ -11,8 +11,16 @@
         <%= form.submit "Отримати", :class => "btn-custom btn-secondary-color w-100" %>
       </div>
     <% end %>
-
+    <%= link_to 'get tokens in admidat', "https://www.admitad.com/api/authorize/?scope=statistics advcampaigns banners websites&state=7c232ff20e64432fbe071228c0779f&redirect_uri=#{request.base_url + "/autorisation_admitad"}&response_type=code&client_id=9Oo9LsDIaQhqCUtVkbSFIPfSmXQ7mQ"%>
     <div id="results"></div>
     <p><%= params[:notice] %></p>
   </div>
 </section>
+<div>
+  <h1>DEBUG</h1>
+  <%= @response %>
+  <h1>________</h1>
+
+  <h1>________</h1>
+  <%= @action_data %>
+</div>

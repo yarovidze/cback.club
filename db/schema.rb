@@ -114,10 +114,11 @@ ActiveRecord::Schema.define(version: 2021_05_01_192934) do
     t.text "description"
     t.string "cashback"
     t.integer "confirmation"
-    t.string "slug"
     t.string "alt_name"
     t.float "cashback_percent", default: 0.5
+    t.string "slug"
     t.index ["category_id"], name: "index_offers_on_category_id"
+    t.index ["slug"], name: "index_offers_on_slug", unique: true
   end
 
   create_table "transactions", force: :cascade do |t|
