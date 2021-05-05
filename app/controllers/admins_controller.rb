@@ -6,7 +6,8 @@ class AdminsController < ApplicationController
 
   def index; end
 
-  def autorisation_admitad
+  # @return [access_token value]
+  def auth_admitad
     @admitad = AdmitadService.new
     if !params[:code].nil?
       @response = @admitad.get_admitad_access_token(request.base_url + request.path, params[:code])
@@ -17,7 +18,8 @@ class AdminsController < ApplicationController
     render :index
   end
 
-  def get_action_data
+  # redirect to rec method if all params correct
+  def admitad_action_data
     @admitad = AdmitadService.new
     @action_data = @admitad.get_admitad_action_data(params[:start_data], params[:token])
     if correct_admitad_token? && @action_data.present?
@@ -27,12 +29,15 @@ class AdminsController < ApplicationController
     end
   end
 
-  def rec_user_actions(action)
+  # rec admidat users actions
+  # @param [clients_action_data]
+  def rec_user_actions(clients_action_data)
     # if status aproved count users for whitdrawl and all sum
-    @users_count = action.count
+    @users_count = clients_action_data.count
     @all_sum = 0
     @ready_to_withdrawal = 0
-    action.each do |client|
+    @error_transactions = []
+    clients_action_data.each do |client|
       next if client['subid'] == ''
 
       # on production absent user with id 4
@@ -45,27 +50,22 @@ class AdminsController < ApplicationController
 
       @transaction = Transaction.find_by(transaction_params.except(:status, :total))
       @offer = Offer.find_by(name: client['advcampaign_name'])
-      Trial.create(name: 'test_admitad_methods',
-                   test_field1: @client.id,
-                   test_field2: @transaction.id,
-                   test_field3: @offer.id).save
+      # check if new transaction or old
       unless @transaction.present?
         @transaction = Transaction.create(transaction_params.merge(total: client['payment_sum_open']))
         @transaction.action_id = client['id']
       end
+      # if transaction paid do next element in loop
       next if @transaction.status == 4
 
+      # rec or change taransaction data
       @transaction.total = client['cart']
       @transaction.status = client['status']
       @ready_to_withdrawal += 1 if client['status'] == 'approved'
       @transaction.offer_id = @offer.id
       @transaction.cashback_sum = client['payment']
       @all_sum += client['payment']
-      @transaction.save
-      Trial.create(name: 'test_admitad_methods2',
-                   test_field1: @users_count,
-                   test_field2: @all_sum,
-                   test_field3: @ready_to_withdrawal).save
+      @error_transactions.push([client['id'], action]) unless @transaction.save
     end
     render 'admins/_rec_actions_result'
   end
@@ -75,24 +75,23 @@ class AdminsController < ApplicationController
     data = params[:data]
     signature = params[:signature]
     liqpay = Liqpay.new
-    if liqpay.match?(data, signature)
-      Trial.create(name: 'liqpay_sing_correct?', test_field1: liqpay.match?(data, signature),
-                   test_field2: liqpay.decode_data(data)).save
-      rec_withdrawal(liqpay.decode_data(data))
-    end
+    rec_withdrawal(liqpay.decode_data(data)) if liqpay.match?(data, signature)
   end
 
   def rec_withdrawal(data)
     interim_transaction = Transaction.find_by(action_id: data['order_id'].to_i)
-    user = User.find(interim_transaction.user_id)
-    Trial.create(name: 'rec_withdrawal test', test_field1: interim_transaction.action_id.to_s,
-                 test_field2: user.id.to_s).save
-    transactions_open = user.transactions.where(status: 1)
-    if transactions_open.sum(:cashback_sum) == data['amount'].to_f
-      transactions_open.each do |trans|
-        trans.status = 4
-        trans.save
+    if interim_transaction.present?
+      user = User.find(interim_transaction.user_id)
+      Trial.create(name: 'rec_withdrawal test', test_field1: interim_transaction.action_id.to_s,
+                   test_field2: user.id.to_s).save
+      transactions_open = user.transactions.where(status: 1)
+      if transactions_open.sum(:cashback_sum) == data['amount'].to_f
+        transactions_open.each do |trans|
+          trans.status = 4
+          Trial.create(name: 'error_payment', test_field1: data['order_id']).save unless trans.save
+        end
       end
+    else Trial.create(name: 'error_payment', test_field1: data['order_id']).save
     end
   end
 

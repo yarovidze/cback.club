@@ -1,7 +1,7 @@
 <section class="form-wrap">
   <div class="container custom-container">
     <h2 class="mb-4">Отримання даних про покупки</h2>
-    <%= form_with url: get_action_data_path, id: "get_action_data_form", local: false do |form| %>
+    <%= form_with url: admitad_action_data_path, id: "get_action_data_form", local: false do |form| %>
       <div class="field">
         <div><%= form.label :date_field, "Оберіть період від" %></div>
         <%= form.date_field("start_data", value: "2020-01-01") %>

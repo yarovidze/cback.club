@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# Methods for post/push data to admidat
+
 class AdmitadService
   require 'http'
   require 'uri'
@@ -24,7 +26,12 @@ class AdmitadService
     response_type = 'code'
     grant_type = 'authorization_code'
 
-    url = URI("#{@admidat_url}token/?state=#{@state}&redirect_uri=#{redirect_uri}&response_type=#{response_type}&client_id=#{@client_id}&client_secret=#{@client_secret}&code=#{code}&grant_type=#{grant_type}")
+    url = URI("#{@admidat_url}token/?state=#{@state}&redirect_uri=#{redirect_uri}" \
+                                                   "&response_type=#{response_type}" \
+                                                   "&client_id=#{@client_id}" \
+                                                   "&client_secret=#{@client_secret}" \
+                                                   "&code=#{code}" \
+                                                   "&grant_type=#{grant_type}")
 
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
@@ -38,18 +45,23 @@ class AdmitadService
 
   def get_admitad_code
     scope = 'statistics advcampaigns banners websites'
-    redirect_uri = 'https://cback.club/autorisation_admitad'
+    redirect_uri = 'https://cback.club/authorisation_admitad'
     response_type = 'code'
-    "#{@admidat_url}authorize/?scope=#{scope}&state=#{@state}&redirect_uri=#{redirect_uri}&response_type=#{response_type}&client_id=#{@client_id}"
+    "#{@admidat_url}authorize/?scope=#{scope}&state=#{@state}" \
+                                            "&redirect_uri=#{redirect_uri}" \
+                                            "&response_type=#{response_type}" \
+                                            "&client_id=#{@client_id}"
   end
 
-  def get_admitad_action_data(start_data, token)
-    date = Date.strptime(start_data, '%Y-%m-%d').strftime('%d.%m.%Y')
+  def get_admitad_action_data(start_date, token)
+    date = Date.strptime(start_date, '%Y-%m-%d').strftime('%d.%m.%Y')
     limit = '222'
     order_by = 'date'
     action_type = 1
 
-    url = URI("#{@admidat_url}statistics/actions/?date_start=#{date}&limit=#{limit}&order_by=#{order_by}&action_type=#{action_type}")
+    url = URI("#{@admidat_url}statistics/actions/?date_start=#{date}&limit=#{limit}" \
+                                                                   "&order_by=#{order_by}" \
+                                                                   "&action_type=#{action_type}")
 
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
