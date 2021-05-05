@@ -39,7 +39,6 @@
                   <% end %>
                 </div>
                 <%= link_to image_tag(fav.offer.image), offer_path(fav.offer) if fav.offer.image.present? %>
-                <%#= image_tag fav.offer.image if fav.offer.image.present? %>
               </div>
               <div class="offer-title">
                 <h3><%= link_to fav.offer.name, offer_path(fav.offer) %></h3>
