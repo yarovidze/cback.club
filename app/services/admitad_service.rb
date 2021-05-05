@@ -32,7 +32,6 @@ class AdmitadService
                                                    "&client_secret=#{@client_secret}" \
                                                    "&code=#{code}" \
                                                    "&grant_type=#{grant_type}")
-
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
 
@@ -45,12 +44,12 @@ class AdmitadService
 
   def get_admitad_code
     scope = 'statistics advcampaigns banners websites'
-    redirect_uri = 'https://cback.club/authorisation_admitad'
+    redirect_uri = 'https://cback.club/auth_admitad'
     response_type = 'code'
-    "#{@admidat_url}authorize/?scope=#{scope}&state=#{@state}" \
-                                            "&redirect_uri=#{redirect_uri}" \
-                                            "&response_type=#{response_type}" \
-                                            "&client_id=#{@client_id}"
+    "https://account.admitad.com/ru/api/authorize/?scope=#{scope}&state=#{@state}" \
+                                                                "&redirect_uri=#{redirect_uri}" \
+                                                                "&response_type=#{response_type}" \
+                                                                "&client_id=#{@client_id}"
   end
 
   def get_admitad_action_data(start_date, token)
