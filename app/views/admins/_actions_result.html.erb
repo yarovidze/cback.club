@@ -2,3 +2,14 @@
 <p>Кількість користувачів у відповіді: <%= @users_count %></p>
 <p>Сумма всіх кешбеків: <%= @all_sum %></p>
 <p>Кількість заявок готових до виведення: <%= @ready_to_withdrawal %></p>
+<% if @error_transactions.any? %>
+  <section>
+  <h3>Транзакцій з помилкою: <% @error_transactions.count %></h3>
+    <% @error_transactions.each do |err_trans|%>
+      <div>
+        <p>Action_id: err_trans[0]</p>
+        <p>Request: err_trans[1]</p>
+      </div>
+    <% end %>
+  </section>
+<% end %>
