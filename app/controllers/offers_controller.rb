@@ -12,7 +12,7 @@ class OffersController < ApplicationController
   end
 
   def offer_redirect
-    redirect_to  "#{@offer.link}/?subid=#{current_user.id}".to_s
+    redirect_to  "#{@offer.link}?subid=#{current_user.id}".to_s
   end
 
   def autocomplete
