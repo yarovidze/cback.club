@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   post 'withdrawal_get', to: 'admins#withdrawal_get', as: 'withdrawal_get'
   # admitad routes
   get 'admin_panel', to: 'admins#index', as: 'admin_panel'
-  get 'authorisation_admitad', to: 'admins#auth_admitad', as: 'authorisation_admitad'
+  get 'auth_admitad', to: 'admins#auth_admitad', as: 'authorisation_admitad'
   post 'admitad_action_data', to: 'admins#admitad_action_data', as: 'admitad_action_data'
   devise_for :users,
              controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations',
