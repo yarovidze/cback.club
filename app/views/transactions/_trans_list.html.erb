@@ -18,6 +18,8 @@
         <div class="
                       <% if trans.status == "approved" %> text-success
                       <% elsif trans.status == "paid" %> text-info
+                      <% elsif trans.status == "declined" %> text-danger
+
                       <% else %>
                         text-warning
                       <% end %>"><i class="fas fa-bullseye"></i></div>
