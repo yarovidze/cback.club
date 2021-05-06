@@ -1,4 +1,4 @@
-<%offer = @offer if @offer.present? %>
+<%offer = @offer_edited if @offer_edited.present? %>
 <% if current_user.favorites.exists?(offer_id: offer) %>
 <%= link_to favorite_path(id: offer.id, offer: offer), id: "fa-frame-#{offer.to_param}",
             title: "Видалити з обраного",

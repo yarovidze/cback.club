@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def show; end
 
   def filter_status
-    @transactions = @transactions.where(status: params[:status])
+    @transactions = @transactions.where(status: params[:status]) if params[:status] != "all"
     render 'transactions/_filter_status'
   end
 
@@ -62,7 +62,7 @@ class UsersController < ApplicationController
     end
     error_notice.push('В імені не можуть бути спец символи та цифри') unless params[:first_name].match(valid_name_regex)
     error_notice.push('Неправильний номер картки') unless params[:card_num].to_s.scan(/\D/).empty?
-    error_notice.push('Закороткий номер картки') unless params[:card_num].length <= 16
+    error_notice.push('Закороткий номер картки') unless params[:card_num].length == 16
     error_notice
   end
 end
