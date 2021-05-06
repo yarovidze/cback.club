@@ -1,5 +1,5 @@
-console.log(<%= params[:status] %>);
-console.log("click");
-console.log("<%= @transactions %>")
-$("#trans_list").replaceWith('<%= escape_javascript(render('transactions/trans_list',
- transactions: @transactions)).html_safe %>');
+$("#trans_list").replaceWith('<%= escape_javascript(render('transactions/trans_list')).html_safe %>');
+$("#all-button").remove();
+<% if params[:status] != "all" %>
+  $(".filter-transaction").append('<%= link_to "Всі", filter_status_path(status: "all"), id: "all-button", remote: true %>');
+<% end %>

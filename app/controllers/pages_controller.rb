@@ -1,10 +1,9 @@
+# frozen_string_literal: true
+
 class PagesController < ApplicationController
+  def index; end
 
-  def index
-  end
-
-  def agreement
-  end
+  def agreement; end
 
   def not_found
     render status: 404
