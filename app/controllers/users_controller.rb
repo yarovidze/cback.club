@@ -40,8 +40,7 @@ class UsersController < ApplicationController
                      receiver_first_name: params[:first_name].capitalize,
                      server_url: 'https://cback.club/withdrawal_get'
                    })
-        # redirect_to action: 'show', controller: 'users', id: current_user.id, notice: 'Очікуйте зарахування на баланс'
-        redirect_to :back, notice: 'Очікуйте зарахування на баланс'
+        redirect_to action: 'show', controller: 'users', id: current_user.id, notice: 'Очікуйте зарахування на баланс'
       end
     end
   end
