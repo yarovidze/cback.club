@@ -2,12 +2,12 @@
   <div class="card-wrap">
     <div class="field">
       <%= form.label :card_num %>
-      <%= form.text_field :card_num, class: "form-control card-numb-form", :autocomplete => :off, minlength: "16", maxlength: "16" %>
+      <%= form.text_field :card_num, class: "form-control card-numb-form", :autocomplete => :off, minlength: "16", maxlength: "16", placeholder: "Введіть номер картки" %>
       <div class="field">
         <%= form.label :first_name %>
-        <%= form.text_field :first_name, :autocomplete => :off, class: "form-control card-numb-form" %>
+        <%= form.text_field :first_name, :autocomplete => :off, class: "form-control card-numb-form", placeholder: "Введіть ім'я"%>
         <%= form.label :last_name %>
-        <%= form.text_field :last_name, :autocomplete => :off, class: "form-control card-numb-form" %>
+        <%= form.text_field :last_name, :autocomplete => :off, class: "form-control card-numb-form", placeholder: "Введіть прізвище" %>
       </div>
     </div>
   </div>
