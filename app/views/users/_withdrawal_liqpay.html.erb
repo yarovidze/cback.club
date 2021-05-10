@@ -2,7 +2,7 @@
   <div class="card-wrap">
     <div class="field">
       <%= form.label :card_num %>
-      <%= form.number_field :card_num, class: "form-control card-numb-form", :autocomplete => :off, minlength: "16", maxlength: "16", placeholder: "Введіть номер картки" %>
+      <%= form.text_field :card_num, class: "form-control card-numb-form", :autocomplete => :off, minlength: "16", maxlength: "16", placeholder: "Введіть номер картки" %>
       <div class="field">
         <%= form.label :first_name %>
         <%= form.text_field :first_name, :autocomplete => :off, class: "form-control card-numb-form", placeholder: "Введіть ім'я"%>
@@ -17,8 +17,8 @@
 <% end %>
 
 
-<!--<script>
+<script>
     document.getElementById("card_num").addEventListener("keyup", function () {
         $("#card_num").val(($("#card_num").val()).replace(/[^0-9]/g, ''));
     });
-</script>-->
+</script>
