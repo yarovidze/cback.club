@@ -44,7 +44,6 @@ class AdminsController < ApplicationController
       client['subid'] = '1' if client['subid'] == '4'
       @client = User.find_by(id: client['subid'].to_i)
       next if @client.nil?
-
       transaction_params = params.permit(:offer_id, :status, :total, :cashback_sum).merge(user_id: @client.id,
                                                                                           action_id: client['id'])
 

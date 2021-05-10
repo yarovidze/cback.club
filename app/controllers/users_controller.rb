@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def show; end
 
   def filter_status
-    @transactions = @transactions.where(status: params[:status]) if params[:status] != "all"
+    @transactions = @transactions.where(status: params[:status]) if params[:status] != 'all'
     render 'transactions/_filter_status'
   end
 
@@ -27,7 +27,6 @@ class UsersController < ApplicationController
                            cashback_sum: amount,
                            status: 5,
                            offer_id: Offer.first.id).save
-
         liqpay.api('request', {
                      action: 'p2pcredit',
                      version: '3',
@@ -40,8 +39,11 @@ class UsersController < ApplicationController
                      receiver_first_name: params[:first_name].capitalize,
                      server_url: 'https://cback.club/withdrawal_get'
                    })
+        flash[:notice] = 'Очікуйте зарахування на баланс'
         redirect_to action: 'show', controller: 'users', id: current_user.id, notice: 'Очікуйте зарахування на баланс'
       end
+    else
+      logger.error 'somebody try to post withdrawal_liqpay'
     end
   end
 
