@@ -226,6 +226,10 @@ input:focus, textarea:focus {
       color: #6f6f6f;
       box-shadow: 0 6px 16px #00000012 !important;
     }
+    &::placeholder {
+      color: #999999;
+      text-transform: lowercase;
+    }
   }
 }
 
