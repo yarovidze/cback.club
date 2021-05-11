@@ -101,6 +101,15 @@ body {
   height: auto;
   display: flex;
   align-items: center;
+  .required {
+    label {
+      display: inline-block;
+    }
+    &:after {
+      content: '*';
+      display: inline-block
+    }
+  }
 }
 
 .form-wrap h2 {

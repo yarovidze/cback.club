@@ -7,12 +7,12 @@
       <% end %>
 
       <div class="field">
-        <div><%= f.label :email %></div>
+        <div class="required"><%= f.label :email %></div>
         <%= f.text_field :email, required: true %>
       </div>
       <br>
       <div class="field mb-5">
-        <%= f.label :message %> <br>
+        <div class="required"><%= f.label :message %></div>
         <%= f.text_area :message, rows: 3, as: :text %>
       </div>
       <div class="actions">

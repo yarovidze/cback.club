@@ -6,7 +6,7 @@
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="field">
-        <%= f.label :email %>
+        <div class="required"><%= f.label :email %></div>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Введіть ваш e-mail" %>
       </div>
 
