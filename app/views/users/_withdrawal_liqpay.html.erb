@@ -1,5 +1,12 @@
 <%= form_with url: withdrawal_liqpay_path, id: "withdrawal_liqpay_form", local: false do |form| %>
   <div class="card-wrap">
+    <div class="d-inline-flex justify-content-between">
+      <div class="cc-types">
+        <img class="cc-types__img cc-types__img--visa">
+        <img class="cc-types__img cc-types__img--mastercard">
+        <span><%= number_to_currency(@transactions.where(:status => 'approved').collect(&:user_cashback).sum, unit: "UAH", separator: ",", delimiter: " ", format: "%n %u") %></span>
+      </div>
+    </div>
     <div class="mb-3">
       <%= form.text_field :card_num, class: "form-control card-numb-form", :autocomplete => :off, minlength: "16", maxlength: "16", placeholder: "Введіть номер картки" %>
     </div>
@@ -14,7 +21,6 @@
     <%= form.submit "Вивести", ({:class => "btn-custom btn-secondary-color", id: "button", remote: true}) %>
   </div>
 <% end %>
-
 
 <script>
     document.getElementById("card_num").addEventListener("keyup", function () {
