@@ -41,7 +41,7 @@ class UsersController < ApplicationController
                      server_url: 'https://cback.club/withdrawal_get'
                    })
         flash[:notice] = 'Очікуйте зарахування на баланс'
-        redirect_to action: 'show', controller: 'users', id: current_user.id 
+        redirect_to action: 'show', controller: 'users', id: current_user.id
       end
     end
   end
