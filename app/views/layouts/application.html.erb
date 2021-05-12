@@ -10,6 +10,7 @@
   <meta property="og:url" content="<%= request.original_url %>">
   <meta property="og:description" content="<%= meta_description %>">
   <meta property="og:site_name" content="<%= meta_title %>">
+  <%= favicon_pack_tag 'tag.svg' %>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
@@ -26,7 +27,11 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-E56DZGTG5Q"></script>
   <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
       gtag('js', new Date());
 
       gtag('config', 'G-E56DZGTG5Q');
@@ -42,16 +47,22 @@
       <%= render 'layouts/search_bar' %>
     <% end %>
     <div class="btn-group-header">
-     <% if current_user && current_user.admin?%>
+      <% if current_user && current_user.admin? %>
+        <button type="button" class="btn-custom btn-transparent search-mobile" data-toggle="modal" data-target="#searchModal">
+          <i class="fas fa-search"></i>
+        </button>
         <%= link_to favorites_path, class: "btn-custom btn-transparent", method: :get do %>
           <i class="fas fa-star"></i>
         <% end %>
         <%= render 'layouts/admin_dropdown' %>
-        <%elsif current_user%>
-          <%= link_to favorites_path, class: "btn-custom btn-transparent", method: :get do %>
+      <% elsif current_user %>
+        <a class="btn-custom btn-transparent search-mobile" data-toggle="modal" data-target="#searchModal">
+          <i class="far fa-search"></i>
+        </a>
+        <%= link_to favorites_path, class: "btn-custom btn-transparent", method: :get do %>
           <i class="fas fa-star"></i>
         <% end %>
-     <%= render 'layouts/user_dropdown' %>
+        <%= render 'layouts/user_dropdown' %>
       <% else %>
         <%= link_to (fa_icon "user-o", text: "Вхід"), new_user_session_path, class: "btn-custom btn-transparent", method: :get %>
         <%= link_to (fa_icon "user-o", text: "Реєстрація"), new_user_registration_path, class: "btn-custom btn-main-color", method: :get %>
@@ -72,6 +83,20 @@
     </div>
   <% end %>
 </section>
+<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content search-modal">
+      <div class="modal-body">
+        <%= form_with url: search_offers_path, class: "form-inline", method: :get, local: true do |f| %>
+          <%= f.text_field :query, id: :query, data: {behavior: "autocomplete"}, class: "form-control", placeholder: "Введіть назву магазину" %>
+          <%= button_tag type: 'submit', class: "btn-search" do %>
+            <i class="fab fa-sistrix"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 <%= render 'layouts/footer' %>
 </body>
 </html>

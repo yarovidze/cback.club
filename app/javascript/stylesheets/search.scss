@@ -61,8 +61,17 @@
   box-shadow: 1px 4px 4px 1px #bdbdbd5e;
   transition: .5s;
 }
+.search-modal {
+  background-color: #4499d1;
+}
+.search-mobile {
+  display: none;
+}
 @media (max-width: 720px) {
   .search-desktop {
     display: none;
+  }
+  .search-mobile {
+    display: inline-block;
   }
 }

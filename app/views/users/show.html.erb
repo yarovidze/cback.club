@@ -19,7 +19,7 @@
             <div class="cback-text"><%= number_to_currency(@transactions.where(:status => 'approved').collect(&:user_cashback).sum, unit: "₴", separator: ",", delimiter: " ", format: "%n %u") %></div>
           </div>
           <% if @transactions.where(:status => 'approved').collect(&:user_cashback).sum > 0 %>
-            <button type="button" class="btn-custom btn-secondary-color mt-2 mb-2" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn-custom btn-secondary-color mt-2 mb-2" data-toggle="modal" data-target="#withdrawalModal">
               Вивести кошти
             </button>
             <%else %>
@@ -97,7 +97,7 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="withdrawalModal" tabindex="-1" aria-labelledby="withdrawalModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
       <div class="modal-content card-modal">
         <div class="pr-3">

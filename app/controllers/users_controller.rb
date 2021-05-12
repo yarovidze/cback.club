@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def show; end
 
   def filter_status
-    @transactions = @transactions.where(status: params[:status])
+    @transactions = @transactions.where(status: params[:status]) if params[:status] != "all"
     render 'transactions/_filter_status'
   end
 

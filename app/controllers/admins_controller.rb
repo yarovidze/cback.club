@@ -54,6 +54,7 @@ class AdminsController < ApplicationController
       unless @transaction.present?
         @transaction = Transaction.create(transaction_params.merge(total: client['payment_sum_open']))
         @transaction.action_id = client['id']
+        @transaction.action_date = client['action_date']
       end
       # if transaction paid do next element in loop
       next if @transaction.status == 4

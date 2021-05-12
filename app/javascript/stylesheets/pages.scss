@@ -11,7 +11,7 @@ body {
 }
 
 .header {
-  padding: 1.4vh 3vh;
+  padding: .5em 1em;
   z-index: 100;
   position: fixed;
   display: flex;
@@ -35,12 +35,12 @@ body {
 }
 
 .home-section-register {
-  padding-top: 95px;
+  padding-top: 85px;
   min-height: 100vh;
 }
 
 .favorite-section, .admin-section {
-  padding-top: 100px;
+  padding-top: 85px;
   min-height: 100vh;
 }
 
@@ -101,6 +101,15 @@ body {
   height: auto;
   display: flex;
   align-items: center;
+  .required {
+    label {
+      display: inline-block;
+    }
+    &:after {
+      content: '*';
+      display: inline-block
+    }
+  }
 }
 
 .form-wrap h2 {
@@ -225,6 +234,10 @@ input:focus, textarea:focus {
       background-color: #ffffff;
       color: #6f6f6f;
       box-shadow: 0 6px 16px #00000012 !important;
+    }
+    &::placeholder {
+      color: #999999;
+      text-transform: lowercase;
     }
   }
 }

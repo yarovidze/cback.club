@@ -5,12 +5,12 @@
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
-      <%= f.label :email %>
+      <div class="required"><%= f.label :email %></div>
       <div class="field">
         <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
       </div>
 
-      <%= f.label :password %>
+      <div class="required"><%= f.label :password %></div>
       <div class="field">
         <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
@@ -18,7 +18,7 @@
         <%= f.password_field :password, autocomplete: "new-password" %>
       </div>
 
-      <%= f.label :password_confirmation %>
+      <div class="required"><%= f.label :password_confirmation %></div>
       <div class="field mb-5">
         <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
       </div>

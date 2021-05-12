@@ -33,7 +33,8 @@ class CookieBar {
 
             this.appendGACode();
         }
-        this.cookiesBar.classList.add('hidden');
+        this.cookiesBar.classList.add('hidden').hide();
+        ;
     }
 }
 

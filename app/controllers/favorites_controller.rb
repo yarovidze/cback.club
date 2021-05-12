@@ -8,7 +8,7 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    @favorite = @offer.favorites.new(user_id: current_user.id)
+    @favorite = @offer_edited.favorites.new(user_id: current_user.id)
     if @favorite.save
       render 'favorites/to_favorite'
     else
@@ -17,13 +17,13 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    @favorite = @offer.favorites.where(user_id: current_user.id).destroy_all
+    @favorite = @offer_edited.favorites.where(user_id: current_user.id).destroy_all
     render 'favorites/to_favorite'
   end
 
   private
 
   def find_offer
-    @offer = Offer.find(params[:id])
+    @offer_edited = Offer.find(params[:id])
   end
 end
