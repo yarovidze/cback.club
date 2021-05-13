@@ -54,7 +54,7 @@ class UsersController < ApplicationController
 
   def user_data_correct
     error_notice = []
-    valid_name_regex = /^[a-zA-Zа-яА-Яі]*$/
+    valid_name_regex = /^[a-zA-Zа-яАЄЇІ-Яєїі]*$/
     error_notice.push('Введіть карту') if params[:card_num].blank?
     error_notice.push('Введіть прізвище') if params[:last_name].blank?
     error_notice.push("Введіть ім\\'я") if params[:first_name].blank?
