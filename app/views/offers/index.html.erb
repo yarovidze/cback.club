@@ -3,7 +3,7 @@
       <%= render 'categories/categories' , cached: true%>
       <%= render 'offers/offers' , cached: true%>
     <div class="digg_pagination">
-      <%= will_paginate @offers, :page_links => false %>
+      <%= will_paginate @offers %>
     </div>
   </section>
 <% else %>
