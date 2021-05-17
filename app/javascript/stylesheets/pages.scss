@@ -62,8 +62,9 @@ body {
   width: 100%;
 }
 
-.home-section h1 {
+.home-section h2 {
   color: white;
+  font-size: 2.5rem;
 }
 
 .custom-container {
@@ -274,7 +275,7 @@ input:focus, textarea:focus {
 }
 
 @media (max-width: 720px) {
-  h1 {
+  h2 {
     font-size: 1.5rem;
   }
   .header {

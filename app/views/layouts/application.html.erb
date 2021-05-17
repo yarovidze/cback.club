@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="uk">
 <head>
   <title><%= meta_title %></title>
   <meta name="description" content="<%= meta_description %>">
@@ -41,7 +41,9 @@
 <section class="main-section">
   <header class="header">
     <div class="logo-header">
-      <a href="/"><%= image_pack_tag("media/images/logo_1.svg", alt: "logo") %></a>
+      <h1>
+        <a href="/"><%= image_pack_tag("media/images/logo_1.svg", alt: "Повертаємо до 60% від вартості покупок в популярних інтернет-магазинах") %></a>
+      </h1>
     </div>
     <% if current_user %>
       <%= render 'layouts/search_bar' %>
