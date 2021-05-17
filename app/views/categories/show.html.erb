@@ -21,7 +21,7 @@
             <% end %>
             <%= link_to(offer) do %>
               <div class="offer-img">
-                <%= image_tag(offer.image) if offer.image.present? %>
+                <%= image_tag(offer.image, alt: "shop img") if offer.image.present? %>
               </div>
               <div class="offer-title">
                 <h3><%= offer.name %></h3>
@@ -46,7 +46,7 @@
     <div class="d-flex align-items-center justify-content-center ">
       <div class="text-center mt-4 mb-3 alert error-container">
         <h6 class="font-weight-bold mt-3 mb-3">Категорія порожня :-( </h6>
-        <div class="errors-img"><%= image_pack_tag("media/images/binocular.svg") %></div>
+        <div class="errors-img"><%= image_pack_tag("media/images/binocular.svg", alt: "binocular") %></div>
         <h6 class="font-weight-bold mt-3 mb-3">Спробуйте пізніше</h6>
       </div>
     </div>

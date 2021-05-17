@@ -19,7 +19,7 @@
                 <%= render 'offers/fa_star', offer: @offer %>
               </div>
             <% end %>
-            <%= image_tag @offer.image if @offer.image.present? %>
+            <%= image_tag(@offer.image, alt: "shop img") if @offer.image.present? %>
           </div>
           <div class="offer-category-detail">
             <%= @category.name %>
@@ -68,7 +68,7 @@
                 <% end %>
                 <%= link_to(offer) do %>
                   <div class="offer-img">
-                    <%= image_tag(offer.image) if offer.image.present? %>
+                    <%= image_tag(offer.image, alt: "shop img") if offer.image.present? %>
                   </div>
                   <div class="offer-title">
                     <h3><%= offer.name %></h3>

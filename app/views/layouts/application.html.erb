@@ -41,7 +41,7 @@
 <section class="main-section">
   <header class="header">
     <div class="logo-header">
-      <a href="/"><%= image_pack_tag("media/images/logo_1.svg") %></a>
+      <a href="/"><%= image_pack_tag("media/images/logo_1.svg", alt: "logo") %></a>
     </div>
     <% if current_user %>
       <%= render 'layouts/search_bar' %>

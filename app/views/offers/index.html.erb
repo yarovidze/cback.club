@@ -15,10 +15,9 @@
           <button type="button" class="btn-custom btn-main-color btn-custom-lg mt-4 mb-4" data-toggle="modal" data-target="#exampleModal">
             Отримати кешбек
           </button>
-          <%#= link_to (fa_icon "user-o", text: "Отримати кешбек"), new_user_registration_path, class: "btn-custom btn-main-color btn-custom-lg mt-4 mb-4", method: :get %>
         </div>
         <div class="col-sm-12 col-lg-6 text-center">
-          <%= image_pack_tag("media/images/img-main_1.svg") %>
+          <%= image_pack_tag("media/images/img-main_1.svg", alt: "banner") %>
         </div>
       </div>
     </div>
@@ -88,17 +87,17 @@
           </div>
           <div class="col-4 col-sm-4 col-md-2 col-lg-2">
             <div class="pay-list-img">
-              <%= image_pack_tag("media/images/mastercardc.svg") %>
+              <%= image_pack_tag("media/images/mastercardc.svg", alt: "mastercard") %>
             </div>
           </div>
           <div class="col-4 col-sm-4 col-md-2 col-lg-2">
             <div class="pay-list-img">
-              <%= image_pack_tag("media/images/visac.svg") %>
+              <%= image_pack_tag("media/images/visac.svg", alt: "visa") %>
             </div>
           </div>
           <div class="col-4 col-sm-4 col-md-2 col-lg-2">
             <div class="pay-list-img">
-              <%= image_pack_tag("media/images/simc.svg") %>
+              <%= image_pack_tag("media/images/simc.svg", alt: "sim") %>
             </div>
           </div>
         </div>
@@ -110,7 +109,7 @@
             <div class="offer-list">
               <%= link_to(offer) do %>
                 <div class="offer-img">
-                  <%= image_tag(offer.image) if offer.image.present? %>
+                  <%= image_tag(offer.image, alt: "shop logo") if offer.image.present? %>
                 </div>
                 <div class="offer-title">
                   <h3><%= offer.name %></h3>

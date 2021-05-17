@@ -202,6 +202,7 @@ input:focus, textarea:focus {
 }
 .modal-content {
   border: none !important;
+  box-shadow: 0 -5px 20px 0 #00000057;
 }
 .modal-footer {
   justify-content: center !important;
@@ -211,11 +212,6 @@ input:focus, textarea:focus {
   p {
     font-size: 16px;
     line-height: 24px;
-  }
-}
-.modal-backdrop {
-  .show {
-    opacity: 0.1 !important;
   }
 }
 .card-modal {
@@ -271,6 +267,10 @@ input:focus, textarea:focus {
     padding: 20px;
     border-radius: 50%;
   }
+}
+
+.modal-backdrop.show {
+  opacity: .3 !important;
 }
 
 @media (max-width: 720px) {

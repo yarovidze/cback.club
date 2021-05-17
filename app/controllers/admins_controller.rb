@@ -13,9 +13,10 @@ class AdminsController < ApplicationController
       @response = @admitad.get_admitad_access_token(request.base_url + request.path, params[:code])
       cookies[:refresh_token] = @response['refresh_token'] unless @response['refresh_token'].nil?
       cookies[:access_token] = @response['access_token'] unless @response['refresh_token'].nil?
-    else redirect_to @admitad.get_admitad_code
+      render :index
+    else
+      redirect_to @admitad.get_admitad_code
     end
-    render :index
   end
 
   # redirect to rec method if all params correct
@@ -88,11 +89,12 @@ class AdminsController < ApplicationController
       transactions_open = user.transactions.where(status: 1)
       if transactions_open.sum(:cashback_sum) == data['amount'].to_f
         transactions_open.each do |trans|
-          trans.status = 4
+          trans.status = "paid"
           Trial.create(name: 'error_payment', test_field1: data['order_id']).save unless trans.save
         end
       end
-    else Trial.create(name: 'error_payment', test_field1: data['order_id']).save
+    else
+      Trial.create(name: 'error_payment', test_field1: data['order_id']).save
     end
   end
 
