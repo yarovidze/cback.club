@@ -275,8 +275,10 @@ input:focus, textarea:focus {
 }
 
 @media (max-width: 720px) {
-  h2 {
-    font-size: 1.5rem;
+  .home-section {
+    h2 {
+      font-size: 1.5rem;
+    }
   }
   .header {
     padding: 1.4vh 1vh;
