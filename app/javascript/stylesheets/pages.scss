@@ -19,6 +19,10 @@ body {
   align-items: center;
   background-color: #4499D1;
   width: 100%;
+  h1 {
+    margin-bottom: 0 !important;
+    line-height: 0 !important;
+  }
 }
 
 .logo-header img {
