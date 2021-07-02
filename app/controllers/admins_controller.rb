@@ -41,7 +41,7 @@ class AdminsController < ApplicationController
       next if client['subid'] == ''
 
       # on production absent user with id 4
-      client['subid'] = '1' if client['subid'] == '4'
+      client['subid'] = 'approved' if client['subid'].paid?
       @client = User.find_by(id: client['subid'].to_i)
       next if @client.nil?
       transaction_params = params.permit(:offer_id, :status, :total, :cashback_sum).merge(user_id: @client.id,
@@ -56,7 +56,7 @@ class AdminsController < ApplicationController
         @transaction.action_date = client['action_date']
       end
       # if transaction paid do next element in loop
-      next if @transaction.status == 4
+      next if @transaction.status == 'paid'
 
       # rec or change taransaction data
       @transaction.total = client['cart']
@@ -83,15 +83,15 @@ class AdminsController < ApplicationController
     if interim_transaction.present?
       user = User.find(interim_transaction.user_id)
       Trial.create(name: 'rec_withdrawal test', test_field1: interim_transaction.action_id.to_s,
-                   test_field2: user.id.to_s).save
-      transactions_open = user.transactions.where(status: 1)
+                   test_field2: user.id.to_s)
+      transactions_open = user.transactions.where(status: 'approved')
       if transactions_open.sum(:cashback_sum) == data['amount'].to_f
         transactions_open.each do |trans|
-          trans.status = 4
-          Trial.create(name: 'error_payment', test_field1: data['order_id']).save unless trans.save
+          trans.status = 'paid'
+          Trial.create(name: 'error_payment', test_field1: data['order_id']) unless trans.save
         end
       end
-    else Trial.create(name: 'error_payment', test_field1: data['order_id']).save
+    else Trial.create(name: 'error_payment', test_field1: data['order_id'])
     end
   end
 
